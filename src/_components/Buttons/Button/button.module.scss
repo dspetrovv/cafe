@@ -1,0 +1,32 @@
+@mixin defaultButton() {
+  cursor: pointer;
+  color: var(--text-default);
+  background-color: var(--buttons-default);
+}
+
+.button {
+  @include defaultButton;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 40px;
+  border-radius: 6px;
+  font-size: 22px;
+  border: 0;
+  transition: 0.3s ease-in-out;
+  &:hover {
+    background-color: var(--buttons-default-hovered);
+  }
+  &_outline {
+    background-color: var(--buttons-outline);
+    border: 1px solid var(--buttons-outline-border);
+    color: var(--buttons-outline-text);
+    &:hover {
+      @include defaultButton;
+    }
+  }
+  &_disabled {
+    cursor: default;
+    background-color: var(--buttons-default-disabled) !important;
+  }
+}
