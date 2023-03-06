@@ -1,0 +1,23 @@
+.counter {
+  display: inline-block;
+  background-color: #ffeee2;
+  color: var(--buttons-outline-text);
+  padding: 8px 8px;
+  font-size: 22px;
+  span {
+    cursor: default;
+  }
+  button {
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--buttons-outline-text);
+    border: 0;
+    font-size: 22px;
+    &:nth-child(1) {
+      margin-right: 15px;
+    }
+    &:nth-child(3) {
+      margin-left: 15px;
+    }
+  }
+}

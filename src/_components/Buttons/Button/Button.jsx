@@ -1,7 +1,8 @@
 import React from "react";
-import styles from './button.module.scss';
+import styles from '../../../css/button.module.scss';
+import Loader from "../../Loader/Loader";
 
-const Button = ({ text = 'Text', outline = true, onClick, disabled }) => {
+const Button = ({ text = 'Text', outline, onClick, isLoading = true, disabled }) => {
   let className = `${styles.button}`;
   if (disabled) {
     className += ` ${styles.button_disabled}`;
@@ -11,7 +12,9 @@ const Button = ({ text = 'Text', outline = true, onClick, disabled }) => {
   }
 
   return (
-    <button className={className} disabled={disabled}>{text}</button>
+    <button className={className} disabled={disabled}>
+      { isLoading ? (<><Loader /> Загрузка</>) : {text} }
+    </button>
   );
 };
 

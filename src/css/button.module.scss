@@ -29,4 +29,21 @@
     cursor: default;
     background-color: var(--buttons-default-disabled) !important;
   }
+  &__arrow {
+    svg {
+      width: 22px;
+      height: 22px;
+      fill: #ffffff;
+    }
+    &_up svg {
+      transform: rotate(-90deg);
+    }
+    &_down svg {
+      transform: rotate(90deg);
+    }
+    &_left svg {
+      transform: rotate(180deg);
+    }
+    padding: 13px;
+  }
 }

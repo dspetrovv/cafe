@@ -1,14 +1,14 @@
 import React from "react";
-import styles from '../Button/button.module.scss';
+import { ReactComponent as ArrowIcon } from '../../../images/arrow.svg';
+import styles from '../../../css/button.module.scss';
 
 const ArrowButton = ({ direction, onClick, disabled }) => {
-  const ArrowUp = <button>Up</button>;
-  const ArrowDown = <button>Down</button>;
-  const ArrowLeft = <button>Left</button>;
-  const ArrowRight = <button>Right</button>;
+  let className = `${styles.button} ${styles.button__arrow} ${styles.button__arrow_left}`;
 
   return (
-    <button className={styles.button}></button>
+    <button className={className} disabled={disabled}>
+      <ArrowIcon />
+    </button>
   );
 };
 

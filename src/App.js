@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from './_components/Buttons/Button';
+import Button from './_components/Buttons/CounterButton';
 
 function App() {
   return (
