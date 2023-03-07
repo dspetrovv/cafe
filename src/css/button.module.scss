@@ -17,6 +17,15 @@
   &:hover {
     background-color: var(--buttons-default-hovered);
   }
+  &_white {
+    background-color: var(--buttons-white);
+    color: var(--buttons-white-text);
+    box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.3);
+    &:hover {
+      background-color: var(--buttons-white);
+      box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.6);
+    }
+  }
   &_outline {
     background-color: var(--buttons-outline);
     border: 1px solid var(--buttons-outline-border);
@@ -28,22 +37,5 @@
   &_disabled {
     cursor: default;
     background-color: var(--buttons-default-disabled) !important;
-  }
-  &__arrow {
-    svg {
-      width: 22px;
-      height: 22px;
-      fill: #ffffff;
-    }
-    &_up svg {
-      transform: rotate(-90deg);
-    }
-    &_down svg {
-      transform: rotate(90deg);
-    }
-    &_left svg {
-      transform: rotate(180deg);
-    }
-    padding: 13px;
   }
 }

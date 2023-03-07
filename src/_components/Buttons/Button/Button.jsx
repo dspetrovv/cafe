@@ -2,18 +2,29 @@ import React from "react";
 import styles from '../../../css/button.module.scss';
 import Loader from "../../Loader/Loader";
 
-const Button = ({ text = 'Text', outline, onClick, isLoading = true, disabled }) => {
-  let className = `${styles.button}`;
-  if (disabled) {
-    className += ` ${styles.button_disabled}`;
+const getClassNameFromProps = (cssClasses = '', white, outline, isDisabled) => {
+  let className = styles.button;
+  if (outline || white) {
+    className += ` ${outline ? styles.button_outline : styles.button_white}`;
   }
-  if (outline) {
-    className += ` ${styles.button_outline}`;
+  if (!Array.isArray(cssClasses)) {
+    className += ` ${cssClasses}`;
   }
+  if (Array.isArray(cssClasses)) {
+    className += cssClasses.map((cssClass) => ` ${cssClass}`).join(' ');
+  } 
+  if (isDisabled) {
+    className += ` ${white ? styles.button_white_disabled : styles.button_disabled}`;
+  }
+  return className;
+};
+
+const Button = ({ children, outline, white, className, isLoading, disabled, onClick }) => {
+  let buttonClassName = getClassNameFromProps(className, white, outline, disabled);
 
   return (
-    <button className={className} disabled={disabled}>
-      { isLoading ? (<><Loader /> Загрузка</>) : {text} }
+    <button className={buttonClassName} disabled={disabled} onClick={onClick}>
+      { isLoading ? (<><Loader /> Загрузка</>) : (<>{children}</>)} 
     </button>
   );
 };
