@@ -1,10 +1,10 @@
 import React from 'react';
-import Button from './_components/Buttons/CounterButton';
+import FilterButton from './_components/Buttons/FilterButton';
 
 function App() {
   return (
     <div className="App">
-      <Button />
+      <FilterButton />
     </div>
   );
 }
