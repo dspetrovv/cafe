@@ -4,11 +4,13 @@ $baseColor: #ff7010;
 $baseColorSecond: #ff7010;
 $baseColorDisabled: #ffa970;
 $baseBackgroundColor: #ffffff;
+$baseBorderColor: rgba(34, 60, 80, 0.2);
 
 :root {
   --base-color: #{$baseColor};
   --text-default: #{$baseTextColor};
   --buttons-text: #{$baseTextColor};
+  --buttons-border: #{$baseBorderColor};
   --buttons-default: #{$baseColor};
   --buttons-default-disabled: #{$baseColorDisabled};
   --buttons-default-hovered: #{$baseColorSecond};
