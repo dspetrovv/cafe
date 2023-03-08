@@ -1,0 +1,25 @@
+.radio {
+  +label::before {
+    border-radius: 50% !important;
+  }
+  &:checked +label{
+    &::before {
+      border-color: var(--base-color);
+      background-color: var(--base-color);
+      background-size: 50% 50%;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      width: 0.75rem;
+      height: 0.75rem;
+      background-color: var(--buttons-outline);
+      top: 6px;
+      left: 4px;
+      border-radius: 50%;
+    }
+  }
+  &:disabled +label::before {
+    background-color: var(--base-color-disabled);
+  }
+}

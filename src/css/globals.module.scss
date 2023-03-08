@@ -1,15 +1,23 @@
+$baseTextColor: #ffffff;
+$baseTextColorSecond: #000000;
+$baseColor: #ff7010;
+$baseColorSecond: #ff7010;
+$baseColorDisabled: #ffa970;
+$baseBackgroundColor: #ffffff;
+
 :root {
-  --text-default: #ffffff;
-  --buttons-text: #ffffff;
-  --buttons-default: #ff7010;
-  --buttons-default-disabled: #ffa970;
-  --buttons-default-hovered: #ff7e28;
-  --buttons-outline: #ffffff;
-  --buttons-outline-border-disabled: #ffa970;
-  --buttons-outline-border: #ff7010;
-  --buttons-outline-text: #ff7010;
-  --buttons-white: #ffffff;
-  --buttons-white-text: #000000;
+  --base-color: #{$baseColor};
+  --text-default: #{$baseTextColor};
+  --buttons-text: #{$baseTextColor};
+  --buttons-default: #{$baseColor};
+  --buttons-default-disabled: #{$baseColorDisabled};
+  --buttons-default-hovered: #{$baseColorSecond};
+  --buttons-outline: #{$baseBackgroundColor};
+  --buttons-outline-border-disabled: #{$baseColorDisabled};
+  --buttons-outline-border: #{$baseColor};
+  --buttons-outline-text: #{$baseColor};
+  --buttons-white: #{$baseTextColor};
+  --buttons-white-text: #{$baseTextColorSecond};
 }
 
 body {
@@ -17,4 +25,5 @@ body {
   margin: 0;
   width: 100%;
   height: 100vh;
+  font-size: 22px;
 }
