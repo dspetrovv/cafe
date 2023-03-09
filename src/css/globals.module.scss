@@ -1,16 +1,20 @@
 $baseTextColor: #ffffff;
 $baseTextColorSecond: #000000;
+$baseDefaultColor: #b5b5b5;
+$borderDefaultColor: rgba(34, 60, 80, 0.2);
 $baseColor: #ff7010;
 $baseColorSecond: #ff7010;
 $baseColorDisabled: #ffa970;
+$baseErrorColor: #e23535;
 $baseBackgroundColor: #ffffff;
-$baseBorderColor: rgba(34, 60, 80, 0.2);
 
 :root {
   --base-color: #{$baseColor};
-  --text-default: #{$baseTextColor};
+  --base-error: #{$baseErrorColor};
+  --text-base: #{$baseTextColor};
+  --text-default: #{$baseDefaultColor};
   --buttons-text: #{$baseTextColor};
-  --buttons-border: #{$baseBorderColor};
+  --buttons-border: #{$borderDefaultColor};
   --buttons-default: #{$baseColor};
   --buttons-default-disabled: #{$baseColorDisabled};
   --buttons-default-hovered: #{$baseColorSecond};

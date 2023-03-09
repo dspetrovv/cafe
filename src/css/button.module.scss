@@ -1,6 +1,6 @@
 @mixin defaultButton() {
   cursor: pointer;
-  color: var(--text-default);
+  color: var(--text-base);
   background-color: var(--buttons-default);
 }
 
