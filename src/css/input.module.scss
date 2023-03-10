@@ -33,6 +33,10 @@ input {
     width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
+    position: relative;
+    input {
+      z-index: 2;
+    }
   }
   &__label {
     display: block;

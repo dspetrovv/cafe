@@ -5,6 +5,7 @@ import Checkbox from './_components/Checkbox';
 import Input from './_components/Input';
 import Radio from './_components/Radio';
 import Tabs from './_components/Tabs';
+import Dropdown from './_components/Dropdown';
 
 function App() {
   const tabs = [{
@@ -26,6 +27,7 @@ function App() {
       <Radio id={'2'} name={'name1'} />
       <Tabs tabs={tabs} />
       <Input />
+      <Dropdown />
     </div>
   );
 }
