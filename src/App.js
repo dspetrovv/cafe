@@ -7,18 +7,20 @@ import Radio from './_components/Radio';
 import Tabs from './_components/Tabs';
 import Dropdown from './_components/Dropdown';
 import Textarea from './_components/Textarea';
+import SendButton from './_components/Buttons/SendButton/SendButton';
 
 function App() {
   const tabs = [{
-    id: 1, text: 'text', selected: true,
-  },
-  {
-    id: 2, text: 'text2', selected: false,
-  },
-  {
-    id: 3, text: 'text3', selected: false,
-  }
-];
+      id: 1, text: 'text', selected: true,
+    },
+    {
+      id: 2, text: 'text2', selected: false,
+    },
+    {
+      id: 3, text: 'text3', selected: false,
+    }
+  ];
+  const SendButton1 = <SendButton />;
   return (
     <div className="App">
       <Button>Text</Button>
@@ -28,6 +30,7 @@ function App() {
       <Radio id={'2'} name={'name1'} />
       <Tabs tabs={tabs} />
       <Input />
+      <Input Icon={SendButton1} />
       <Dropdown />
       <Textarea rows={4} />
     </div>
