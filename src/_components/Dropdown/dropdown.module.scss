@@ -5,7 +5,10 @@
   border-radius: 6px;
   margin-top: 1px;
   position: absolute;
-  width: 100%;
+  width: -webkit-fill-available;
+  width: -moz-available;
+  width: fill-available;
+  background-color: var(--buttons-white);
   max-width: 310px;
   opacity: 0;
   top: 28px;
