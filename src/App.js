@@ -6,6 +6,7 @@ import Input from './_components/Input';
 import Radio from './_components/Radio';
 import Tabs from './_components/Tabs';
 import Dropdown from './_components/Dropdown';
+import Textarea from './_components/Textarea';
 
 function App() {
   const tabs = [{
@@ -28,6 +29,7 @@ function App() {
       <Tabs tabs={tabs} />
       <Input />
       <Dropdown />
+      <Textarea rows={4} />
     </div>
   );
 }
