@@ -1,6 +1,6 @@
 @mixin defaultButton() {
   cursor: pointer;
-  color: var(--text-default);
+  color: var(--text-base);
   background-color: var(--buttons-default);
 }
 
@@ -12,18 +12,20 @@
   padding: 13px 40px;
   border-radius: 6px;
   font-size: 22px;
-  border: 0;
+  border: 1px solid var(--buttons-default);
   transition: 0.3s ease-in-out;
+  max-width: 178px;
   &:hover {
     background-color: var(--buttons-default-hovered);
+    box-shadow: 0px 0px 8px 0px var(--buttons-default);
   }
   &_white {
     background-color: var(--buttons-white);
     color: var(--buttons-white-text);
-    box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.3);
+    border: 1px solid rgba(34, 60, 80, 0.2);
     &:hover {
       background-color: var(--buttons-white);
-      box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.6);
+      box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.3);
     }
   }
   &_outline {

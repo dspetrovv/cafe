@@ -1,14 +1,21 @@
 $baseTextColor: #ffffff;
 $baseTextColorSecond: #000000;
+$baseDefaultColor: #aaaaaa;
+$borderDefaultColor: rgba(34, 60, 80, 0.2);
 $baseColor: #ff7010;
 $baseColorSecond: #ff7010;
 $baseColorDisabled: #ffa970;
+$baseErrorColor: #e23535;
 $baseBackgroundColor: #ffffff;
 
 :root {
   --base-color: #{$baseColor};
-  --text-default: #{$baseTextColor};
+  --base-error: #{$baseErrorColor};
+  --text-base: #{$baseTextColor};
+  --text-default: #{$baseDefaultColor};
+  --text-colored: #{$baseColor};
   --buttons-text: #{$baseTextColor};
+  --buttons-border: #{$borderDefaultColor};
   --buttons-default: #{$baseColor};
   --buttons-default-disabled: #{$baseColorDisabled};
   --buttons-default-hovered: #{$baseColorSecond};
@@ -18,6 +25,7 @@ $baseBackgroundColor: #ffffff;
   --buttons-outline-text: #{$baseColor};
   --buttons-white: #{$baseTextColor};
   --buttons-white-text: #{$baseTextColorSecond};
+  --card-background: #{$baseBackgroundColor};
 }
 
 body {

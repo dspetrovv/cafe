@@ -1,0 +1,44 @@
+.card {
+  border: 1px solid var(--buttons-border);
+  border-radius: 12px;
+  padding: 16px;
+  background-color: var(--card-background);
+  &-product {
+    width: 268px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    &__photo {
+      width: 100%;
+      height: auto;
+    }
+    &__info {
+      display: flex;
+      flex-direction: column;
+      margin-top: 18px;
+      h4 {
+        margin: 0;
+      }
+      > span {
+        margin: 10px 0 20px;
+        overflow: hidden;
+        word-break: break-all;
+      }
+      button {
+        padding: 13px 20px;
+        font-size: 20px;
+      }
+      &-select {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        span {
+          color: var(--text-colored);
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
