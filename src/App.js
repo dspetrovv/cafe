@@ -8,6 +8,7 @@ import Tabs from './_components/Tabs';
 import Dropdown from './_components/Dropdown';
 import Textarea from './_components/Textarea';
 import SendButton from './_components/Buttons/SendButton/SendButton';
+import ProductCard from './_components/Cards/ProductCard';
 
 function App() {
   const tabs = [{
@@ -33,6 +34,7 @@ function App() {
       <Input Icon={SendButton1} />
       <Dropdown />
       <Textarea rows={4} />
+      <ProductCard />
     </div>
   );
 }

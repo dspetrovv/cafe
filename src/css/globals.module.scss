@@ -13,6 +13,7 @@ $baseBackgroundColor: #ffffff;
   --base-error: #{$baseErrorColor};
   --text-base: #{$baseTextColor};
   --text-default: #{$baseDefaultColor};
+  --text-colored: #{$baseColor};
   --buttons-text: #{$baseTextColor};
   --buttons-border: #{$borderDefaultColor};
   --buttons-default: #{$baseColor};
@@ -24,6 +25,7 @@ $baseBackgroundColor: #ffffff;
   --buttons-outline-text: #{$baseColor};
   --buttons-white: #{$baseTextColor};
   --buttons-white-text: #{$baseTextColorSecond};
+  --card-background: #{$baseBackgroundColor};
 }
 
 body {
