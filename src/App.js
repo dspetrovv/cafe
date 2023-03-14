@@ -10,6 +10,7 @@ import Textarea from './_components/Textarea';
 import SendButton from './_components/Buttons/SendButton/SendButton';
 import ProductCard from './_components/Cards/ProductCard';
 import OrderCard from './_components/Cards/OrderCard';
+import SnackCard from './_components/Cards/SnackCard';
 
 function App() {
   const tabs = [{
@@ -37,6 +38,7 @@ function App() {
       <Textarea rows={4} />
       <ProductCard />
       <OrderCard />
+      <SnackCard />
     </div>
   );
 }
