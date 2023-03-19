@@ -1,0 +1,46 @@
+@mixin list {
+  transition: 0.3s ease-in-out;
+  text-decoration: none;
+  color: var(--base-color-second);
+  &:hover {
+    color: var(--base-color);
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: var(--header-height);
+  background-color: var(--background-color-second);
+  nav {
+    max-width: var(--max-width);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+  }
+  ul {
+    font-size: 24px;
+    margin: 0;
+    padding-left: 0;
+    li {
+      cursor: pointer;
+      display: inline-block;
+      list-style: none;
+      margin: 0 10px;
+      @include list;
+      a {
+        @include list;
+      }
+    }
+  }
+  button {
+    font-weight: normal;
+    padding: 10px 25px;
+    height: fit-content;
+  }
+}

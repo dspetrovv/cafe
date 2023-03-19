@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import PriceButton from "../../_components/Buttons/PriceButton/PriceButton";
+import styles from './header.module.scss';
 
 const routes = [
   { link: '/catalog#pizza', name: 'Пицца' },
@@ -17,20 +18,20 @@ const Header = () => {
   };
 
   return (
-    <header>
+    <header className={styles.header}>
       <nav>
         <ul>
           { routes.map((route) =>
           <li key={route.link}>
-            <Link to={route.link}></Link>
+            <Link to={route.link}>{ route.name }</Link>
           </li>
           )}
           <li>
             Ещё
           </li>
         </ul>
+        <PriceButton price={0} currency='rub' onClick={goToBracket} />
       </nav>
-      <PriceButton price={0} currency='rub' onClick={goToBracket} />
     </header>
   );
 };
