@@ -6,6 +6,7 @@
     color: var(--base-color);
   }
 }
+$dropdownWidth: 16px;
 
 .header {
   display: flex;
@@ -42,5 +43,27 @@
     font-weight: normal;
     padding: 10px 25px;
     height: fit-content;
+  }
+  .more {
+    position: relative;
+    svg {
+      right: -20px;
+      width: $dropdownWidth;
+      height: $dropdownWidth;
+      top: 6px;
+      fill: var(--base-color-second);
+    }
+    ul {
+      top: $dropdownWidth * 2;
+      left: 0;
+      width: 100%;
+      min-width: max-content;
+      li {
+        display: block;
+      }
+    }
+    &:hover svg {
+      fill: var(--base-color);
+    }
   }
 }

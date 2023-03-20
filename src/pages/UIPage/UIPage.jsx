@@ -35,6 +35,7 @@ const UIPage = () => {
       <Input />
       <Input Icon={SendButton1} />
       <Dropdown />
+      <Dropdown isText />
       <Textarea rows={4} />
       <ProductCard />
       <OrderCard />
