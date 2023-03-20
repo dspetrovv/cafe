@@ -1,0 +1,13 @@
+.product-modal {
+  width: 1070px;
+  height: 680px;
+  display: flex;
+  &__photo img {
+    margin: auto;
+    width: 450px;
+    height: 450px;
+  }
+  &__info {
+    display: flex;
+  }
+}
