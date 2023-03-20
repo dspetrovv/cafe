@@ -11,6 +11,7 @@ import SendButton from '../../_components/Buttons/SendButton/SendButton';
 import ProductCard from '../../_components/Cards/ProductCard';
 import OrderCard from '../../_components/Cards/OrderCard';
 import SnackCard from '../../_components/Cards/SnackCard';
+import FilterPanel from "../../_components/Panels/FilterPanel";
 
 const UIPage = () => {
   const tabs = [{
@@ -35,10 +36,12 @@ const UIPage = () => {
       <Input />
       <Input Icon={SendButton1} />
       <Dropdown />
+      <Dropdown isText />
       <Textarea rows={4} />
       <ProductCard />
       <OrderCard />
       <SnackCard />
+      <FilterPanel />
     </div>
   );
 };

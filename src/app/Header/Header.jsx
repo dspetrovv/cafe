@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import PriceButton from "../../_components/Buttons/PriceButton/PriceButton";
+import Dropdown from "../../_components/Dropdown";
 import styles from './header.module.scss';
 
 const routes = [
@@ -27,7 +28,7 @@ const Header = () => {
           </li>
           )}
           <li>
-            Ещё
+            <Dropdown isText text="Ещё" wrapperClassName={styles.more} />
           </li>
         </ul>
         <PriceButton price={0} currency='rub' onClick={goToBracket} />

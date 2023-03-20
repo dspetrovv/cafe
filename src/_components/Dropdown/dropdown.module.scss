@@ -1,3 +1,5 @@
+$dropdownWidth: 14px;
+
 .dropdown {
   list-style: none;
   padding: 13px;
@@ -44,6 +46,39 @@
     }
     &_down {
       transform: rotate(90deg);
+    }
+  }
+  &__text {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    svg {
+      right: -18px;
+      width: $dropdownWidth;
+      height: $dropdownWidth;
+      top: 6px;
+      fill: var(--base-color-second);
+    }
+    ul {
+      top: $dropdownWidth * 2;
+      left: 0;
+      width: 100%;
+      min-width: max-content;
+      li {
+        display: block !important;
+      }
+    }
+    transition: 0.2s ease-in-out;
+    > span {
+      transition: all 0.2s ease-in-out;
+    }
+    &:hover {
+      > span {
+        color: var(--base-color);
+      }
+      svg {
+        fill: var(--base-color);
+      }
     }
   }
 }

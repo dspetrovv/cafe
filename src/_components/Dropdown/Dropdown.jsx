@@ -1,37 +1,42 @@
-import React, { createElement, useState } from "react";
+import React from "react";
 import Input from "../Input";
 import { ReactComponent as ArrowIcon } from '../../images/arrow.svg';
 import styles from './dropdown.module.scss';
+import useDropdown from "./useDropdown";
 
-const Dropdown = () => {
-  const [dropdownClassName, setDropdownClassName] = useState(styles.dropdown);
-  const [isOpened, setIsOpened] = useState(false);
-  const [selected, setSelected] = useState({ id: -1, value: '' });
-  const toggleOpen = () => {
-    setIsOpened((prevState) => !prevState);
-    setDropdownClassName(`${styles.dropdown}${isOpened ? ` ${styles.dropdown_open}` : ''}`)
-  }
-  const list = [
-    { id: 1, value: 'Text-1'},
-    { id: 2, value: 'Text-2'},
-    { id: 3, value: 'Text-3'},
-    { id: 4, value: 'Text-4'},
-  ];
-  const changeValue = (id) => {
-    setSelected(list.find((element) => element.id === id));
-    toggleOpen();
-  };
+const mockList = [
+  { id: 1, value: 'Text-1'},
+  { id: 2, value: 'Text-2'},
+  { id: 3, value: 'Text-3'},
+  { id: 4, value: 'Text-4'},
+];
+
+const Dropdown = ({ isText, text = 'text', list = mockList, className, wrapperClassName }) => {
+  const isInput = !isText;
+  const {
+    isOpen,
+    dropdownClassName,
+    selected,
+    wrapperRef,
+    toggleOpen,
+    changeValue,
+  } = useDropdown({ list, styles });
 
   const Block =
-    <ul className={dropdownClassName}>
+    <ul className={`${dropdownClassName}${className ? ` ${className}` : ''}`}>
       { list.map((element) => <li key={element.id} onClick={() => changeValue(element.id)}>{ element.value }</li>) }
     </ul>;
-  const Arrow = createElement(ArrowIcon, {
-    className: `${styles.dropdown__arrow}${isOpened ? ` ${styles.dropdown__arrow_down}` : ''}`,
-    onClick: toggleOpen
-  });
+
+  const Arrow = <ArrowIcon className={`${styles.dropdown__arrow}${isOpen ? ` ${styles.dropdown__arrow_down}` : ''}`} onClick={toggleOpen} />
+
+  if (isInput) {
+    return <Input label="Dropdown" ref={wrapperRef} Dropdown={Block} Icon={Arrow} initialValue={selected.value} className={wrapperClassName} readOnly onClick={toggleOpen} />
+  }
   return (
-    <Input label="Dropdown" Dropdown={Block} Icon={Arrow} defaultValue={selected.value} />
+    <div className={wrapperClassName ?? styles.dropdown__text} ref={wrapperRef}>
+      <span onClick={toggleOpen}>{ text }</span>
+      { Arrow }{ Block }
+    </div>
   );
 };
 
