@@ -1,3 +1,8 @@
 .checkbox-button {
   transition: all 0.15s ease-in-out;
+  &_outline {
+    &:hover {
+      background-color: transparent;
+    }
+  }
 }

@@ -12,6 +12,7 @@ import ProductCard from '../../_components/Cards/ProductCard';
 import OrderCard from '../../_components/Cards/OrderCard';
 import SnackCard from '../../_components/Cards/SnackCard';
 import FilterPanel from "../../_components/Panels/FilterPanel";
+import ProductModal from "../../_components/Modals/ProductModal/ProductModal";
 
 const UIPage = () => {
   const tabs = [{
@@ -41,7 +42,8 @@ const UIPage = () => {
       <ProductCard />
       <OrderCard />
       <SnackCard />
-      <FilterPanel />
+      {/* <FilterPanel /> */}
+      <ProductModal />
     </div>
   );
 };
