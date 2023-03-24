@@ -1,26 +1,22 @@
-import React from "react";
-import FilterButton from "../../_components/Buttons/FilterButton";
-import ProductCard from "../../_components/Cards/ProductCard";
+import React, { lazy, Suspense, useState } from "react";
 import styles from './catalog.module.scss';
+import CatalogSection from "./CatalogSection";
+
+const FilterPanel = lazy(() => import("../../_components/Panels/FilterPanel"));
 
 const CatalogPage = () => {
   const pizzasList = [
     { id: 1, title: 'Pizza-1', info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus voluptate blanditiis nihil aspernatur quisquam dolore rerum exercitationem consequuntur ut culpa neque, corporis voluptatem eum iste veniam! Quod molestiae nobis voluptas?' },
     { id: 2, title: 'Pizza-2', info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus voluptate blanditiis nihil aspernatur quisquam dolore rerum exercitationem consequuntur' }
   ];
+  const [isOpenedFilter, setIsOpenedFilter] = useState(false);
+  const onOpenFilter = () => {
+    setIsOpenedFilter(true);
+  };
+
   return (
     <>
-      <section className={styles.catalog}>
-        <div className={styles['catalog__name']}>
-          <h1>Section name</h1>
-          <FilterButton />
-        </div>
-        <div className={styles['catalog__cards']}>
-          { pizzasList.map((element) =>
-            <ProductCard key={element.id} title={element.title} info={element.info} price={300} />
-          ) }
-        </div>
-      </section>
+      <CatalogSection list={pizzasList} onOpenFilter={onOpenFilter} />
       <section className={`${styles.info} ${styles['info_hidden']}`}>
         <h1>Доставка питсы в Изумрудном городе</h1>
         <span>
@@ -39,6 +35,11 @@ const CatalogPage = () => {
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut perspiciatis a similique tenetur nostrum nobis eos assumenda repellendus adipisci quibusdam modi, illum voluptatum id sit eum pariatur repudiandae aperiam accusantium!
         </span>
       </section>
+      {isOpenedFilter && 
+        <Suspense>
+          <FilterPanel />
+        </Suspense>
+      }
     </>
   );
 };
