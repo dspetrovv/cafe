@@ -2,6 +2,8 @@
   width: 1070px;
   max-height: 650px;
   display: flex;
+  z-index: 100;
+  opacity: 1;
   &__photo {
     width: 50%;
     height: 100%;
@@ -9,10 +11,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 100;
     img {
       margin: auto;
       max-width: 450px;
       max-height: 450px;
+      z-index: 100;
     }
   }
   &__info {
@@ -36,7 +40,7 @@
         height: auto;
       }
       img, svg {
-        width: -webkit-fill-available;;
+        width: -webkit-fill-available;
         height: auto;
       }
     }

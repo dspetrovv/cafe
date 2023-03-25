@@ -5,8 +5,10 @@
   top: 0;
   left: 0;
   margin: auto;
-  z-index: 9;
+  z-index: 100;
   background-color: rgba(0, 0, 0, 0.25);
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out, background-color 0s, z-index 0.8s;
   > div {
     position: fixed;
     z-index: 10;
@@ -18,5 +20,10 @@
     padding: 25px;
     background-color: var(--card-background);
     border-radius: 25px;
+  }
+  &_hidden {
+    z-index: -1;
+    opacity: 0;
+    background-color: transparent;
   }
 }
