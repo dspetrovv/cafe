@@ -4,4 +4,7 @@
   width: 100%;
   margin: auto;
   min-height: calc(100% - var(--header-height) - var(--footer-height));
+  > div {
+    padding: 0 15px;
+  }
 }

@@ -10,6 +10,7 @@ const ProductCard = ({ title = 'Product title', info = '', price = 300 }) => {
       <div className={styles['product__photo']}>
         <img src={Photo} alt="product_photo" />
       </div>
+      <hr />
       <div className={styles['product__info']}>
         <h4>{ title }</h4>
         <span>{ info }</span>

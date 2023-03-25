@@ -13,17 +13,17 @@
     height: auto;
     max-height: 268px;
     min-height: 268px;
-    border-bottom: 1px solid var(--buttons-border);
     overflow: hidden;
     img {
       width: 100%;
       height: auto;
-      transition: transform 0.3s ease-in-out;
       transform: scale(0.95);
     }
-    &:hover img {
-      transform: scale(1); 
-    }
+  }
+  hr {
+    width: -webkit-fill-available;
+    margin: 0 10px;
+    border-bottom: 1px solid var(--buttons-border);
   }
   &__info {
     display: flex;
@@ -31,12 +31,24 @@
     height: 100%;
     padding: 16px;
     h4 {
+      cursor: pointer;
       margin: 0;
+      width: -webkit-fit-content;
+      width: -moz-fit-content;
+      width: fit-content;
+      transition: color 0.2s ease-in-out;
+      &:hover {
+        color: var(--base-color);
+      }
     }
     > span {
       margin: 10px 0 20px;
       overflow: hidden;
-      word-break: break-all;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 2;
+      max-width: 100%;
     }
     button {
       padding: 13px 20px;
