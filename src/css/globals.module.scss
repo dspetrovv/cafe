@@ -1,5 +1,6 @@
 $baseTextColor: #ffffff;
 $baseTextColorSecond: #000000;
+$secondaryTextColor: #b1b1b1;
 $baseDefaultColor: #aaaaaa;
 $borderDefaultColor: rgba(34, 60, 80, 0.2);
 $baseColor: #ff7010;
@@ -20,7 +21,7 @@ $baseBackgroundColor: #ffffff;
   --base-error: #{$baseErrorColor};
   --text-base: #{$baseTextColor};
   --text-default: #{$baseDefaultColor};
-  --text-secondary: #{$borderDefaultColor};
+  --text-secondary: #{$secondaryTextColor};
   --text-colored: #{$baseColor};
   --buttons-text: #{$baseTextColor};
   --buttons-border: #{$borderDefaultColor};
