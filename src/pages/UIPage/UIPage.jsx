@@ -51,9 +51,9 @@ const UIPage = () => {
       <OrderCard />
       <SnackCard />
       <MiniProductCard />
-      {/* <FilterPanel /> */}
-      <ProductModal isOpen={isOpen} toggleIsOpen={toggleIsOpen} />
-      {/* <OrderPanel /> */}
+      {/* <FilterPanel isOpen={isOpen} toggleIsOpen={toggleIsOpen} /> */}
+      {/* <ProductModal isOpen={isOpen} toggleIsOpen={toggleIsOpen} /> */}
+      <OrderPanel isOpen={isOpen} toggleIsOpen={toggleIsOpen} />
     </div>
   );
 };

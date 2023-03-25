@@ -4,7 +4,7 @@ import CheckboxButton from "../../Buttons/CheckboxButton";
 import Panel from "../Panel";
 import styles from './filter-panel.module.scss';
 
-const filters = [
+const mockFilter = [
   { id: 1, label: 'Общее', items: [
     { id: 1, name: 'first' },
     { id: 2, name: 'second' },
@@ -21,7 +21,7 @@ const filters = [
   ] }
 ];
 
-const FilterPanel = ({ isOpen, toggleIsOpen }) => {
+const FilterPanel = ({ filters = mockFilter, isOpen, toggleIsOpen, reset, accept }) => {
   const PanelBody = filters.map((filter) => 
     <section className={styles['filter-panel']} key={filter.id}>
       <label>{ filter.label }</label>
@@ -35,8 +35,8 @@ const FilterPanel = ({ isOpen, toggleIsOpen }) => {
 
   const PanelFooter = 
     <>
-      <Button outline>Сбросить</Button>
-      <Button>Применить</Button>
+      <Button outline onClick={reset}>Сбросить</Button>
+      <Button onClick={accept}>Применить</Button>
     </>
   return (
     <Panel

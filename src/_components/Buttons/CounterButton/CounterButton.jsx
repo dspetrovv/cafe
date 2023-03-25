@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from './counter-button.module.scss';
 
-const CounterButton = ({ count = 1, onChange, disabled = true }) => {
+const CounterButton = ({ initialCount = 1, onChange, price, disabled = true }) => {
+  const [count, setCount] = useState(initialCount);
   const onIncrement = () => {
-    onChange((prevState) => prevState++);
+    setCount((prevState) => {
+      if (prevState > 99) {
+        return prevState;
+      }
+      return prevState++;
+    });
+    onChange(price * count);
   };
   const onDecrement = () => {
-    onChange((prevState) => prevState--);
+    setCount((prevState) => {
+      if (prevState === 0) {
+        return prevState;
+      }
+      return prevState--;
+    });
+    onChange(price * count);
   };
 
   return (
