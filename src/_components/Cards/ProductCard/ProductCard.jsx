@@ -1,18 +1,19 @@
 import React from "react";
 import Button from "../../Buttons/Button";
 import Photo from '../../../images/product.png';
-import styles from '../../../css/card.module.scss';
+import card from '../../../css/card.module.scss';
+import styles from './product-card.module.scss';
 
 const ProductCard = ({ title = 'Product title', info = '', price = 300 }) => {
   return (
-    <div className={`${styles.card} ${styles['card-product']}`}>
-      <div className={styles['card-product__photo']}>
-      <img src={Photo} alt="product_photo" />
+    <div className={`${card.card} ${styles['product']}`}>
+      <div className={styles['product__photo']}>
+        <img src={Photo} alt="product_photo" />
       </div>
-      <div className={styles['card-product__info']}>
+      <div className={styles['product__info']}>
         <h4>{ title }</h4>
         <span>{ info }</span>
-        <div className={styles['card-product__info-select']}>
+        <div className={styles['product__info-select']}>
           <Button>Выбрать</Button>
           <span>{ `от ${price} рублей` }</span>
         </div>

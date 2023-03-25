@@ -1,76 +1,11 @@
-$headHeight: 73px;
-$footerHeight: 73px;
-
 .filter-panel {
-  width: 520px !important;
-  height: -webkit-fill-available;
-  left: unset !important;
-  border-radius: 0 !important;
-  margin: unset !important;
-  padding: 0 !important;
-  &__head {
-    padding: 0 15px;
-    height: $headHeight;
-    position: relative;
-    border-bottom: 1px solid var(--buttons-border);
-    h1 {
-      font-size: 40px;
-      margin: 10px 0 0;
-    }
-    &::before,
-    &::after {
-      cursor: pointer;
-      content: '';
-      position: absolute;
-      width: 40px;
-      height: 2px;
-      background-color: var(--text-default);
-      right: 0;
-      margin-top: 15px;
-    }
-    &::before {
-      transform: rotate(45deg);
-    }
-    &::after {
-      transform: rotate(-45deg);
-      top: 0;
-    }
-  }
-  &__body {
-    height: calc(100% - #{$headHeight} - #{$footerHeight} - 10px);
-    overflow: auto;
-    padding: 0 15px;
-  }
-  section {
-    padding: 7px 5px
-  }
-  label {
-    display: block;
-    color: var(--text-default);
-    margin-bottom: 5px;
-  }
+  margin-top: 10px;
   &__section {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-  }
-  &__footer {
-    border-top: 1px solid var(--buttons-border);
-    padding: 0 15px;
-    height: $footerHeight;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     button {
-      max-width: 100%;
-      width: 100%;
-      justify-content: center;
-      &:first-child {
-        margin-right: 5px;
-      }
-      &:last-child {
-        margin-left: 5px;
-      }
+      margin: 0 5px 10px;
     }
   }
 }

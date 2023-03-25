@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import Photo from '../../../images/product.png';
-import withModalWrapper from "../../../_hocs/withModalWrapper";
+import withModalWrapper from "../../../_hocs/Modal/withModalWrapper";
 import Tabs from "../../Tabs";
 import ProductModalIngredients from "./components/ProductModalIngredients";
 import ProductModalTotal from "./components/ProductModalTotal";

@@ -1,29 +1,46 @@
 import React from "react";
-import withModalWrapper from "../../../_hocs/withModalWrapper";
 import Button from "../../Buttons/Button";
 import CheckboxButton from "../../Buttons/CheckboxButton";
+import Panel from "../Panel";
 import styles from './filter-panel.module.scss';
 
+const filters = [
+  { id: 1, label: 'Общее', items: [
+    { id: 1, name: 'first' },
+    { id: 2, name: 'second' },
+    { id: 3, name: 'third' },
+    { id: 4, name: 'fourth' },
+    { id: 5, name: 'fifth' },
+  ] },
+  { id: 1, label: 'Сыр', items: [
+    { id: 1, name: 'first' },
+    { id: 2, name: 'second' },
+    { id: 3, name: 'third' },
+    { id: 4, name: 'fourth' },
+    { id: 5, name: 'fifth' },
+  ] }
+];
+
 const FilterPanel = () => {
+  const PanelBody = filters.map((filter) => 
+    <section className={styles['filter-panel']} key={filter.id}>
+      <label>{ filter.label }</label>
+      <div className={styles['filter-panel__section']}>
+        { filter.items.map((item) => 
+          <CheckboxButton key={item.id}>{ item.name }</CheckboxButton>
+        ) }
+      </div>
+    </section>
+  )
+
+  const PanelFooter = 
+    <>
+      <Button outline>Сбросить</Button>
+      <Button>Применить</Button>
+    </>
   return (
-    <div className={styles['filter-panel']}>
-      <div className={styles['filter-panel__head']}>
-        <h1>Фильтр</h1>
-      </div>
-      <div className={styles['filter-panel__body']}>
-        <section>
-          <label>Label</label>
-          <div className={styles['filter-panel__section']}>
-            <CheckboxButton text='Hit' />
-          </div>
-        </section>
-      </div>
-      <div className={styles['filter-panel__footer']}>
-        <Button outline>Сбросить</Button>
-        <Button>Применить</Button>
-      </div>
-    </div>
+    <Panel label='Фильтры' body={PanelBody} footer={PanelFooter} />
   );
 };
 
-export default withModalWrapper(FilterPanel);
+export default FilterPanel;

@@ -1,12 +1,13 @@
 import React from "react";
 import Photo from '../../../images/product.png';
-import styles from '../../../css/card.module.scss';
+import card from '../../../css/card.module.scss';
+import styles from './order-card.module.scss';
 
 const OrderCard = () => {
   return (
-    <div className={`${styles.card} ${styles['card-order']}`}>
-      <div className={styles['card-order__info']}>
-        <div className={styles['card-order__info-status']}></div>
+    <div className={`${card.card} ${styles['order']}`}>
+      <div className={styles['order__info']}>
+        <div className={styles['order__info-status']}></div>
           <table>
             <tr>
               <td>
@@ -37,13 +38,13 @@ const OrderCard = () => {
           </table>
       </div>
       <hr />
-      <div className={styles['card-order__photos']}>
-        <img src={Photo} alt="product_photo" className={styles['card-product__photo']} />
-        <img src={Photo} alt="product_photo" className={styles['card-product__photo']} />
-        <img src={Photo} alt="product_photo" className={styles['card-product__photo']} />
+      <div className={styles['order__photos']}>
+        <img src={Photo} alt="product_photo" className={styles['product__photo']} />
+        <img src={Photo} alt="product_photo" className={styles['product__photo']} />
+        <img src={Photo} alt="product_photo" className={styles['product__photo']} />
       </div>
       <hr />
-      <div className={styles['card-order__repeat']}>Оплатить заказ</div>
+      <div className={styles['order__repeat']}>Оплатить заказ</div>
     </div>
   );
 };

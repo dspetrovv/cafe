@@ -1,0 +1,9 @@
+.order__footer {
+  &-total {
+    margin: 0;
+    color: var(--base-color);
+  }
+  &-button {
+    width: fit-content;
+  }
+}
