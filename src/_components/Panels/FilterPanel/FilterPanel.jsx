@@ -21,7 +21,7 @@ const filters = [
   ] }
 ];
 
-const FilterPanel = () => {
+const FilterPanel = ({ isOpen, toggleIsOpen }) => {
   const PanelBody = filters.map((filter) => 
     <section className={styles['filter-panel']} key={filter.id}>
       <label>{ filter.label }</label>
@@ -39,7 +39,13 @@ const FilterPanel = () => {
       <Button>Применить</Button>
     </>
   return (
-    <Panel label='Фильтры' body={PanelBody} footer={PanelFooter} />
+    <Panel
+      label='Фильтры'
+      body={PanelBody}
+      footer={PanelFooter}
+      isOpen={isOpen}
+      toggleIsOpen={toggleIsOpen}
+    />
   );
 };
 

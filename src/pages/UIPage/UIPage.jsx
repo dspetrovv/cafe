@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from '../../_components/Buttons/Button';
 import FilterButton from '../../_components/Buttons/FilterButton';
 import Checkbox from '../../_components/Checkbox';
@@ -27,10 +27,16 @@ const UIPage = () => {
     id: 3, text: 'text3', selected: false,
   }];
   const SendButton1 = <SendButton />;
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleIsOpen = (val = true) => {
+    console.log(val);
+    setIsOpen(val);
+  };
 
   return (
     <div>
-      <Button>Text</Button>
+      <Button onClick={toggleIsOpen}>Text</Button>
       <FilterButton />
       <Checkbox name={'name'} checked={false} />
       <Radio id={'1'} name={'name1'} />
@@ -46,8 +52,8 @@ const UIPage = () => {
       <SnackCard />
       <MiniProductCard />
       {/* <FilterPanel /> */}
-      {/* <ProductModal /> */}
-      <OrderPanel />
+      <ProductModal isOpen={isOpen} toggleIsOpen={toggleIsOpen} />
+      {/* <OrderPanel /> */}
     </div>
   );
 };

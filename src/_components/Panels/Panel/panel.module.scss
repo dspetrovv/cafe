@@ -2,12 +2,14 @@ $headHeight: 73px;
 $footerHeight: 73px;
 
 .panel {
+  z-index: 100;
   width: 520px !important;
   height: -webkit-fill-available;
   left: unset !important;
   border-radius: 0 !important;
   margin: unset !important;
   padding: 0 !important;
+  transition: right 0.5s ease-in-out;
   &__head {
     display: flex;
     align-items: center;
@@ -69,5 +71,8 @@ $footerHeight: 73px;
         margin-left: 5px;
       }
     }
+  }
+  &_hidden {
+    right: -520px !important;
   }
 }

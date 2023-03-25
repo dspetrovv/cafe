@@ -4,6 +4,8 @@
     color: var(--base-color);
   }
   &-button {
-    width: fit-content;
+    width: -webkit-fit-content !important;
+    width: -moz-fit-content !important;
+    width: fit-content !important;
   }
 }

@@ -6,7 +6,7 @@ import ProductModalIngredients from "./components/ProductModalIngredients";
 import ProductModalTotal from "./components/ProductModalTotal";
 import styles from './product-modal.module.scss';
 
-const ProductModal = () => {
+const ProductModal = ({ isOpen, toggleIsOpen }) => {
   const tabs1 = [
     { id: 1, text: 'traditional', selected: true },
     { id: 2, text: 'thin' },
@@ -25,8 +25,9 @@ const ProductModal = () => {
     { id: 2, name: 'Моцарелла', photo: Photo },
   ];
   const totalPrice = useMemo(() => 300, []);
+  const className = `${styles['product-modal']}${!isOpen ? ` ${styles['product-modal_hidden']}` : ''}`;
   return (
-    <div className={styles['product-modal']}>
+    <div className={className} onClick={(e) => e.stopPropagation()}>
       <div className={styles['product-modal__photo']}>
         <img src={Photo} alt="product_photo" />
       </div>
