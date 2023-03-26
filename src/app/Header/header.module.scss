@@ -6,7 +6,7 @@
     color: var(--base-color);
   }
 }
-$dropdownWidth: 16px;
+$dropdownWidth: 13px;
 
 .header {
   display: flex;
@@ -21,12 +21,21 @@ $dropdownWidth: 16px;
     width: 100%;
     padding: 0 15px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     margin: auto;
+    img {
+      cursor: pointer;
+      width: 54px;
+      height: auto;
+      transform-origin: 50% 50%;
+      transition: transform 0.15s ease-in-out;
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
   }
   ul {
-    font-size: 24px;
+    font-size: 20px;
     margin: 0;
     padding-left: 0;
     li {
@@ -42,13 +51,14 @@ $dropdownWidth: 16px;
   }
   button {
     font-weight: normal;
-    padding: 10px 25px;
+    padding: 8px 23px;
     height: fit-content;
+    margin-left: auto;
   }
   .more {
     position: relative;
     svg {
-      right: -20px;
+      right: -15px;
       width: $dropdownWidth;
       height: $dropdownWidth;
       top: 6px;

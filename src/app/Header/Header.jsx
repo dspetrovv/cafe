@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import PriceButton from "../../_components/Buttons/PriceButton/PriceButton";
 import Dropdown from "../../_components/Dropdown";
+import Logo from '../../images/logo-mini.png'
 import styles from './header.module.scss';
 
 const routes = [
@@ -21,6 +22,7 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <nav>
+        <img src={Logo} alt="Logo" />
         <ul>
           { routes.map((route) =>
           <li key={route.link}>

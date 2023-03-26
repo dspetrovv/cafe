@@ -12,7 +12,7 @@ $baseBackgroundColor: #ffffff;
 :root {
   --max-width: 1536px;
   --header-height: 65px;
-  --footer-height: 262px;
+  --footer-height: 180px;
   
   --background-color: #f8f8f8;
   --background-color-second: #{$baseBackgroundColor};
@@ -42,6 +42,6 @@ body {
   margin: 0;
   width: 100%;
   height: 100vh;
-  font-size: 22px;
+  font-size: 20px;
   background-color: var(--background-color);
 }

@@ -4,14 +4,14 @@
     justify-content: space-between;
     align-items: center;
     h1 {
-      font-size: 40px;
+      font-size: 32px;
     }
   }
   &__cards {
     display: flex;
     flex-wrap: wrap;
     > div:not(:first-child) {
-      margin-left: 40px;
+      margin-left: 20px;
     }
   }
 }
@@ -23,7 +23,11 @@
   overflow: hidden;
   position: relative;
   h1 {
+    font-size: 28px;
     margin-bottom: 15px;
+  }
+  span {
+    font-size: 18px;
   }
   h4 {
     margin-bottom: 0;

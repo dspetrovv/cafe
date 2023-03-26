@@ -7,11 +7,13 @@ import styles from './main.module.scss';
 const Main = () => {
   return (
     <main className={styles['main']}>
-      <Routes>
-        <Route path="/ui" element={<UIPage />} />
-        <Route path="/catalog" element={<Catalog />} /> 
-        {/* <Route path="/error"></Route>  */}
-      </Routes>
+      <div>
+        <Routes>
+          <Route path="/ui" element={<UIPage />} />
+          <Route path="/catalog" element={<Catalog />} /> 
+          {/* <Route path="/error"></Route>  */}
+        </Routes>
+      </div>
     </main>
   );
 };

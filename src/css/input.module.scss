@@ -1,9 +1,9 @@
 input,
 textarea {
-  padding: 13px;
+  padding: 9px;
   border-radius: 6px;
   border-color: var(--buttons-border);
-  font-size: 22px;
+  font-size: 18px;
   outline: none;
   transition: border-color 0.25s ease-in-out;
   &:hover,
@@ -37,7 +37,7 @@ textarea {
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 310px;
+    max-width: 220px;
     position: relative;
     input {
       z-index: 2;
@@ -46,8 +46,8 @@ textarea {
   &__label {
     display: block;
     color: var(--text-default);
-    font-size: 20px;
-    margin-bottom: 5px;
+    font-size: 18px;
+    margin-bottom: 2px;
     &_error {
       color: var(--base-error);
     }
