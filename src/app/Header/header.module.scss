@@ -49,11 +49,19 @@ $dropdownWidth: 13px;
       }
     }
   }
-  button {
+  &__basket {
     font-weight: normal;
-    padding: 8px 23px;
+    padding: 8px 15px;
     height: fit-content;
     margin-left: auto;
+    svg {
+      width: 18px;
+      height: auto;
+      margin-right: 5px;
+      > g > * {
+        fill: var(--background-color-second) !important;
+      }
+    }
   }
   .more {
     position: relative;

@@ -39,6 +39,11 @@
   &_disabled {
     cursor: default;
     background-color: var(--buttons-default-disabled) !important;
+    border: 0;
+    &:hover {
+      background-color: initial;
+      box-shadow: none;
+    }
   }
 }
 

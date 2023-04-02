@@ -1,20 +1,31 @@
-import React from "react";
-import CheckboxButton from "../../../Buttons/CheckboxButton";
+import withSlider from "../../../../_hocs/Slider/withSlider";
+import ProductModalIngredient from "./ProductModalIngredient";
 
-const ProductModalIngredients = ({styles, ingredients = []}) => {
-  return (
-    <div className={styles['product-modal__info-ingredients']}>
-        { ingredients.map((ingredient) => 
-          <div key={ingredient.id} className={styles['product-modal__info-ingredient']}>
-            <CheckboxButton outline initialChecked={ingredient.checked}>
-              <img src={ingredient.photo} alt="product_photo" />
-            </CheckboxButton>
-            <span className={styles['product-modal__info-ingredient-name']}>{ ingredient.name }</span>
-            <span className={styles['product-modal__info-ingredient-price']}>{ ingredient.price }</span>
-          </div>
-        ) }
-    </div>
-  );
+const ProductModalIngredients = ({ ingredients, setIngredients, styles, ...otherProps }) => {
+  const { selectedProductIdx } = otherProps;
+  const onChange = (id) => {
+    setIngredients((prevState) => {
+      console.log(id, prevState[selectedProductIdx].ingredients);
+      const ingredientIdx = prevState[selectedProductIdx].ingredients.findIndex((state) => state.id === id);
+      prevState[selectedProductIdx].ingredients[ingredientIdx].checked = !prevState[selectedProductIdx].ingredients[ingredientIdx].checked;
+      return [ ...prevState];
+    });
+  };
+
+  return withSlider(
+    ProductModalIngredient,
+      {
+        count: 3,
+        elementClassName: styles['product-modal__info-ingredient'],
+        elements: ingredients,
+        listClassName: styles['product-modal__info-ingredients'],
+      }
+    )
+  ({
+    styles,
+    onChange,
+    ...otherProps
+  })
 };
 
 export default ProductModalIngredients;

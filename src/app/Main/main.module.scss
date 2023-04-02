@@ -1,10 +1,10 @@
 .main {
   height: 100%;
-  max-width: var(--max-width);
-  width: 100%;
-  margin: auto;
-  min-height: calc(100% - var(--header-height) - var(--footer-height));
-  > div {
-    padding: 0 15px;
+  min-height: calc(100vh - var(--header-height) - var(--footer-height) - 40px); //40px - footer padding
+  padding: 0 15px;
+  &__container {
+    margin: auto;
+    max-width: var(--max-width);
+    width: 100%;
   }
 }

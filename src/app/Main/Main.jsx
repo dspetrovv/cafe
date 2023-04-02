@@ -6,11 +6,11 @@ import styles from './main.module.scss';
 
 const Main = () => {
   return (
-    <main className={styles['main']}>
-      <div>
+    <main className={styles.main}>
+      <div className={styles.main__container}>
         <Routes>
+          <Route path="/" element={<Catalog />} /> 
           <Route path="/ui" element={<UIPage />} />
-          <Route path="/catalog" element={<Catalog />} /> 
           {/* <Route path="/error"></Route>  */}
         </Routes>
       </div>

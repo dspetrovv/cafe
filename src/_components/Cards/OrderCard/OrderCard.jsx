@@ -1,5 +1,5 @@
 import React from "react";
-import Photo from '../../../images/product.png';
+import Photo from '../../../images/peperoni.png';
 import card from '../../../css/card.module.scss';
 import styles from './order-card.module.scss';
 
@@ -16,7 +16,7 @@ const OrderCard = () => {
               </td>
               <td>
                 <label>Сумма заказа</label>
-                <span>399 рублей</span>
+                <span>399 ₽</span>
               </td>
             </tr>
             <tr>

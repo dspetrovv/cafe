@@ -1,5 +1,5 @@
 import React from "react";
-import Photo from '../../../images/product.png';
+import Photo from '../../../images/peperoni.png';
 import card from '../../../css/card.module.scss';
 import styles from './mini-product-card.module.scss';
 import CounterButton from "../../Buttons/CounterButton";
@@ -28,7 +28,7 @@ const MiniProductCard = ({
         </div>
         <div className={styles['mini-product-card__info-price']}>
           <CounterButton initialCount={1} price={price} onChange={onChangeHandler} />
-          <span>{ price } руб</span>
+          <span>{ price } ₽</span>
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@ import React from "react";
 import Button from "../Button";
 import styles from './price-button.module.scss';
 
+// Временно. Если вообще будет возможность менять валюту, то текущую будем хранить в сторе.
 const CURRENCY_SYMBOL = [
   { name: 'rub', symbol: '₽' },
   { name: 'eur', symbol: '€' },

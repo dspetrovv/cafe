@@ -1,12 +1,12 @@
-import React, { useMemo } from "react";
-import Photo from '../../../images/product.png';
+import React, { useEffect, useMemo, useState } from "react";
+import Photo from '../../../images/peperoni.png';
 import withModalWrapper from "../../../_hocs/Modal/withModalWrapper";
 import Tabs from "../../Tabs";
 import ProductModalIngredients from "./components/ProductModalIngredients";
 import ProductModalTotal from "./components/ProductModalTotal";
 import styles from './product-modal.module.scss';
 
-const ProductModal = ({ isOpen, toggleIsOpen }) => {
+const ProductModal = ({ ingredients, optionalIngredients, isOpen, setIngredients, selectedProductIdx }) => {
   const tabs1 = [
     { id: 1, text: 'traditional', selected: true },
     { id: 2, text: 'thin' },
@@ -16,14 +16,7 @@ const ProductModal = ({ isOpen, toggleIsOpen }) => {
     { id: 2, text: '28cm' },
     { id: 3, text: '33cm' },
   ];
-  const ingredients1 = [
-    { id: 1, name: 'Моцарелла', photo: Photo, price: '40 rub' },
-    { id: 2, name: 'Моцарелла', photo: Photo, price: '40 rub' },
-  ];
-  const ingredients2 = [
-    { id: 1, name: 'Моцарелла', photo: Photo },
-    { id: 2, name: 'Моцарелла', photo: Photo },
-  ];
+
   const totalPrice = useMemo(() => 300, []);
   const className = `${styles['product-modal']}${!isOpen ? ` ${styles['product-modal_hidden']}` : ''}`;
   return (
@@ -34,13 +27,14 @@ const ProductModal = ({ isOpen, toggleIsOpen }) => {
       <div className={styles['product-modal__info']}>
         <h2>Title</h2>
         <div className={styles['product-modal__info-block']}>
-          <ProductModalIngredients styles={styles} ingredients={ingredients1} />
+          <ProductModalIngredients ingredients={ingredients} setIngredients={setIngredients} styles={styles} selectedProductIdx={selectedProductIdx} />
+          {/* <ProductModalIngredients styles={styles} ingredients={ingredients1} /> */}
           <div className={styles['product-modal__info-dough']}>
             <Tabs tabs={tabs1} />
             <Tabs tabs={tabs2} />
           </div>
           <h3>Title 1</h3>
-          <ProductModalIngredients styles={styles} ingredients={ingredients2} />
+          <ProductModalIngredients ingredients={optionalIngredients} setIngredients={setIngredients} styles={styles} selectedProductIdx={selectedProductIdx} />
         </div>
         <div className={styles['product-modal__info-total']}>
           <ProductModalTotal totalPrice={totalPrice} />

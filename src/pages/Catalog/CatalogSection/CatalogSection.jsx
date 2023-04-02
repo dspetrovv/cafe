@@ -3,7 +3,7 @@ import FilterButton from "../../../_components/Buttons/FilterButton";
 import ProductCard from "../../../_components/Cards/ProductCard";
 import styles from '../catalog.module.scss';
 
-const CatalogSection = ({ list, onOpenFilter, onOpenProduct }) => {
+const CatalogSection = ({ list, onOpenFilter, onSelectProduct }) => {
 
   return (
     <section className={styles.catalog}>
@@ -15,10 +15,11 @@ const CatalogSection = ({ list, onOpenFilter, onOpenProduct }) => {
         { list.map((element) =>
           <ProductCard
             key={element.id}
+            id={element.id}
             title={element.title}
             info={element.info}
             price={300}
-            onSelect={onOpenProduct}
+            onSelect={onSelectProduct}
           />
         ) }
       </div>

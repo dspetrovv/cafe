@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../../Buttons/Button";
-import Photo from '../../../images/product.png';
+import Photo from '../../../images/peperoni.png';
 import card from '../../../css/card.module.scss';
 import styles from './product-card.module.scss';
 
@@ -20,7 +20,7 @@ const ProductCard = ({ id, title = 'Product title', info = '', price = 300, onSe
         <span>{ info }</span>
         <div className={styles['product__info-select']}>
           <Button onClick={onSelectHandler}>Выбрать</Button>
-          <span>{ `от ${price} рублей` }</span>
+          <span>{ `от ${price} ₽` }</span>
         </div>
       </div>
     </div>
