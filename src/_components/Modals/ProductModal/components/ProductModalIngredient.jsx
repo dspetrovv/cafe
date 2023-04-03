@@ -8,7 +8,7 @@ const ProductModalIngredient = ({styles, element, onChange}) => {
 
   return (
     <div className={styles['product-modal__info-ingredient']}>
-      <CheckboxButton outline initialChecked={element?.checked} onChange={onChangeHandler}>
+      <CheckboxButton outline initialChecked={element?.selected} onChange={onChangeHandler}>
         <img src={element?.photo} alt="product_photo" />
       </CheckboxButton>
       <span className={styles['product-modal__info-ingredient-name']}>{ element?.name }</span>

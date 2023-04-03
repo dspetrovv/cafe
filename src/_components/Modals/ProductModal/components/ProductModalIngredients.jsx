@@ -1,16 +1,7 @@
 import withSlider from "../../../../_hocs/Slider/withSlider";
 import ProductModalIngredient from "./ProductModalIngredient";
 
-const ProductModalIngredients = ({ ingredients, setIngredients, styles, ...otherProps }) => {
-  const { selectedProductIdx } = otherProps;
-  const onChange = (id) => {
-    setIngredients((prevState) => {
-      console.log(id, prevState[selectedProductIdx].ingredients);
-      const ingredientIdx = prevState[selectedProductIdx].ingredients.findIndex((state) => state.id === id);
-      prevState[selectedProductIdx].ingredients[ingredientIdx].checked = !prevState[selectedProductIdx].ingredients[ingredientIdx].checked;
-      return [ ...prevState];
-    });
-  };
+const ProductModalIngredients = ({ ingredients, updateIngredients, styles, ...otherProps }) => {
 
   return withSlider(
     ProductModalIngredient,
@@ -23,7 +14,7 @@ const ProductModalIngredients = ({ ingredients, setIngredients, styles, ...other
     )
   ({
     styles,
-    onChange,
+    onChange: updateIngredients,
     ...otherProps
   })
 };

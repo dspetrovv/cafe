@@ -5,9 +5,12 @@ const withModalWrapper = (Component) => {
   return ({ ...props }) => {
     const { isOpen, toggleIsOpen } = props;
     const wrapperClassName = `${styles.modal}${!isOpen ? ` ${styles.modal_hidden}` : ` ${styles.modal_opened}`}`;
+    const closeModal = () => {
+      toggleIsOpen(false);
+    };
 
     return (
-      <div className={wrapperClassName} onClick={() => toggleIsOpen(false)}>
+      <div className={wrapperClassName} onClick={closeModal}>
         <Component {...props} />
       </div>
     );

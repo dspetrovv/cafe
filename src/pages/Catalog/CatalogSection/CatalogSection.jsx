@@ -18,7 +18,8 @@ const CatalogSection = ({ list, onOpenFilter, onSelectProduct }) => {
             id={element.id}
             title={element.title}
             info={element.info}
-            price={300}
+            price={element.prices}
+            photo={element.photo}
             onSelect={onSelectProduct}
           />
         ) }

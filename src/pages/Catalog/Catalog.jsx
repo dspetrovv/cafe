@@ -1,10 +1,12 @@
-import React, { lazy, Suspense, useState } from "react";
-import ProductModal from "../../_components/Modals/ProductModal";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import styles from './catalog.module.scss';
 import CatalogSection from "./CatalogSection";
 import Photo from '../../images/peperoni.png';
+import { useDispatch, useSelector } from "react-redux";
+import { getPizza, pizzaSelector, updatePizzaIngredient } from "./catalogSlice";
 
 const FilterPanel = lazy(() => import("../../_components/Panels/FilterPanel"));
+const ProductModal = lazy(() => import("../../_components/Modals/ProductModal"));
 
 const CatalogPage = () => {
   const [products, setProducts] = useState(
@@ -36,17 +38,30 @@ const CatalogPage = () => {
         ]
       }
     ]);
+  const dispatch = useDispatch();
+  const pizza = useSelector(pizzaSelector);
+  useEffect(() => {
+    dispatch(getPizza())
+  }, []);
+  console.log(pizza);
   const [selectedProductIdx, setSelectedProductIdx] = useState(0);
   const [isOpenedFilter, setIsOpenedFilter] = useState(false);
   const [isOpenedProduct, setIsOpenedProduct] = useState(false);
   const [isOpenedBottomInfo, setIsOpenedBottomInfo] = useState(false);
 
+  const updateIngredients = (ingredientId) => {
+    dispatch(updatePizzaIngredient({ pizzaIdx: selectedProductIdx, ingredientId }))
+  };
+
   const toggleIsOpenFilter = (val = true) => {
     setIsOpenedFilter(val);
   };
   const onSelectProduct = (id) => {
-    setSelectedProductIdx(() => products.findIndex((product) => product.id === id));
-    setIsOpenedProduct(true);
+    setSelectedProductIdx(() => pizza.findIndex((product) => product.id === id));
+    console.log(selectedProductIdx);
+    setTimeout(() => {
+      setIsOpenedProduct(true);
+    });
   };
 
   const toggleIsOpenProduct = (val = true) => {
@@ -59,7 +74,7 @@ const CatalogPage = () => {
   return (
     <>
       <CatalogSection
-        list={products}
+        list={pizza}
         onSelectProduct={onSelectProduct}
         onOpenFilter={toggleIsOpenFilter}
       />
@@ -95,9 +110,10 @@ const CatalogPage = () => {
           ingredients={products[selectedProductIdx].ingredients}
           optionalIngredients={products[selectedProductIdx].ingredients}
           isOpen={isOpenedProduct}
-          setIngredients={setProducts}
+          updateIngredients={updateIngredients}
           toggleIsOpen={toggleIsOpenProduct}
           selectedProductIdx={selectedProductIdx}
+          key={selectedProductIdx}
         />
       </Suspense>
     </>
