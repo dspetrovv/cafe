@@ -1,4 +1,4 @@
-import withSlider from "../../../../_hocs/Slider/withSlider";
+import withSlider from "@/_hocs/Slider/withSlider";
 import ProductModalIngredient from "./ProductModalIngredient";
 
 const ProductModalIngredients = ({ ingredients, updateIngredients, styles, ...otherProps }) => {

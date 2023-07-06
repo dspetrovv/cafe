@@ -1,5 +1,5 @@
 import React from "react";
-import withModalWrapper from "../../../_hocs/Modal/withModalWrapper";
+import withModalWrapper from "@/_hocs/Modal/withModalWrapper";
 import styles from './panel.module.scss';
 
 const Panel = ({ label = 'Title', body, footer, isOpen }) => {

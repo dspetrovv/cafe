@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
-import Photo from '../../../images/peperoni.png';
-import withModalWrapper from "../../../_hocs/Modal/withModalWrapper";
-import Tabs from "../../Tabs";
+import Photo from '@/images/peperoni.png';
+import withModalWrapper from "@/_hocs/Modal/withModalWrapper";
+import Tabs from "@/_components/Tabs";
 import ProductModalIngredients from "./components/ProductModalIngredients";
 import ProductModalTotal from "./components/ProductModalTotal";
 import styles from './product-modal.module.scss';
@@ -34,7 +34,7 @@ const ProductModal = ({ ingredients, optionalIngredients, isOpen, updateIngredie
             <Tabs tabs={tabs2} />
           </div>
           <h3>Title 1</h3>
-          <ProductModalIngredients ingredients={optionalIngredients} updateIngredients={updateIngredients} styles={styles} selectedProductIdx={selectedProductIdx} />
+          <ProductModalIngredients ingredients={optionalIngredients} updateIngredients={updateIngredients} styles={styles} selectedProductIdx={selectedProductIdx} isOptional />
         </div>
         <div className={styles['product-modal__info-total']}>
           <ProductModalTotal totalPrice={totalPrice} />

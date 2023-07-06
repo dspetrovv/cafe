@@ -1,7 +1,7 @@
 import React from "react";
-import Photo from '../../../images/peperoni.png';
-import Button from '../../Buttons/Button';
-import card from '../../../css/card.module.scss';
+import Photo from '@/images/peperoni.png';
+import Button from '@/_components/Buttons/Button';
+import card from '@/css/card.module.scss';
 import styles from './snack-card.module.scss';
 
 const SnackCard = () => {

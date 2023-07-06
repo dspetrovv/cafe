@@ -1,27 +1,47 @@
 import { createSlice } from "@reduxjs/toolkit";
-import pizza from '../../mock/pizza.json'
-import pizzaFilter from '../../mock/pizza_ingredients.json'
+import pizza from '@/mock/pizza.json';
+import pizzaFilter from '@/mock/pizza_ingredients.json';
+import produce from 'immer';
 
 const initialState = {
-  pizza: {
-    list: [],
-    filter: []
-  }
+  products: {
+    pizza: {
+      list: [],
+      filter: []
+    }
+  },
 };
 
 const CatalogSlice = createSlice({
   name: 'catalog',
   initialState,
   reducers: {
-    setPizza: (state, { payload: { key, values } }) => {
-      state.pizza[key] = values;
+    setProduct: (state, { payload: { product, key, values } }) => {
+      console.log({ product, key, values });
+      state.products[product][key] = values;
     },
     updatePizza: (state, { payload: { key, pizzaIdx, updatingPizza } }) => {
-      state.pizza[key] = [
-        ...state.pizza[key].slice(0, pizzaIdx),
+      state.products.pizza[key] = [
+        ...state.products.pizza[key].slice(0, pizzaIdx),
         updatingPizza,
-        ...state.pizza[key].slice(pizzaIdx + 1, state.pizza[key].length)
+        ...state.products.pizza[key].slice(pizzaIdx + 1, state.pizza[key].length)
       ];
+    },
+    togglePizzaIngredientSelected: (state, { payload: { pizzaIdx, ingredientId, isOptional } }) => {
+      const pizzaList = state.products.pizza.list;
+      const pizza = pizzaList[pizzaIdx];
+      const key = isOptional ? 'optionalIngredients' : 'ingredients';
+      console.log(key);
+
+      const ingredientIdx = pizza[key].findIndex(i => i.id === ingredientId);
+      if (ingredientIdx !== -1) {
+        const ingredient = state.products.pizza.list[pizzaIdx][key][ingredientIdx];
+        if (ingredient?.selected === undefined) {
+          ingredient.selected = false;
+        } else {
+          ingredient.selected = !ingredient?.selected;
+        }
+      }
     },
   }
 });
@@ -29,18 +49,20 @@ const CatalogSlice = createSlice({
 export const catalogStore = CatalogSlice.reducer;
 
 export const {
-  setPizza,
+  setProduct,
   updatePizza,
+  togglePizzaIngredientSelected,
 } = CatalogSlice.actions;
 
 export const getPizza = () => (dispatch) => {
   try {
     //Simulated server request
-    dispatch(setPizza({
+    dispatch(setProduct({
+      product: 'pizza',
       key: 'list',
       values: pizza.map((onePizza) => ({
         ...onePizza,
-        ingredients: onePizza.ingredients.map((ingredient) => ({ ...ingredient, selected: false }))
+        ingredients: onePizza.ingredients.map((ingredient) => ({ ...ingredient, selected: true }))
       }))
     }));
   } catch (err) {
@@ -51,7 +73,8 @@ export const getPizza = () => (dispatch) => {
 export const getPizzaFilter = () => (dispatch) => {
   try {
     //Simulated server request
-    dispatch(setPizza({
+    dispatch(setProduct({
+      product: 'pizza',
       key: 'filter',
       values: pizzaFilter.map((filterEl) => ({
         ...filterEl,
@@ -63,39 +86,37 @@ export const getPizzaFilter = () => (dispatch) => {
   }
 };
 
-export const updatePizzaIngredient = ({ pizzaIdx, ingredientId }) => (dispatch, getState) => {
+export const updatePizzaIngredient = ({ pizzaIdx, ingredientId, isOptional }) => (dispatch) => {
   try {
-    console.log(1);
-    const { pizza: { list: pizza } } = getState().catalogStore;
-    const updatingPizza = pizza[pizzaIdx];
-    const updatingIngredientIdx = updatingPizza.ingredients.findIndex((ingredient) => ingredient.id === ingredientId);
-    updatingPizza.ingredient[updatingIngredientIdx].selected = !updatingPizza.ingredient[updatingIngredientIdx].selected;
-    dispatch(updatePizza({
-      key: 'list',
-      pizzaIdx,
-      updatingPizza,
-    }));
+    dispatch(togglePizzaIngredientSelected({ pizzaIdx, ingredientId, isOptional }));
   } catch (err) {
+    console.log(err.message);
     //Simulating error
   }
 };
 
 export const updatePizzaFilter = ({ pizzaIdx, ingredientId }) => (dispatch, getState) => {
   try {
-    const { pizza: { filter } } = getState().catalogStore;
-    const updatingFilter = filter[pizzaIdx];
-    const updatingItemIdx = updatingFilter.items.findIndex((item) => item.id === ingredientId);
-    updatingFilter.items[updatingItemIdx].selected = !updatingFilter.items[updatingItemIdx].selected;
-    dispatch(updatePizza({
-      key: 'filter',
-      pizzaIdx,
-      updatingFilter,
-    }));
+    const pizzaList = getState().catalogStore.products.pizza.filter;
+    const pizza = pizzaList[pizzaIdx];
+
+    const updatedPizza = produce(pizza, draftPizza => {
+      const ingredient = draftPizza.items.find(i => i.id === ingredientId);
+      if (ingredient) {
+        ingredient.selected = !ingredient.selected;
+      }
+    });
+
+    const updatedList = produce(pizzaList, draftList => {
+      draftList[pizzaIdx] = updatedPizza;
+    });
+
+    dispatch(setProduct({ product: 'pizza', key: 'filter', values: updatedList }));
   } catch (err) {
     //Simulating error
   }
 };
 
-export const pizzaSelector = ({ catalogStore }) => catalogStore.pizza.list;
+export const pizzaSelector = ({ catalogStore }) => catalogStore.products.pizza.list;
 
-export const pizzaFilterSelector = ({ catalogStore }) => catalogStore.pizza.filter;
+export const pizzaFilterSelector = ({ catalogStore }) => catalogStore.products.pizza.filter;

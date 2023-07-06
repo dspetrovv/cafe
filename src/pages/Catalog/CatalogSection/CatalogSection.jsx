@@ -1,6 +1,6 @@
 import React from "react";
-import FilterButton from "../../../_components/Buttons/FilterButton";
-import ProductCard from "../../../_components/Cards/ProductCard";
+import FilterButton from "@/_components/Buttons/FilterButton";
+import ProductCard from "@/_components/Cards/ProductCard";
 import styles from '../catalog.module.scss';
 
 const CatalogSection = ({ list, onOpenFilter, onSelectProduct }) => {

@@ -1,12 +1,12 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
 import styles from './catalog.module.scss';
 import CatalogSection from "./CatalogSection";
-import Photo from '../../images/peperoni.png';
+import Photo from '@/images/peperoni.png';
 import { useDispatch, useSelector } from "react-redux";
 import { getPizza, pizzaSelector, updatePizzaIngredient } from "./catalogSlice";
 
-const FilterPanel = lazy(() => import("../../_components/Panels/FilterPanel"));
-const ProductModal = lazy(() => import("../../_components/Modals/ProductModal"));
+const FilterPanel = lazy(() => import("@/_components/Panels/FilterPanel"));
+const ProductModal = lazy(() => import("@/_components/Modals/ProductModal"));
 
 const CatalogPage = () => {
   const [products, setProducts] = useState(
@@ -43,14 +43,14 @@ const CatalogPage = () => {
   useEffect(() => {
     dispatch(getPizza())
   }, []);
-  console.log(pizza);
+
   const [selectedProductIdx, setSelectedProductIdx] = useState(0);
   const [isOpenedFilter, setIsOpenedFilter] = useState(false);
   const [isOpenedProduct, setIsOpenedProduct] = useState(false);
   const [isOpenedBottomInfo, setIsOpenedBottomInfo] = useState(false);
 
-  const updateIngredients = (ingredientId) => {
-    dispatch(updatePizzaIngredient({ pizzaIdx: selectedProductIdx, ingredientId }))
+  const updateIngredients = (ingredientId, isOptional) => {
+    dispatch(updatePizzaIngredient({ pizzaIdx: selectedProductIdx, ingredientId, isOptional }))
   };
 
   const toggleIsOpenFilter = (val = true) => {
@@ -106,15 +106,16 @@ const CatalogPage = () => {
           isOpen={isOpenedFilter}
           toggleIsOpen={toggleIsOpenFilter}
         />
-        <ProductModal
-          ingredients={products[selectedProductIdx].ingredients}
-          optionalIngredients={products[selectedProductIdx].ingredients}
+        { pizza[0] && <ProductModal
+          ingredients={pizza[selectedProductIdx].ingredients}
+          optionalIngredients={pizza[selectedProductIdx].optionalIngredients}
           isOpen={isOpenedProduct}
           updateIngredients={updateIngredients}
           toggleIsOpen={toggleIsOpenProduct}
           selectedProductIdx={selectedProductIdx}
           key={selectedProductIdx}
-        />
+        />}
+        
       </Suspense>
     </>
   );
