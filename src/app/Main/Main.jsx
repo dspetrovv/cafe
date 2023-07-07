@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import Catalog from "../../pages/Catalog";
 import UIPage from "../../pages/UIPage";
 import styles from './main.module.scss';
+import Basket from "@/pages/Basket";
 
 const Main = () => {
   return (
@@ -11,6 +12,7 @@ const Main = () => {
         <Routes>
           <Route path="/" element={<Catalog />} /> 
           <Route path="/ui" element={<UIPage />} />
+          <Route path="/basket" element={<Basket />} />
           {/* <Route path="/error"></Route>  */}
         </Routes>
       </div>

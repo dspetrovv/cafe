@@ -31,7 +31,7 @@ const CatalogSlice = createSlice({
       const pizzaList = state.products.pizza.list;
       const pizza = pizzaList[pizzaIdx];
       const key = isOptional ? 'optionalIngredients' : 'ingredients';
-      console.log(key);
+  
 
       const ingredientIdx = pizza[key].findIndex(i => i.id === ingredientId);
       if (ingredientIdx !== -1) {

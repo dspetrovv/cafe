@@ -2,19 +2,18 @@ import React from "react";
 import Button from "../Button";
 import styles from './price-button.module.scss';
 
-// Временно. Если вообще будет возможность менять валюту, то текущую будем хранить в сторе.
+// Если вообще будет возможность менять валюту, то текущую будем хранить в сторе.
 const CURRENCY_SYMBOL = [
   { name: 'rub', symbol: '₽' },
   { name: 'eur', symbol: '€' },
   { name: 'usd', symbol: '$' },
 ];
 
-const PriceButton = ({ price, currency = 'rub', onClick }) => {
-  const currencySymbol = CURRENCY_SYMBOL.find((symbol) => symbol.name === currency).symbol;
+const PriceButton = ({ price, onClick }) => {
 
   return (
     <Button className={styles['price-button']} onClick={onClick}>
-      от {price} {currencySymbol}
+      от {price} ₽
     </Button>
   );
 };

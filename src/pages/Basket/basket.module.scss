@@ -1,0 +1,44 @@
+.basket {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 735px;
+  width: 100%;
+  margin: auto;
+  > h1, > h3 {
+    align-self: flex-start;
+  }
+  &__card {
+    margin-bottom: 15px;
+  }
+  &__slider > div {
+    margin-left: -100px;
+  }
+  &__additions-element > div {
+    margin-right: 10px;
+  }
+  &__title {
+    &_comment {
+      margin-top: 30px;
+      margin-bottom: 15px;
+    }
+    &_medium {
+      margin-bottom: 20px;
+    }
+    &_short {
+      margin-bottom: 10px;
+    }
+  }
+  &__total {
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px auto 45px;
+    h3 {
+      align-self: center;
+    }
+    button {
+      max-width: none;
+      padding: 12px 24px;
+    }
+  }
+}

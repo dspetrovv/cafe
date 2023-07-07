@@ -41,7 +41,7 @@ const CatalogPage = () => {
   const dispatch = useDispatch();
   const pizza = useSelector(pizzaSelector);
   useEffect(() => {
-    dispatch(getPizza())
+    dispatch(getPizza());
   }, []);
 
   const [selectedProductIdx, setSelectedProductIdx] = useState(0);
@@ -50,7 +50,7 @@ const CatalogPage = () => {
   const [isOpenedBottomInfo, setIsOpenedBottomInfo] = useState(false);
 
   const updateIngredients = (ingredientId, isOptional) => {
-    dispatch(updatePizzaIngredient({ pizzaIdx: selectedProductIdx, ingredientId, isOptional }))
+    dispatch(updatePizzaIngredient({ pizzaIdx: selectedProductIdx, ingredientId, isOptional }));
   };
 
   const toggleIsOpenFilter = (val = true) => {

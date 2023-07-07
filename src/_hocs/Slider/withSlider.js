@@ -1,12 +1,14 @@
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { getClassName } from '../../functions/classNameFunctions';
 import ArrowButton from '../../_components/Buttons/ArrowButton/ArrowButton';
 import styles from './slider.module.scss';
 
-const withSlider = (Component, { elements, count = 0, listClassName, elementClassName, elementWidth = 80 }) => {
+const withSlider = (Component, { elements, count = 0, listClassName, elementClassName, padding = 0 }) => {
   return ({ ...props }) => {
     const ref = useRef(null);
     const [leftCounter, setLeftCounter] = useState(0);
+    const [elementWidth, setElementWidth] = useState(ref.current?.offsetWidth || 0);
+    console.log(elements, count);
 
     const moveLeft = () => {
       if (leftCounter === -(elements.length - count)) {
@@ -24,7 +26,11 @@ const withSlider = (Component, { elements, count = 0, listClassName, elementClas
     const rightDisabled = useMemo(() => leftCounter === -(elements.length - count), [leftCounter]);
     const leftDisabled = useMemo(() => leftCounter === 0, [leftCounter]);
 
-    const elementWidth = ref.current?.offsetWidth || 0
+    useEffect(() => {
+      console.log(ref.current?.offsetWidth);
+      setElementWidth(ref.current?.offsetWidth);
+    }, [ref.current?.offsetWidth]);
+
     const wrapperSliderWidth = (count + 1) * elementWidth;
     const sliderWidth = count * elementWidth;
     const sliderHeight = (ref.current?.offsetHeight || 0);
@@ -45,7 +51,7 @@ const withSlider = (Component, { elements, count = 0, listClassName, elementClas
         <ArrowButton direction='right' onClick={moveLeft} className={[styles.slider__button, styles.slider__button_right]} disabled={rightDisabled} />
       </div>
     );
-  }
+  };
 };
 
 export default withSlider;

@@ -1,10 +1,9 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import PriceButton from "../../_components/Buttons/PriceButton/PriceButton";
-import Dropdown from "../../_components/Dropdown";
-import { ReactComponent as BasketIcon } from '../../images/basket.svg';
-import Logo from '../../images/logo-mini.png'
-import Button from "../../_components/Buttons/Button";
+import Dropdown from "@/_components/Dropdown";
+import { ReactComponent as BasketIcon } from '@/images/basket.svg';
+import Logo from '@/images/logo-mini.png'
+import Button from "@/_components/Buttons/Button";
 import styles from './header.module.scss';
 
 const routes = [
@@ -18,7 +17,7 @@ const routes = [
 const Header = () => {
   const navigate = useNavigate();
   const goToBracket = () => {
-    navigate('/bracket')
+    navigate('/basket')
   };
   const totalPrice = 300;
 

@@ -8,6 +8,7 @@ $baseColorSecond: #ff7010;
 $baseColorDisabled: #ffa970;
 $baseErrorColor: #e23535;
 $baseBackgroundColor: #ffffff;
+$readonlyColor: #ededed;
 
 :root {
   --max-width: 1536px;
@@ -35,6 +36,7 @@ $baseBackgroundColor: #ffffff;
   --buttons-white: #{$baseTextColor};
   --buttons-white-text: #{$baseTextColorSecond};
   --card-background: #{$baseBackgroundColor};
+  --readonly-color: #{$readonlyColor};
 }
 
 body {

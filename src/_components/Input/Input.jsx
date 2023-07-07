@@ -1,5 +1,7 @@
 import withInput from "@/_hocs/Input/withInput";
 
-const Input = (props) => withInput({ Component: 'input', ...props, type: 'text'});
+const Input = (props) => {
+  return withInput('input')({ type: 'text', ...props });
+};
 
 export default Input;

@@ -76,4 +76,14 @@ textarea {
       color: var(--base-error);
     }
   }
+  &_readonly {
+    cursor: default;
+    background-color: var(--readonly-color);
+    color: var(--buttons-border);
+    &:hover,
+    &:focus {
+      border-color: var(--buttons-border);
+      border-style: solid;
+    }
+  }
 }
