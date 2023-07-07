@@ -1,7 +1,9 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import PriceButton from "../../_components/Buttons/PriceButton/PriceButton";
-import Dropdown from "../../_components/Dropdown";
+import Dropdown from "@/_components/Dropdown";
+import { ReactComponent as BasketIcon } from '@/images/basket.svg';
+import Logo from '@/images/logo-mini.png'
+import Button from "@/_components/Buttons/Button";
 import styles from './header.module.scss';
 
 const routes = [
@@ -15,12 +17,14 @@ const routes = [
 const Header = () => {
   const navigate = useNavigate();
   const goToBracket = () => {
-    navigate('/bracket')
+    navigate('/basket')
   };
+  const totalPrice = 300;
 
   return (
     <header className={styles.header}>
       <nav>
+        <img src={Logo} alt="Logo" />
         <ul>
           { routes.map((route) =>
           <li key={route.link}>
@@ -31,7 +35,9 @@ const Header = () => {
             <Dropdown isText text="Ещё" wrapperClassName={styles.more} />
           </li>
         </ul>
-        <PriceButton price={0} currency='rub' onClick={goToBracket} />
+        <Button className={styles.header__basket} onClick={goToBracket}>
+          <BasketIcon />{ totalPrice } ₽
+        </Button>
       </nav>
     </header>
   );

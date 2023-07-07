@@ -1,20 +1,22 @@
-import React from "react";
-import CheckboxButton from "../../../Buttons/CheckboxButton";
+import withSlider from "@/_hocs/Slider/withSlider";
+import ProductModalIngredient from "./ProductModalIngredient";
 
-const ProductModalIngredients = ({styles, ingredients = []}) => {
-  return (
-    <div className={styles['product-modal__info-ingredients']}>
-        { ingredients.map((ingredient) => 
-          <div key={ingredient.id} className={styles['product-modal__info-ingredient']}>
-            <CheckboxButton outline initialChecked={ingredient.checked}>
-              <img src={ingredient.photo} alt="product_photo" />
-            </CheckboxButton>
-            <span className={styles['product-modal__info-ingredient-name']}>{ ingredient.name }</span>
-            <span className={styles['product-modal__info-ingredient-price']}>{ ingredient.price }</span>
-          </div>
-        ) }
-    </div>
-  );
+const ProductModalIngredients = ({ ingredients, updateIngredients, styles, ...otherProps }) => {
+
+  return withSlider(
+    ProductModalIngredient,
+      {
+        count: 3,
+        elementClassName: styles['product-modal__info-ingredient'],
+        elements: ingredients,
+        listClassName: styles['product-modal__info-ingredients'],
+      }
+    )
+  ({
+    styles,
+    onChange: updateIngredients,
+    ...otherProps
+  })
 };
 
 export default ProductModalIngredients;

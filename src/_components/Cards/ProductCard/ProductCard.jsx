@@ -1,22 +1,27 @@
 import React from "react";
 import Button from "../../Buttons/Button";
-import Photo from '../../../images/product.png';
+import Photo from '../../../images/peperoni.png';
 import card from '../../../css/card.module.scss';
 import styles from './product-card.module.scss';
 
-const ProductCard = ({ title = 'Product title', info = '', price = 300 }) => {
+const ProductCard = ({ id, title = 'Product title', info = '', price = [300], photo, onSelect }) => {
+  const onSelectHandler = () => {
+    onSelect(id)
+  };
+  // getPhotoFromServer
+
   return (
     <div className={`${card.card} ${styles['product']}`}>
       <div className={styles['product__photo']}>
-        <img src={Photo} alt="product_photo" />
+        <img src={Photo} alt="product_photo" onClick={onSelectHandler} />
       </div>
       <hr />
       <div className={styles['product__info']}>
-        <h4>{ title }</h4>
+        <h4 onClick={onSelectHandler}>{ title }</h4>
         <span>{ info }</span>
         <div className={styles['product__info-select']}>
-          <Button>Выбрать</Button>
-          <span>{ `от ${price} рублей` }</span>
+          <Button onClick={onSelectHandler}>Выбрать</Button>
+          <span>{ `от ${price[0]} ₽` }</span>
         </div>
       </div>
     </div>

@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from './radio.module.scss';
 
-const Radio = ({ id, name, text = 'text', onChange }) => {
-  const [checked, setChecked] = useState(false);
-  console.log(checked);
+const Radio = ({ id, name, checked, title = 'title', value, onChange }) => {
+const onChangeHandler = () => {
+    console.log(checked);
+    onChange(value);
+  };
+
   return (
     <>
       <input
@@ -12,9 +15,10 @@ const Radio = ({ id, name, text = 'text', onChange }) => {
         name={name}
         className={styles.radio}
         checked={checked}
+        onChange={onChangeHandler}
       />
       <label htmlFor={name}
-        onClick={() => setChecked((prevState) => !prevState)}>{text}</label>
+        onClick={onChangeHandler}>{title}</label>
     </>
   );
 };

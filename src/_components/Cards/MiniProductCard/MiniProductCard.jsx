@@ -1,8 +1,9 @@
 import React from "react";
-import Photo from '../../../images/product.png';
+import Photo from '../../../images/peperoni.png';
 import card from '../../../css/card.module.scss';
 import styles from './mini-product-card.module.scss';
 import CounterButton from "../../Buttons/CounterButton";
+import { getClassName } from "../../../functions/classNameFunctions";
 
 const MiniProductCard = ({
   id = 1,
@@ -10,14 +11,16 @@ const MiniProductCard = ({
   info = 'Традиционное тесто, 23 см',
   price = 300,
   short,
+  className,
   onChange = () => {}
 }) => {
-  const className = `${card.card} ${styles['mini-product-card']}${short ? ` ${styles['mini-product-card_short']}` : ''}`;
+  const wrapperClassName = getClassName(`${card.card} ${styles['mini-product-card']}${short ? ` ${styles['mini-product-card_short']}` : ''}`, className);
   const onChangeHandler = (price) => {
     onChange({ price, id });
   };
+
   return (
-    <div className={className}>
+    <div className={wrapperClassName}>
       <div className={styles['mini-product-card__photo']}>
         <img src={Photo} alt="product_photo" />
       </div>
@@ -28,7 +31,7 @@ const MiniProductCard = ({
         </div>
         <div className={styles['mini-product-card__info-price']}>
           <CounterButton initialCount={1} price={price} onChange={onChangeHandler} />
-          <span>{ price } руб</span>
+          <span>{ price } ₽</span>
         </div>
       </div>
     </div>

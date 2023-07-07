@@ -1,0 +1,36 @@
+.slider {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+  margin: auto;
+  &__element {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    transition: left 0.5s ease-in-out, right 0.5s ease-in-out;
+  }
+  &__button {
+    width: 7px !important;
+    height: 7px !important;
+    position: absolute !important;
+    border-radius: 50% !important;
+    top: calc(50% - 7px);
+    > svg {
+      width: 17px !important;
+      height: 17px !important;
+      overflow: inherit;
+      position: absolute;
+      left: 3px;
+    }
+    &_left {
+      left: 5px;
+    }
+    &_right {
+      right: 5px;
+      > svg {
+        left: 6px;
+      }
+    }
+  }
+}

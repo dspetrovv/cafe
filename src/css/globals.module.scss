@@ -8,11 +8,12 @@ $baseColorSecond: #ff7010;
 $baseColorDisabled: #ffa970;
 $baseErrorColor: #e23535;
 $baseBackgroundColor: #ffffff;
+$readonlyColor: #ededed;
 
 :root {
   --max-width: 1536px;
   --header-height: 65px;
-  --footer-height: 262px;
+  --footer-height: 180px;
   
   --background-color: #f8f8f8;
   --background-color-second: #{$baseBackgroundColor};
@@ -35,6 +36,7 @@ $baseBackgroundColor: #ffffff;
   --buttons-white: #{$baseTextColor};
   --buttons-white-text: #{$baseTextColorSecond};
   --card-background: #{$baseBackgroundColor};
+  --readonly-color: #{$readonlyColor};
 }
 
 body {
@@ -42,6 +44,12 @@ body {
   margin: 0;
   width: 100%;
   height: 100vh;
-  font-size: 22px;
+  font-size: 20px;
   background-color: var(--background-color);
+  > div {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
 }
+

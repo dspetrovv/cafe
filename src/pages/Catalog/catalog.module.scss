@@ -4,31 +4,56 @@
     justify-content: space-between;
     align-items: center;
     h1 {
-      font-size: 40px;
+      font-size: 32px;
     }
   }
   &__cards {
     display: flex;
     flex-wrap: wrap;
-    > div:not(:first-child) {
-      margin-left: 40px;
+    > div {
+      margin-bottom: 20px;
+      &:not(:last-child) {
+        margin-right: 20px;
+      }
     }
   }
 }
 
 .info {
-  width: 850px;
-  max-height: 400px;
+  max-width: 850px;
   margin: 45px auto;
-  overflow: hidden;
   position: relative;
   h1 {
+    font-size: 28px;
     margin-bottom: 15px;
+  }
+  span {
+    font-size: 18px;
   }
   h4 {
     margin-bottom: 0;
   }
+  &__btn {
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+    color: var(--base-color);
+    font-weight: 600;
+    &_open::after {
+      content: 'Раскрыть';
+    }
+    &_close {
+      bottom: -24px;
+      &::after {
+        content: 'Скрыть';
+      }
+    }
+  }
   &_hidden {
+    max-height: 400px;
+    overflow: hidden;
     &::after {
       content: '';
       position: absolute;

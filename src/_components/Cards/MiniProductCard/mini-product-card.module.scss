@@ -11,14 +11,14 @@
 
 .mini-product-card {
   width: 100%;
-  max-width: 850px;
-  height: 140px;
+  max-width: 700px;
+  height: 100px;
   display: flex;
   align-items: center;
   &__photo {
-    width: 120px;
-    height: 120px;
-    min-width: 120px;
+    width: 85px;
+    height: 85px;
+    min-width: 85px;
     img {
       width: 100%;
       height: auto;
@@ -33,16 +33,16 @@
       h3 {
         margin: 0;
         margin-bottom: 5px;
-        font-size: 27px;
+        font-size: 26px;
       }
       span {
-        font-size: 20px;
+        font-size: 18px;
       }
     }
     &-price {
       margin-left: auto;
       > span {
-        font-size: 26px;
+        font-size: 24px;
         font-weight: 600;
         margin-left: 30px;
         color: var(--base-color);
@@ -66,6 +66,6 @@
   }
 }
 
-@media screen and (max-width: 680px) {
+@media screen and (max-width: 650px) {
   @include shortCard;
 }

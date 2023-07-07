@@ -24,7 +24,7 @@ const OrderPanel = ({ products = mockProducts, totalPrice, isOpen, toggleIsOpen,
 
   const PanelFooter =
     <>
-      <h3 className={styles['order__footer-total']}>Итого: { totalPrice } руб</h3>
+      <h3 className={styles['order__footer-total']}>Итого: { totalPrice } ₽</h3>
       <Button className={styles['order__footer-button']} onClick={accept}>Оформить заказ</Button>
     </>
 

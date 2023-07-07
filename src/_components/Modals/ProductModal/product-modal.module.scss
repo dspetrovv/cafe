@@ -1,6 +1,6 @@
 .product-modal {
   width: 800px;
-  max-height: 500px;
+  max-height: 520px;
   display: flex;
   z-index: 100;
   opacity: 1;
@@ -35,7 +35,6 @@
     }
     &-ingredients {
       display: flex;
-      flex-wrap: wrap;
       button {
         padding: 20px;
         border-radius: 12px;
@@ -51,7 +50,7 @@
       display: flex;
       flex-direction: column;
       margin: 5px;
-      max-width: 105px;
+      max-width: 95px;
       span {
         display: block;
         text-align: center;
@@ -59,6 +58,9 @@
       }
       &-name {
         margin: 5px 0 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
       &-price {
         font-weight: 600;
@@ -83,6 +85,7 @@
     &-total {
       display: flex;
       align-items: center;
+      margin-top: 20px;
       h2 {
         font-size: 24px;
         color: var(--base-color);

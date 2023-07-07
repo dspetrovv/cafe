@@ -1,9 +1,9 @@
 import React from "react";
-import FilterButton from "../../../_components/Buttons/FilterButton";
-import ProductCard from "../../../_components/Cards/ProductCard";
+import FilterButton from "@/_components/Buttons/FilterButton";
+import ProductCard from "@/_components/Cards/ProductCard";
 import styles from '../catalog.module.scss';
 
-const CatalogSection = ({ list, onOpenFilter }) => {
+const CatalogSection = ({ list, onOpenFilter, onSelectProduct }) => {
 
   return (
     <section className={styles.catalog}>
@@ -13,7 +13,15 @@ const CatalogSection = ({ list, onOpenFilter }) => {
       </div>
       <div className={styles['catalog__cards']}>
         { list.map((element) =>
-          <ProductCard key={element.id} title={element.title} info={element.info} price={300} />
+          <ProductCard
+            key={element.id}
+            id={element.id}
+            title={element.title}
+            info={element.info}
+            price={element.prices}
+            photo={element.photo}
+            onSelect={onSelectProduct}
+          />
         ) }
       </div>
     </section>
