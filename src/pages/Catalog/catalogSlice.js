@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import pizza from '@/mock/pizza.json';
 import pizzaFilter from '@/mock/pizza_ingredients.json';
-import snack from '@/mock/snack.json';
-import sauce from '@/mock/sauce.json';
+import snack from '@/mock/snacks.json';
+import sauce from '@/mock/sauces.json';
 import produce from 'immer';
 
 const initialState = {
@@ -39,7 +39,6 @@ const CatalogSlice = createSlice({
       const pizzaList = state.products.pizza.list;
       const pizza = pizzaList[pizzaIdx];
       const key = isOptional ? 'optionalIngredients' : 'ingredients';
-  
 
       const ingredientIdx = pizza[key].findIndex(i => i.id === ingredientId);
       if (ingredientIdx !== -1) {

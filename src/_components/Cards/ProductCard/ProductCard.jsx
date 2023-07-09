@@ -1,12 +1,12 @@
 import React from "react";
-import Button from "../../Buttons/Button";
-import Photo from '../../../images/peperoni.png';
-import card from '../../../css/card.module.scss';
+import Button from "@/_components/Buttons/Button";
+import Photo from '@/images/peperoni.png';
+import card from '@/css/card.module.scss';
 import styles from './product-card.module.scss';
 
-const ProductCard = ({ id, title = 'Product title', info = '', price = [300], photo, onSelect }) => {
+const ProductCard = ({ id, name = 'Product name', info = '', price = 'N', onSelect }) => {
   const onSelectHandler = () => {
-    onSelect(id)
+    onSelect(id);
   };
   // getPhotoFromServer
 
@@ -17,11 +17,11 @@ const ProductCard = ({ id, title = 'Product title', info = '', price = [300], ph
       </div>
       <hr />
       <div className={styles['product__info']}>
-        <h4 onClick={onSelectHandler}>{ title }</h4>
+        <h4 onClick={onSelectHandler}>{ name }</h4>
         <span>{ info }</span>
         <div className={styles['product__info-select']}>
           <Button onClick={onSelectHandler}>Выбрать</Button>
-          <span>{ `от ${price[0]} ₽` }</span>
+          <span>{ `от ${price} ₽` }</span>
         </div>
       </div>
     </div>

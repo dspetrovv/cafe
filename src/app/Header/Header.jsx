@@ -1,25 +1,27 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Dropdown from "@/_components/Dropdown";
 import { ReactComponent as BasketIcon } from '@/images/basket.svg';
 import Logo from '@/images/logo-mini.png'
 import Button from "@/_components/Buttons/Button";
+import { totalPriceSelector } from "@/pages/Basket/basketSlice";
 import styles from './header.module.scss';
 
 const routes = [
   { link: '/catalog#pizza', name: 'Пицца' },
   { link: '/catalog#snacks', name: 'Закуски' },
   { link: '/catalog#drinks', name: 'Напитки' },
-  { link: '/catalog#combo', name: 'Комбо' },
+  { link: '/catalog#sauces', name: 'Комбо' },
   { link: '/catalog#desserts', name: 'Десерты' },
 ];
 
 const Header = () => {
   const navigate = useNavigate();
   const goToBracket = () => {
-    navigate('/basket')
+    navigate('/basket');
   };
-  const totalPrice = 300;
+  const totalPrice = useSelector(totalPriceSelector);
 
   return (
     <header className={styles.header}>

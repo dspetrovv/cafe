@@ -28,7 +28,6 @@ const ProductModal = ({ ingredients, optionalIngredients, isOpen, updateIngredie
         <h2>Title</h2>
         <div className={styles['product-modal__info-block']}>
           <ProductModalIngredients ingredients={ingredients} updateIngredients={updateIngredients} styles={styles} selectedProductIdx={selectedProductIdx} />
-          {/* <ProductModalIngredients styles={styles} ingredients={ingredients1} /> */}
           <div className={styles['product-modal__info-dough']}>
             <Tabs tabs={tabs1} />
             <Tabs tabs={tabs2} />

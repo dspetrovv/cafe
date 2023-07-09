@@ -23,7 +23,7 @@
       { "id": 7, "name": "Чеснок" }
     ],
     "photo": "@/images/peperoni.png",
-    "prices": [200, 400, 500],
+    "price": [200, 400, 500],
     "weight": [300, 400, 500]
   },
   {
@@ -44,7 +44,7 @@
       { "id": 6, "name": "Сушёный базелик" }
     ],
     "photo": "@/images/peperoni.png",
-    "prices": [220, 400, 500],
+    "price": [220, 400, 500],
     "weight": [300, 400, 500]
   },
   {
@@ -71,7 +71,7 @@
       { "id": 19, "name": "Красный перец" }
     ],
     "photo": "@/images/peperoni.png",
-    "prices": [230, 400, 500],
+    "price": [230, 400, 500],
     "weight": [300, 400, 500]
   },
   {
@@ -94,7 +94,7 @@
       { "id": 5, "name": "Орегано" }
     ],
     "photo": "@/images/peperoni.png",
-    "prices": [240, 400, 500],
+    "price": [240, 400, 500],
     "weight": [300, 400, 500]
   },
   {
@@ -119,7 +119,7 @@
       { "id": 5, "name": "Орегано" }
     ],
     "photo": "@/images/peperoni.png",
-    "prices": [250, 400, 500],
+    "price": [250, 400, 500],
     "weight": [300, 400, 500]
   },
   {
@@ -144,7 +144,7 @@
       { "id": 24, "name": "Базилик" }
     ],
     "photo": "@/images/peperoni.png",
-    "prices": [300, 400, 500],
+    "price": [300, 400, 500],
     "weight": [300, 400, 500]
   }
 ]
