@@ -1,7 +1,8 @@
 [
   {
     "id": 1,
-    "title": "Пепперони",
+    "type": "pizza",
+    "name": "Пепперони",
     "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus voluptate blanditiis nihil aspernatur quisquam dolore rerum exercitationem consequuntur",
     "ingredients": [
       { "id": 1, "name": "Моцарелла" },
@@ -22,12 +23,13 @@
       { "id": 7, "name": "Чеснок" }
     ],
     "photo": "@/images/peperoni.png",
-    "prices": [200, 400, 500],
+    "price": [200, 400, 500],
     "weight": [300, 400, 500]
   },
   {
     "id": 2,
-    "title": "Маргарита",
+    "type": "pizza",
+    "name": "Маргарита",
     "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus voluptate blanditiis nihil aspernatur quisquam dolore rerum exercitationem consequuntur",
     "ingredients": [
       { "id": 1, "name": "Моцарелла" },
@@ -42,12 +44,13 @@
       { "id": 6, "name": "Сушёный базелик" }
     ],
     "photo": "@/images/peperoni.png",
-    "prices": [220, 400, 500],
+    "price": [220, 400, 500],
     "weight": [300, 400, 500]
   },
   {
     "id": 3,
-    "title": "Карбонара",
+    "type": "pizza",
+    "name": "Карбонара",
     "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus voluptate blanditiis nihil aspernatur quisquam dolore rerum exercitationem consequuntur",
     "ingredients": [
       { "id": 1, "name": "Моцарелла" },
@@ -68,12 +71,13 @@
       { "id": 19, "name": "Красный перец" }
     ],
     "photo": "@/images/peperoni.png",
-    "prices": [230, 400, 500],
+    "price": [230, 400, 500],
     "weight": [300, 400, 500]
   },
   {
     "id": 4,
-    "title": "Четыре сыра",
+    "type": "pizza",
+    "name": "Четыре сыра",
     "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus voluptate blanditiis nihil aspernatur quisquam dolore rerum exercitationem consequuntur",
     "ingredients": [
       { "id": 1, "name": "Моцарелла" },
@@ -90,12 +94,13 @@
       { "id": 5, "name": "Орегано" }
     ],
     "photo": "@/images/peperoni.png",
-    "prices": [240, 400, 500],
+    "price": [240, 400, 500],
     "weight": [300, 400, 500]
   },
   {
     "id": 5,
-    "title": "Гавайская",
+    "type": "pizza",
+    "name": "Гавайская",
     "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus voluptate blanditiis nihil aspernatur quisquam dolore rerum exercitationem consequuntur",
     "ingredients": [
       { "id": 12, "name": "Ананасы" },
@@ -114,12 +119,13 @@
       { "id": 5, "name": "Орегано" }
     ],
     "photo": "@/images/peperoni.png",
-    "prices": [250, 400, 500],
+    "price": [250, 400, 500],
     "weight": [300, 400, 500]
   },
   {
     "id": 6,
-    "title": "Вегетарианская",
+    "type": "pizza",
+    "name": "Вегетарианская",
     "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus voluptate blanditiis nihil aspernatur quisquam dolore rerum exercitationem consequuntur",
     "ingredients": [
       { "id": 12, "name": "Ананасы" },
@@ -138,7 +144,7 @@
       { "id": 24, "name": "Базилик" }
     ],
     "photo": "@/images/peperoni.png",
-    "prices": [300, 400, 500],
+    "price": [300, 400, 500],
     "weight": [300, 400, 500]
   }
 ]

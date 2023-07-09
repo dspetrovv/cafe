@@ -1,21 +1,16 @@
 import React from "react";
 import withSlider from "@/_hocs/Slider/withSlider";
 import SnackCard from "@/_components/Cards/SnackCard";
-import styles from '../../basket.module.scss';
+import styles from "../../basket.module.scss";
 
-const AddToOrder = () => {
-  const elements = [{ id: 1 },{ id: 2 },{ id: 3 },{ id: 4 },{ id: 5 },{ id: 6 },{ id: 7 }];
+const AddToOrder = ({ elements, onClick }) => {
   return (
     <>
-      {withSlider(
-    SnackCard,
-      {
-        count: 3,
-        elementClassName: styles['basket__additions-element'],
+      {elements.length && withSlider(SnackCard, {
+        count: elements.length > 3 ? 3 : elements.length,
+        elementClassName: styles["basket__additions-element"],
         elements,
-      }
-    )
-  ({ styles })}
+      })({ styles, onClick })}
     </>
   );
 };

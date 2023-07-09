@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useState } from "react";
+import React, { useContext, useState } from "react";
 import Radio from "@/_components/Radio/Radio";
 import { AboutContext } from "../../AboutButton";
 
@@ -9,8 +9,8 @@ const RadioButtonBlock = () => {
     setValue(value);
   };
 
-  const isFirst = useMemo(() => value === 'first', [value]);
-  const isSecond = useMemo(() => value === 'second', [value]);
+  const isFirst = value === 'first';
+  const isSecond = value === 'second';
 
   return (
     <>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from './counter-button.module.scss';
 
-const CounterButton = ({ initialCount = 1, onChange, price, disabled = false }) => {
+const CounterButton = ({ initialCount = 1, onChange, disabled = false }) => {
   const [count, setCount] = useState(initialCount);
   const onIncrement = () => {
     setCount((prevState) => {
@@ -10,7 +10,7 @@ const CounterButton = ({ initialCount = 1, onChange, price, disabled = false }) 
       }
       return ++prevState;
     });
-    onChange(price * count);
+    onChange(count);
   };
   const onDecrement = () => {
     setCount((prevState) => {
@@ -19,7 +19,7 @@ const CounterButton = ({ initialCount = 1, onChange, price, disabled = false }) 
       }
       return --prevState;
     });
-    onChange(price * count);
+    onChange(count);
   };
 
   return (

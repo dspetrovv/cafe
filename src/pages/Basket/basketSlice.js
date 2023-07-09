@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { compareArrays } from "@/functions/arrayFunctions";
 
 const initialState = {
   products: [],
@@ -21,12 +22,30 @@ const initialState = {
   comment: ''
 };
 
+const areProductsEqual = (newProduct, products) => {
+  const productIdx = products.findIndex((product) => product.id === newProduct.id && product.type === newProduct.type);
+  if (productIdx === -1) {
+    return { equal: false };
+  }
+  const { removedList, addedList } = products[productIdx];
+  const { newRemovedList, newAddedList } = newProduct;
+  return {
+    equal: compareArrays(removedList, newRemovedList) && compareArrays(addedList, newAddedList),
+    productIdx
+  };
+}
+
 const BasketSlice = createSlice({
   name: 'basket',
   initialState,
   reducers: {
     addProduct: (state, { payload }) => {
-      state.products.push(payload);
+      const { equal, productIdx } = areProductsEqual(payload, state.products);
+      if (!equal) {
+        state.products.push(payload);
+      } else {
+        state.products[productIdx].count++;
+      }
       state.totalPrice += payload.price;
     },
     updateProductCount: (state, { payload: { productId, count } }) => {
@@ -65,7 +84,7 @@ export const basketStore = BasketSlice.reducer;
 
 export const {
   addProduct,
-  updateProductData,
+  updateProductCount,
   removeProduct,
   resetBasket,
   updateContact,
@@ -84,7 +103,7 @@ export const addProductToBasket = (product) => (dispatch) => {
 
 export const changeCountOfProductInBasket = ({ productId, count }) => (dispatch) => {
   try {
-    dispatch(updateProductData({ productId, count }));
+    dispatch(updateProductCount({ productId, count }));
   } catch (err) {
     //Simulating error
   }
@@ -131,3 +150,7 @@ export const addComment = (comment) => (dispatch) => {
     //Simulating error
   }
 };
+
+export const basketProductsSelector = ({ basketStore }) => basketStore.products;
+
+export const totalPriceSelector = ({ basketStore }) => basketStore.totalPrice;

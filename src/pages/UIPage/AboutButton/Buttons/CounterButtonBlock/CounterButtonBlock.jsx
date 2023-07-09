@@ -26,21 +26,6 @@ const CounterButtonBlock = () => {
               <strong>default:</strong> 1
             </td>
           </tr>
-          {/* price */}
-          <tr>
-            <td>
-              price
-              <br />
-              (обязательно)
-            </td>
-            <td>
-              Цена. Этот параметр отвечает за увеличение цены в родительском элементе. Пример:
-              передаём параметр <strong>price = 100</strong>, при увеличении количества, в родительском элементе
-              цена будет равна: <strong>price * count</strong> (количество)
-              <br />
-              <strong>default:</strong> Пусто
-            </td>
-          </tr>
           {/* disabled */}
           <tr>
             <td>disabled</td>

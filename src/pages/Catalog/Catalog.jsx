@@ -1,48 +1,29 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
 import styles from './catalog.module.scss';
 import CatalogSection from "./CatalogSection";
-import Photo from '@/images/peperoni.png';
 import { useDispatch, useSelector } from "react-redux";
-import { getPizza, pizzaSelector, updatePizzaIngredient } from "./catalogSlice";
+import { getPizza, getSauce, getSnack, pizzaSelector, sauceSelector, snackSelector, updatePizzaIngredient } from "./catalogSlice";
 
 const FilterPanel = lazy(() => import("@/_components/Panels/FilterPanel"));
 const ProductModal = lazy(() => import("@/_components/Modals/ProductModal"));
+const SimpleProductModal = lazy(() => import("@/_components/Modals/SimpleProductModal"));
+
+const PIZZA_SECTION = "Пицца";
+const SNACKS_SECTION = "Закуски";
+const SAUCES_SECTION = "Соусы";
 
 const CatalogPage = () => {
-  const [products, setProducts] = useState(
-    [
-      {
-        id: 1,
-        title: 'Pizza-1',
-        info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus voluptate blanditiis nihil aspernatur quisquam dolore rerum exercitationem consequuntur ut culpa neque, corporis voluptatem eum iste veniam! Quod molestiae nobis voluptas?',
-        ingredients: [
-          { id: 1, name: 'Моцарелла', photo: Photo, price: '40 rub', checked: true },
-          { id: 2, name: 'Моцарелла', photo: Photo, price: '40 rub', checked: true },
-          { id: 3, name: 'Моцарелла', photo: Photo, price: '40 rub', checked: true },
-          { id: 4, name: 'Моцарелла', photo: Photo, price: '40 rub', checked: true },
-          { id: 5, name: 'Моцарелла', photo: Photo, price: '40 rub', checked: true },
-          { id: 6, name: 'Моцарелла', photo: Photo, price: '41 rub', checked: true },
-        ]
-      },
-      {
-        id: 2,
-        title: 'Pizza-2',
-        info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus voluptate blanditiis nihil aspernatur quisquam dolore rerum exercitationem consequuntur',
-        ingredients: [
-          { id: 11, name: 'Моцарелла', photo: Photo, price: '40 rub', checked: true },
-          { id: 12, name: 'Моцарелла', photo: Photo, price: '40 rub', checked: true },
-          { id: 13, name: 'Моцарелла', photo: Photo, price: '40 rub', checked: true },
-          { id: 14, name: 'Моцарелла', photo: Photo, price: '40 rub', checked: true },
-          { id: 15, name: 'Моцарелла', photo: Photo, price: '40 rub', checked: true },
-          { id: 16, name: 'Моцарелла', photo: Photo, price: '42 rub', checked: true },
-        ]
-      }
-    ]);
   const dispatch = useDispatch();
   const pizza = useSelector(pizzaSelector);
+  const snacks = useSelector(snackSelector);
+  const sauces = useSelector(sauceSelector);
   useEffect(() => {
     dispatch(getPizza());
+    dispatch(getSnack());
+    dispatch(getSauce());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  const isSomeProductLoaded = snacks.length || sauces.length;
 
   const [selectedProductIdx, setSelectedProductIdx] = useState(0);
   const [isOpenedFilter, setIsOpenedFilter] = useState(false);
@@ -56,16 +37,37 @@ const CatalogPage = () => {
   const toggleIsOpenFilter = (val = true) => {
     setIsOpenedFilter(val);
   };
-  const onSelectProduct = (id) => {
+  const onSelectProduct = ({ id }) => {
     setSelectedProductIdx(() => pizza.findIndex((product) => product.id === id));
-    console.log(selectedProductIdx);
     setTimeout(() => {
       setIsOpenedProduct(true);
     });
   };
 
-  const toggleIsOpenProduct = (val = true) => {
-    setIsOpenedProduct(val);
+  const [selectedSimpleProduct, setSelectedSimpleProduct] = useState();
+  const [isOpenedSimpleProduct, setIsOpenedSimpleProduct] = useState(false);
+
+  const onSelectSimpleProduct = ({ id, sectionName }) => {
+    switch (sectionName) {
+      case SNACKS_SECTION:
+        setSelectedSimpleProduct(snacks.find((snack) => snack.id === id));
+        break;
+      case SAUCES_SECTION:
+        setSelectedSimpleProduct(sauces.find((sauce) => sauce.id === id))
+        break;
+      default:
+        break;
+    }
+    setTimeout(() => {
+      setIsOpenedSimpleProduct(true);
+    });
+  };
+  const toggleSimpleProductModal = () => {
+    setIsOpenedSimpleProduct((prevState) => !prevState);
+  };
+
+  const toggleProductModal = () => {
+    setIsOpenedProduct((prevState) => !prevState);
   };
   const toggleBottomInfo = () => {
     setIsOpenedBottomInfo((prevState) => !prevState);
@@ -74,9 +76,20 @@ const CatalogPage = () => {
   return (
     <>
       <CatalogSection
+        sectionName={PIZZA_SECTION}
         list={pizza}
         onSelectProduct={onSelectProduct}
         onOpenFilter={toggleIsOpenFilter}
+      />
+      <CatalogSection
+        sectionName={SNACKS_SECTION}
+        list={snacks}
+        onSelectProduct={onSelectSimpleProduct}
+      />
+      <CatalogSection
+        sectionName={SAUCES_SECTION}
+        list={sauces}
+        onSelectProduct={onSelectSimpleProduct}
       />
       <section className={`${styles.info} ${isOpenedBottomInfo ? '' : styles.info_hidden}`}>
         <h1>Доставка питсы в Изумрудном городе</h1>
@@ -106,16 +119,29 @@ const CatalogPage = () => {
           isOpen={isOpenedFilter}
           toggleIsOpen={toggleIsOpenFilter}
         />
-        { pizza[0] && <ProductModal
-          ingredients={pizza[selectedProductIdx].ingredients}
-          optionalIngredients={pizza[selectedProductIdx].optionalIngredients}
-          isOpen={isOpenedProduct}
-          updateIngredients={updateIngredients}
-          toggleIsOpen={toggleIsOpenProduct}
-          selectedProductIdx={selectedProductIdx}
-          key={selectedProductIdx}
-        />}
-        
+        { !!pizza[0] &&
+          <ProductModal
+            ingredients={pizza[selectedProductIdx].ingredients}
+            optionalIngredients={pizza[selectedProductIdx].optionalIngredients}
+            isOpen={isOpenedProduct}
+            updateIngredients={updateIngredients}
+            toggleIsOpen={toggleProductModal}
+            selectedProductIdx={selectedProductIdx}
+            key={selectedProductIdx}
+          />
+        }
+        { isSomeProductLoaded && selectedSimpleProduct &&
+          <SimpleProductModal
+            name={selectedSimpleProduct.name}
+            portion={selectedSimpleProduct?.portion}
+            description={selectedSimpleProduct?.description}
+            ingredients={selectedSimpleProduct?.composition}
+            price={selectedSimpleProduct.price}
+            toggleIsOpen={toggleSimpleProductModal}
+            isOpen={isOpenedSimpleProduct}
+            key={selectedSimpleProduct}
+          />
+        }
       </Suspense>
     </>
   );

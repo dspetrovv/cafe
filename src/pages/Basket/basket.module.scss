@@ -8,6 +8,11 @@
   > h1, > h3 {
     align-self: flex-start;
   }
+  &__empty {
+    color: var(--base-color);
+    text-align: center;
+    font-size: 50px;
+  }
   &__card {
     margin-bottom: 15px;
   }

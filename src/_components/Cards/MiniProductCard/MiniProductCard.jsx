@@ -1,22 +1,25 @@
 import React from "react";
-import Photo from '../../../images/peperoni.png';
-import card from '../../../css/card.module.scss';
+import Photo from '@/images/peperoni.png';
+import card from '@/css/card.module.scss';
 import styles from './mini-product-card.module.scss';
-import CounterButton from "../../Buttons/CounterButton";
-import { getClassName } from "../../../functions/classNameFunctions";
+import CounterButton from "@/_components/Buttons/CounterButton";
+import { getClassName } from "@/functions/classNameFunctions";
 
 const MiniProductCard = ({
-  id = 1,
-  name = 'Title',
-  info = 'Традиционное тесто, 23 см',
-  price = 300,
+  id,
+  name = 'Name',
+  info,
+  price,
   short,
   className,
-  onChange = () => {}
+  count = 1,
+  removed = [],
+  added = [],
+  onChange,
 }) => {
   const wrapperClassName = getClassName(`${card.card} ${styles['mini-product-card']}${short ? ` ${styles['mini-product-card_short']}` : ''}`, className);
-  const onChangeHandler = (price) => {
-    onChange({ price, id });
+  const onChangeHandler = (count) => {
+    onChange({ count, id });
   };
 
   return (
@@ -27,10 +30,26 @@ const MiniProductCard = ({
       <div className={styles['mini-product-card__info']}>
         <div className={styles['mini-product-card__info-main']}>
           <h3>{ name }</h3>
-          <span>{ info }</span>
+          { info && <span>{ info }</span> }
+          { !!removed.length &&
+            <div className={styles['mini-product-card__info-main__removed']}>
+              Убрано: {removed.map((ingredient, index) => (
+              <>
+                <span>-{ingredient}</span>{index + 1 !== removed.length ? ', ': ''}
+              </>))}
+            </div>
+          }
+          { !!added.length &&
+            <div className={styles['mini-product-card__info-main__added']}>
+              Добавлено: {added.map((ingredient, index) => (
+              <>
+                <span>+{ingredient}</span>{index + 1 !== added.length ? ', ': ''}
+              </>))}
+            </div>
+          }
         </div>
         <div className={styles['mini-product-card__info-price']}>
-          <CounterButton initialCount={1} price={price} onChange={onChangeHandler} />
+          <CounterButton initialCount={count} onChange={onChangeHandler} />
           <span>{ price } ₽</span>
         </div>
       </div>
