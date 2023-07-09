@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import Radio from "@/_components/Radio";
 import styles from './payment.module.scss';
 
@@ -8,8 +8,8 @@ const Payment = () => {
     setMethod(method);
   };
 
-  const isCash = useMemo(() => method==='cash', [method]);
-  const isCard = useMemo(() => method==='card', [method]);
+  const isCash = method === 'cash';
+  const isCard = method === 'card';
 
   return (
     <div className={styles.payment}>

@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import pizza from '@/mock/pizza.json';
 import pizzaFilter from '@/mock/pizza_ingredients.json';
+import snack from '@/mock/snack.json';
+import sauce from '@/mock/sauce.json';
 import produce from 'immer';
 
 const initialState = {
@@ -8,6 +10,12 @@ const initialState = {
     pizza: {
       list: [],
       filter: []
+    },
+    snack: {
+      list: []
+    },
+    sauce: {
+      list: []
     }
   },
 };
@@ -117,6 +125,36 @@ export const updatePizzaFilter = ({ pizzaIdx, ingredientId }) => (dispatch, getS
   }
 };
 
+export const getSnack = () => (dispatch) => {
+  try {
+    //Simulated server request
+    dispatch(setProduct({
+      product: 'snack',
+      key: 'list',
+      values: snack
+    }));
+  } catch (err) {
+    //Simulating error
+  }
+};
+
+export const getSauce = () => (dispatch) => {
+  try {
+    //Simulated server request
+    dispatch(setProduct({
+      product: 'sauce',
+      key: 'list',
+      values: sauce
+    }));
+  } catch (err) {
+    //Simulating error
+  }
+};
+
 export const pizzaSelector = ({ catalogStore }) => catalogStore.products.pizza.list;
 
 export const pizzaFilterSelector = ({ catalogStore }) => catalogStore.products.pizza.filter;
+
+export const snackSelector = ({ catalogStore }) => catalogStore.products.snack.list;
+
+export const sauceSelector = ({ catalogStore }) => catalogStore.products.sauce.list;

@@ -5,7 +5,7 @@ import { getClassName } from '@/functions/classNameFunctions';
 
 const withInput = (Component) => {
   return ({ name, id, label, initialValue, Dropdown, Icon, ...otherProps }) => {
-    const { required, phone, wrapperClassName, type, readOnly, onChange } = otherProps;
+    const { required, phone, wrapperClassName, type, readOnly, min, onChange } = otherProps;
     const [isError, setIsError] = useState(false);
     const labelClassName = `${styles.input__label}${isError ? ` ${styles.input__label_error}` : ''}`;
     const inputClassName = useMemo(() => {
@@ -36,11 +36,11 @@ const withInput = (Component) => {
       if (type === 'number') {
         new IMask(input.current, {
           mask: Number,
-          min: 0,
+          min: min ?? 0,
           thousandsSeparator: ' '
         });
       }
-    }, [type]);
+    }, [type, min]);
 
     const onChangeHandler = (event) => {
       const value = event.target.value;

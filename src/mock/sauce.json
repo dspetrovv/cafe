@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "type": "sauce",
+    "name": "Сырный",
+    "price": 50
+  },
+  {
+    "id": 2,
+    "type": "sauce",
+    "name": "Барбекью",
+    "price": 50
+  },
+  {
+    "id": 3,
+    "type": "sauce",
+    "name": "Ранч",
+    "price": 50
+  },
+  {
+    "id": 4,
+    "type": "sauce",
+    "name": "Малиновый джем",
+    "price": 50
+  }
+]

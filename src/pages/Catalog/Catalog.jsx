@@ -3,7 +3,7 @@ import styles from './catalog.module.scss';
 import CatalogSection from "./CatalogSection";
 import Photo from '@/images/peperoni.png';
 import { useDispatch, useSelector } from "react-redux";
-import { getPizza, pizzaSelector, updatePizzaIngredient } from "./catalogSlice";
+import { getPizza, getSauce, getSnack, pizzaSelector, sauceSelector, snackSelector, updatePizzaIngredient } from "./catalogSlice";
 
 const FilterPanel = lazy(() => import("@/_components/Panels/FilterPanel"));
 const ProductModal = lazy(() => import("@/_components/Modals/ProductModal"));
@@ -40,8 +40,13 @@ const CatalogPage = () => {
     ]);
   const dispatch = useDispatch();
   const pizza = useSelector(pizzaSelector);
+  const snack = useSelector(snackSelector);
+  const sauce = useSelector(sauceSelector);
   useEffect(() => {
     dispatch(getPizza());
+    dispatch(getSnack());
+    dispatch(getSauce());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [selectedProductIdx, setSelectedProductIdx] = useState(0);
@@ -58,7 +63,6 @@ const CatalogPage = () => {
   };
   const onSelectProduct = (id) => {
     setSelectedProductIdx(() => pizza.findIndex((product) => product.id === id));
-    console.log(selectedProductIdx);
     setTimeout(() => {
       setIsOpenedProduct(true);
     });
@@ -77,6 +81,14 @@ const CatalogPage = () => {
         list={pizza}
         onSelectProduct={onSelectProduct}
         onOpenFilter={toggleIsOpenFilter}
+      />
+      <CatalogSection
+        list={snack}
+        onSelectProduct={onSelectProduct}
+      />
+      <CatalogSection
+        list={sauce}
+        onSelectProduct={onSelectProduct}
       />
       <section className={`${styles.info} ${isOpenedBottomInfo ? '' : styles.info_hidden}`}>
         <h1>Доставка питсы в Изумрудном городе</h1>

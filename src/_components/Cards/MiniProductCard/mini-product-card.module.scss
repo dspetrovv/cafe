@@ -12,7 +12,6 @@
 .mini-product-card {
   width: 100%;
   max-width: 700px;
-  height: 100px;
   display: flex;
   align-items: center;
   &__photo {
@@ -37,6 +36,28 @@
       }
       span {
         font-size: 18px;
+      }
+      &__removed {
+        max-width: 200px;
+        font-size: 18px;
+        color: var(--red-color);
+        font-weight: 600;
+        margin-top: 5px;
+        span {
+          background: rgba(255, 78, 78, 0.271);
+          border-radius: 8px;
+        }
+      }
+      &__added {
+        max-width: 200px;
+        font-size: 18px;
+        color: var(--success-color-second);
+        font-weight: 600;
+        margin-top: 3px;
+        span {
+          background: rgba(46, 255, 0, 0.25);
+          border-radius: 8px;
+        }
       }
     }
     &-price {

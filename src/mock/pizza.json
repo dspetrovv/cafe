@@ -1,7 +1,8 @@
 [
   {
     "id": 1,
-    "title": "Пепперони",
+    "type": "pizza",
+    "name": "Пепперони",
     "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus voluptate blanditiis nihil aspernatur quisquam dolore rerum exercitationem consequuntur",
     "ingredients": [
       { "id": 1, "name": "Моцарелла" },
@@ -27,7 +28,8 @@
   },
   {
     "id": 2,
-    "title": "Маргарита",
+    "type": "pizza",
+    "name": "Маргарита",
     "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus voluptate blanditiis nihil aspernatur quisquam dolore rerum exercitationem consequuntur",
     "ingredients": [
       { "id": 1, "name": "Моцарелла" },
@@ -47,7 +49,8 @@
   },
   {
     "id": 3,
-    "title": "Карбонара",
+    "type": "pizza",
+    "name": "Карбонара",
     "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus voluptate blanditiis nihil aspernatur quisquam dolore rerum exercitationem consequuntur",
     "ingredients": [
       { "id": 1, "name": "Моцарелла" },
@@ -73,7 +76,8 @@
   },
   {
     "id": 4,
-    "title": "Четыре сыра",
+    "type": "pizza",
+    "name": "Четыре сыра",
     "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus voluptate blanditiis nihil aspernatur quisquam dolore rerum exercitationem consequuntur",
     "ingredients": [
       { "id": 1, "name": "Моцарелла" },
@@ -95,7 +99,8 @@
   },
   {
     "id": 5,
-    "title": "Гавайская",
+    "type": "pizza",
+    "name": "Гавайская",
     "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus voluptate blanditiis nihil aspernatur quisquam dolore rerum exercitationem consequuntur",
     "ingredients": [
       { "id": 12, "name": "Ананасы" },
@@ -119,7 +124,8 @@
   },
   {
     "id": 6,
-    "title": "Вегетарианская",
+    "type": "pizza",
+    "name": "Вегетарианская",
     "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus voluptate blanditiis nihil aspernatur quisquam dolore rerum exercitationem consequuntur",
     "ingredients": [
       { "id": 12, "name": "Ананасы" },

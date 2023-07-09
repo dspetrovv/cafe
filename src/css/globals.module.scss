@@ -9,6 +9,9 @@ $baseColorDisabled: #ffa970;
 $baseErrorColor: #e23535;
 $baseBackgroundColor: #ffffff;
 $readonlyColor: #ededed;
+$ligthRedColor: #ff4e4e;
+$successColor: #2eff00;
+$darkSuccessColor: #27d600;
 
 :root {
   --max-width: 1536px;
@@ -25,6 +28,7 @@ $readonlyColor: #ededed;
   --text-default: #{$baseDefaultColor};
   --text-secondary: #{$secondaryTextColor};
   --text-colored: #{$baseColor};
+
   --buttons-text: #{$baseTextColor};
   --buttons-border: #{$borderDefaultColor};
   --buttons-default: #{$baseColor};
@@ -36,8 +40,12 @@ $readonlyColor: #ededed;
   --buttons-outline-text: #{$baseColor};
   --buttons-white: #{$baseTextColor};
   --buttons-white-text: #{$baseTextColorSecond};
+
   --card-background: #{$baseBackgroundColor};
   --readonly-color: #{$readonlyColor};
+  --red-color: #{$ligthRedColor};
+  --success-color: #{successColor};
+  --success-color-second: #{$darkSuccessColor};
 }
 
 body {
