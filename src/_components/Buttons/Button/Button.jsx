@@ -19,7 +19,7 @@ const getClassNameFromProps = (cssClasses = '', white, outline, isDisabled) => {
   return className;
 };
 
-const Button = ({ children, outline, white, className, isLoading, disabled, onClick }) => {
+const Button = ({ children, outline = false, white = false, className, isLoading = false, disabled = false, onClick }) => {
   let buttonClassName = getClassNameFromProps(className, white, outline, disabled);
 
   return (

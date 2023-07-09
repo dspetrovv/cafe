@@ -30,7 +30,7 @@ const Dropdown = ({ isText, text = 'text', list = mockList, className, wrapperCl
   const Arrow = <ArrowIcon className={`${styles.dropdown__arrow}${isOpen ? ` ${styles.dropdown__arrow_down}` : ''}`} onClick={toggleOpen} />
 
   if (isInput) {
-    return <Input label="Dropdown" ref={wrapperRef} Dropdown={Block} Icon={Arrow} initialValue={selected.value} className={wrapperClassName} readOnly onClick={toggleOpen} />
+    return <Input label="Dropdown" Dropdown={Block} Icon={Arrow} initialValue={selected.value} className={wrapperClassName} readOnly onClick={toggleOpen} />
   }
   return (
     <div className={wrapperClassName ?? styles.dropdown__text} ref={wrapperRef}>

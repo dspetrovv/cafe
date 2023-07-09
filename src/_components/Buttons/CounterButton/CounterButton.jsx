@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import styles from './counter-button.module.scss';
 
-const CounterButton = ({ initialCount = 1, onChange, price, disabled = true }) => {
+const CounterButton = ({ initialCount = 1, onChange, price, disabled = false }) => {
   const [count, setCount] = useState(initialCount);
   const onIncrement = () => {
     setCount((prevState) => {
       if (prevState > 99) {
         return prevState;
       }
-      return prevState++;
+      return ++prevState;
     });
     onChange(price * count);
   };
@@ -17,7 +17,7 @@ const CounterButton = ({ initialCount = 1, onChange, price, disabled = true }) =
       if (prevState === 0) {
         return prevState;
       }
-      return prevState--;
+      return --prevState;
     });
     onChange(price * count);
   };
