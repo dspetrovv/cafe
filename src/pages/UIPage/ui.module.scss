@@ -1,0 +1,57 @@
+.ui {
+  &__about {
+    &-component {
+      &-title {
+        margin-bottom: 10px;
+      }
+    }
+    &-info {
+      border-collapse: collapse;
+      width: 700px;
+      border: 1px solid var(--buttons-border);
+      margin: 10px 0 75px;
+      thead th {
+        background-color: var(--background-color-third);
+        padding: 10px;
+        font-weight: 600;
+        font-size: 24px;
+        border-right: 1px solid var(--buttons-border);
+      }
+      tr {
+        border: 1px solid var(--buttons-border);
+        background-color: var(--background-color-second);
+      }
+      td {
+        padding: 10px;
+      }
+      td:nth-child(1) {
+        vertical-align: baseline;
+        padding: 10px;
+        font-weight: 600;
+        border-right: 1px solid var(--buttons-border);
+      }
+      p {
+        margin: 0px;
+        button {
+          margin: 10px 0 0;
+        }
+      }
+      &__button {
+        &_small {
+          display: inline-flex;
+          padding: 4px 10px !important;
+          font-size: 14px;
+          margin-left: 5px;
+        }
+        &-loader-block {
+          display: flex;
+          align-items: center;
+        }
+        &-small-arrow svg {
+          width: 10px;
+          height: 15px;
+        }
+      }
+    }
+  }
+}

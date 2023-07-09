@@ -15,6 +15,7 @@ import FilterPanel from "../../_components/Panels/FilterPanel";
 import ProductModal from "../../_components/Modals/ProductModal/ProductModal";
 import OrderPanel from "../../_components/Panels/OrderPanel";
 import MiniProductCard from "../../_components/Cards/MiniProductCard";
+import AboutButton from "./AboutButton";
 
 const UIPage = () => {
   const tabs = [{
@@ -36,6 +37,8 @@ const UIPage = () => {
 
   return (
     <div>
+      <h1>UI-kit</h1>
+      <AboutButton />
       <Button onClick={toggleIsOpen}>Text</Button>
       <FilterButton />
       <Checkbox name={'name'} checked={false} />

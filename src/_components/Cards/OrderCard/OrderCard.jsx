@@ -9,32 +9,34 @@ const OrderCard = () => {
       <div className={styles['order__info']}>
         <div className={styles['order__info-status']}></div>
           <table>
-            <tr>
-              <td>
-                <label>Заказ</label>
-                <span>№752259</span>
-              </td>
-              <td>
-                <label>Сумма заказа</label>
-                <span>399 ₽</span>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label>Статус</label>
-                <span>Обрабатываются</span>
-              </td>
-              <td>
-                <label>Оплачено</label>
-                <span>Картой</span>
-              </td>
-            </tr>
-            <tr>
-              <td colSpan={2}>
-                <label>Адрес</label>
-                <span>Ну тут какой-то адрес, замокано, чё ещё сказать</span>
-              </td>
-            </tr>
+            <tbody>
+              <tr>
+                <td>
+                  <label>Заказ</label>
+                  <span>№752259</span>
+                </td>
+                <td>
+                  <label>Сумма заказа</label>
+                  <span>399 ₽</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label>Статус</label>
+                  <span>Обрабатываются</span>
+                </td>
+                <td>
+                  <label>Оплачено</label>
+                  <span>Картой</span>
+                </td>
+              </tr>
+              <tr>
+                <td colSpan={2}>
+                  <label>Адрес</label>
+                  <span>Ну тут какой-то адрес, замокано, чё ещё сказать</span>
+                </td>
+              </tr>
+            </tbody>
           </table>
       </div>
       <hr />
