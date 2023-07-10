@@ -26,7 +26,6 @@ const withSlider = (Component, { elements, count = 0, listClassName, elementClas
     const leftDisabled = useMemo(() => leftCounter === 0, [leftCounter]);
 
     useEffect(() => {
-      console.log(ref.current?.offsetWidth);
       setElementWidth(ref.current?.offsetWidth);
     }, [ref.current?.offsetWidth]);
 

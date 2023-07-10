@@ -1,18 +1,23 @@
 import React from "react";
 import Photo from '@/images/peperoni.png';
 import Button from "@/_components/Buttons/Button";
-import productStyles from '../ProductModal/product-modal.module.scss';
 import { getClassName } from "@/functions/classNameFunctions";
 import withModalWrapper from "@/_hocs/Modal/withModalWrapper";
+import productStyles from '../PizzaModal/pizza-modal.module.scss';
 
 const SimpleProductModal = ({
-  name,
-  portion,
-  description = '',
+  simpleProduct,
   isOpen,
-  ingredients = [],
-  price
 }) => {
+  const {
+    name,
+    portion,
+    photo,
+    description = '',
+    ingredients = [],
+    price
+  } = simpleProduct;
+
   const className = `${productStyles['product-modal']}${!isOpen ? ` ${productStyles['product-modal_hidden']}` : ''}`;
   const containerClassName = getClassName(className, productStyles['product-modal_simple']);
   const photoClassName = getClassName(productStyles['product-modal__photo'], productStyles['product-modal__photo_simple']);
@@ -22,7 +27,7 @@ const SimpleProductModal = ({
   return (
     <div className={containerClassName} onClick={(e) => e.stopPropagation()}>
       <div className={photoClassName}>
-        <img src={Photo} alt="product_photo" />
+        <img src={photo || Photo} alt="product_photo" />
       </div>
       <div className={infoClassName}>
         <h2>{ name }</h2>
@@ -30,7 +35,7 @@ const SimpleProductModal = ({
           { description }
           { !!ingredients.length && (
           <>
-            <strong>Ингрединеты:&nbsp;</strong>
+            <strong>Ингредиенты:&nbsp;</strong>
             {
               ingredients.map((ingredient, index) => (
                 <>

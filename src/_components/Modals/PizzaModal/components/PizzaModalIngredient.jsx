@@ -1,14 +1,10 @@
 import React from "react";
 import CheckboxButton from "@/_components/Buttons/CheckboxButton";
 
-const ProductModalIngredient = ({styles, element, onChange, isOptional}) => {
+const PizzaModalIngredient = ({styles, element, onChange, isOptional}) => {
   const onChangeHandler = () => {
     onChange(element.id, isOptional);
   };
-
-  if (isOptional) {
-    console.log(element?.name, element?.selected);
-  }
 
   return (
     <div className={styles['product-modal__info-ingredient']}>
@@ -21,9 +17,9 @@ const ProductModalIngredient = ({styles, element, onChange, isOptional}) => {
       >
         { element?.name }
       </span>
-      <span className={styles['product-modal__info-ingredient-price']}>{ element?.price }</span>
+      { element?.price && <span className={styles['product-modal__info-ingredient-price']}>{ element?.price } ₽</span>}
     </div>
   );
 };
 
-export default ProductModalIngredient;
+export default PizzaModalIngredient;

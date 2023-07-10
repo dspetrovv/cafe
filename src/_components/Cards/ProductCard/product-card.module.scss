@@ -28,6 +28,7 @@
   &__info {
     display: flex;
     flex-direction: column;
+    width: -webkit-fill-available;
     height: 100%;
     padding: 16px;
     h4 {

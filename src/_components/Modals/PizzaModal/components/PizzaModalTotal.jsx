@@ -1,11 +1,10 @@
 import React from "react";
-import Button from "../../../Buttons/Button";
+import Button from "@/_components/Buttons/Button";
 
-const ProductModalTotal = ({ totalPrice }) => {
+const PizzaModalTotal = ({ totalPrice }) => {
   return (
     <>
       <h2>Итого: { totalPrice } ₽</h2>
-      <span>400 г</span>
       <Button>
         Добавить
       </Button>
@@ -13,4 +12,4 @@ const ProductModalTotal = ({ totalPrice }) => {
   );
 };
 
-export default ProductModalTotal;
+export default PizzaModalTotal;

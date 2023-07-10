@@ -5,6 +5,8 @@ import snack from '@/mock/snacks.json';
 import sauce from '@/mock/sauces.json';
 import produce from 'immer';
 
+const IS_DEV = process.env.NODE_ENV === 'development';
+
 const initialState = {
   products: {
     pizza: {
@@ -25,7 +27,6 @@ const CatalogSlice = createSlice({
   initialState,
   reducers: {
     setProduct: (state, { payload: { product, key, values } }) => {
-      console.log({ product, key, values });
       state.products[product][key] = values;
     },
     updatePizza: (state, { payload: { key, pizzaIdx, updatingPizza } }) => {
@@ -35,10 +36,9 @@ const CatalogSlice = createSlice({
         ...state.products.pizza[key].slice(pizzaIdx + 1, state.pizza[key].length)
       ];
     },
-    togglePizzaIngredientSelected: (state, { payload: { pizzaIdx, ingredientId, isOptional } }) => {
+    togglePizzaIngredientSelected: (state, { payload: { key, pizzaIdx, ingredientId } }) => {
       const pizzaList = state.products.pizza.list;
       const pizza = pizzaList[pizzaIdx];
-      const key = isOptional ? 'optionalIngredients' : 'ingredients';
 
       const ingredientIdx = pizza[key].findIndex(i => i.id === ingredientId);
       if (ingredientIdx !== -1) {
@@ -50,6 +50,11 @@ const CatalogSlice = createSlice({
         }
       }
     },
+    togglePizzaParametersSelected: (state, { payload: { key, pizzaIdx, parameterId } }) => {
+      const pizzaList = state.products.pizza.list;
+      let pizza = pizzaList[pizzaIdx];
+      pizza[key] = pizza[key].map((p) => ({ ...p, selected: p.id === parameterId }))
+    },
   }
 });
 
@@ -59,6 +64,7 @@ export const {
   setProduct,
   updatePizza,
   togglePizzaIngredientSelected,
+  togglePizzaParametersSelected,
 } = CatalogSlice.actions;
 
 export const getPizza = () => (dispatch) => {
@@ -69,11 +75,16 @@ export const getPizza = () => (dispatch) => {
       key: 'list',
       values: pizza.map((onePizza) => ({
         ...onePizza,
-        ingredients: onePizza.ingredients.map((ingredient) => ({ ...ingredient, selected: true }))
+        ingredients: onePizza.ingredients.map((ingredient) => ({ ...ingredient, selected: true })),
+        optionalIngredients: onePizza.optionalIngredients.map((ingredient) => ({ ...ingredient, selected: false })),
+        dough: onePizza.dough.map((d, idx) => ({ ...d, selected: idx === 0 })),
+        diameters: onePizza.diameters.map((diameter, idx) => ({ ...diameter, selected: idx === 0 })),
       }))
     }));
   } catch (err) {
-    //Simulating error
+    if (IS_DEV) {
+      console.error(err);
+    }
   }
 };
 
@@ -89,16 +100,40 @@ export const getPizzaFilter = () => (dispatch) => {
       }))
     }));
   } catch (err) {
-    //Simulating error
+    if (IS_DEV) {
+      console.error(err);
+    }
   }
 };
 
 export const updatePizzaIngredient = ({ pizzaIdx, ingredientId, isOptional }) => (dispatch) => {
   try {
-    dispatch(togglePizzaIngredientSelected({ pizzaIdx, ingredientId, isOptional }));
+    const key = isOptional ? 'optionalIngredients' : 'ingredients';
+    dispatch(togglePizzaIngredientSelected({ key, pizzaIdx, ingredientId }));
   } catch (err) {
-    console.log(err.message);
-    //Simulating error
+    if (IS_DEV) {
+      console.error(err);
+    }
+  }
+};
+
+export const updatePizzaDough = ({ pizzaIdx, doughId }) => (dispatch) => {
+  try {
+    dispatch(togglePizzaParametersSelected({ key: 'dough', pizzaIdx, parameterId: doughId }));
+  } catch (err) {
+    if (IS_DEV) {
+      console.error(err);
+    }
+  }
+};
+
+export const updatePizzaDiameters = ({ pizzaIdx, diameterId }) => (dispatch) => {
+  try {
+    dispatch(togglePizzaParametersSelected({ key: 'diameters', pizzaIdx, parameterId: diameterId }));
+  } catch (err) {
+    if (IS_DEV) {
+      console.error(err);
+    }
   }
 };
 
@@ -120,7 +155,9 @@ export const updatePizzaFilter = ({ pizzaIdx, ingredientId }) => (dispatch, getS
 
     dispatch(setProduct({ product: 'pizza', key: 'filter', values: updatedList }));
   } catch (err) {
-    //Simulating error
+    if (IS_DEV) {
+      console.error(err);
+    }
   }
 };
 
@@ -133,7 +170,9 @@ export const getSnack = () => (dispatch) => {
       values: snack
     }));
   } catch (err) {
-    //Simulating error
+    if (IS_DEV) {
+      console.error(err);
+    }
   }
 };
 
@@ -146,7 +185,9 @@ export const getSauce = () => (dispatch) => {
       values: sauce
     }));
   } catch (err) {
-    //Simulating error
+    if (IS_DEV) {
+      console.error(err);
+    }
   }
 };
 

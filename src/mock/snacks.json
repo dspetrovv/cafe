@@ -3,7 +3,7 @@
     "id": 1,
     "type": "snack",
     "name": "Aka додстер",
-    "composition": [
+    "ingredients": [
       "Курица",
       "Моцарелла",
       "Томаты",
@@ -16,7 +16,7 @@
     "id": 2,
     "type": "snack",
     "name": "Aka додстер-2",
-    "composition": [
+    "ingredients": [
       "Курица",
       "Моцарелла",
       "Томаты",
@@ -31,7 +31,7 @@
     "id": 3,
     "type": "snack",
     "name": "Aka додстер-3",
-    "composition": [
+    "ingredients": [
       "Курица",
       "Моцарелла",
       "Томаты",
@@ -46,7 +46,7 @@
     "id": 4,
     "type": "snack",
     "name": "Aka стартер-1",
-    "composition": [
+    "ingredients": [
       "Моцарелла",
       "Пармезан",
       "Чеддер",
@@ -59,7 +59,7 @@
     "id": 5,
     "type": "snack",
     "name": "Aka стартер-2",
-    "composition": [
+    "ingredients": [
       "Грибы",
       "Моцарелла",
       "Сырный соус"
@@ -71,7 +71,7 @@
     "id": 6,
     "type": "snack",
     "name": "Aka картофель-из-печи",
-    "composition": [
+    "ingredients": [
       "Картофель",
       "Сырный соус"
     ],
@@ -82,7 +82,7 @@
     "id": 7,
     "type": "snack",
     "name": "Aka ланчбокс",
-    "composition": [
+    "ingredients": [
       "Картофель",
       "Куриные крылья",
       "Сырный соус",
@@ -95,7 +95,7 @@
     "id": 8,
     "type": "snack",
     "name": "Aka салат Цезарь",
-    "composition": [
+    "ingredients": [
       "Курица",
       "Айсберг",
       "Томаты черри",

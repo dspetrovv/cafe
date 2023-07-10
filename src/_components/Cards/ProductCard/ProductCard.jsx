@@ -4,7 +4,7 @@ import Photo from '@/images/peperoni.png';
 import card from '@/css/card.module.scss';
 import styles from './product-card.module.scss';
 
-const ProductCard = ({ id, name = 'Product name', info = '', price = 'N', onSelect }) => {
+const ProductCard = ({ id, name = 'Product name', info = '', price, onSelect }) => {
   const onSelectHandler = () => {
     onSelect(id);
   };
@@ -21,7 +21,7 @@ const ProductCard = ({ id, name = 'Product name', info = '', price = 'N', onSele
         <span>{ info }</span>
         <div className={styles['product__info-select']}>
           <Button onClick={onSelectHandler}>Выбрать</Button>
-          <span>{ `от ${price} ₽` }</span>
+          <span>{ Array.isArray(price) ? `от ${price[0]}` : price } ₽</span>
         </div>
       </div>
     </div>

@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { compareArrays } from "@/functions/arrayFunctions";
 
+const IS_DEV = process.env.NODE_ENV === 'development';
+
 const initialState = {
   products: [],
   totalPrice: 0,
@@ -97,7 +99,9 @@ export const addProductToBasket = (product) => (dispatch) => {
   try {
     dispatch(addProduct(product));
   } catch (err) {
-    //Simulating error
+    if (IS_DEV) {
+      console.error(err);
+    }
   }
 };
 
@@ -105,7 +109,9 @@ export const changeCountOfProductInBasket = ({ productId, count }) => (dispatch)
   try {
     dispatch(updateProductCount({ productId, count }));
   } catch (err) {
-    //Simulating error
+    if (IS_DEV) {
+      console.error(err);
+    }
   }
 };
 
@@ -113,7 +119,9 @@ export const removeProductFromBasket = ({ productId }) => (dispatch) => {
   try {
     dispatch(removeProduct({ productId }));
   } catch (err) {
-    //Simulating error
+    if (IS_DEV) {
+      console.error(err);
+    }
   }
 };
 
@@ -123,7 +131,9 @@ export const setDefaultContactData = () => (dispatch) => {
     const phone = '';
     dispatch(setMainContact({ name, phone }));
   } catch (err) {
-    //Simulating error
+    if (IS_DEV) {
+      console.error(err);
+    }
   }
 };
 
@@ -131,7 +141,9 @@ export const updateContactData = (data) => (dispatch) => {
   try {
     dispatch(updateContact(data));
   } catch (err) {
-    //Simulating error
+    if (IS_DEV) {
+      console.error(err);
+    }
   }
 };
 
@@ -139,7 +151,9 @@ export const updatePaymentData = (data) => (dispatch) => {
   try {
     dispatch(updatePayment(data));
   } catch (err) {
-    //Simulating error
+    if (IS_DEV) {
+      console.error(err);
+    }
   }
 };
 
@@ -147,7 +161,9 @@ export const addComment = (comment) => (dispatch) => {
   try {
     dispatch(updateComment(comment));
   } catch (err) {
-    //Simulating error
+    if (IS_DEV) {
+      console.error(err);
+    }
   }
 };
 
