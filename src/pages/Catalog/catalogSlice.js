@@ -3,7 +3,6 @@ import pizza from '@/mock/pizza.json';
 import pizzaFilter from '@/mock/pizza_ingredients.json';
 import snack from '@/mock/snacks.json';
 import sauce from '@/mock/sauces.json';
-import produce from 'immer';
 
 const IS_DEV = process.env.NODE_ENV === 'development';
 
@@ -13,6 +12,7 @@ const initialState = {
       list: [],
       filter: []
     },
+    // Быть может в будущем фильтры подъедут и для них
     snack: {
       list: []
     },
@@ -53,7 +53,42 @@ const CatalogSlice = createSlice({
     togglePizzaParametersSelected: (state, { payload: { key, pizzaIdx, parameterId } }) => {
       const pizzaList = state.products.pizza.list;
       let pizza = pizzaList[pizzaIdx];
-      pizza[key] = pizza[key].map((p) => ({ ...p, selected: p.id === parameterId }))
+      pizza[key] = pizza[key].map((p) => ({ ...p, selected: p.id === parameterId }));
+    },
+    toggleFilterItemSelect: (state, { payload: { key, filterIndex, itemId } }) => {
+      const filterItem = state.products[key].filter[filterIndex].items.find((product) => product.id === itemId);
+      filterItem.selected = !filterItem.selected;
+    },
+    acceptFilter: (state, { payload: { key, filterItemsIds } }) => {
+      state.products[key].filter = state.products[key].filter.map((f) => ({
+        ...f,
+        items: f.items.map((item) => ({
+          ...item,
+          selected: filterItemsIds.includes(item.id)
+        }))
+      }));
+
+      const filteringProductList = state.products[key].list;
+
+      state.products[key].list = filteringProductList.map((product) => ({
+        ...product,
+        show: product.ingredients.filter(
+            (ingredient) => !filterItemsIds.includes(ingredient.id)
+          ).length === product.ingredients.length
+      }));
+    },
+    resetFilter: (state, { payload: { key } }) => {
+      state.products[key].filter = state.products[key].filter.map((f) => ({
+        ...f,
+        items: f.items.map((item) => ({
+          ...item,
+          selected: false
+        }))
+      }));
+
+      const filteringProductList = state.products[key].list;
+
+      state.products[key].list = filteringProductList.map((product) => ({ ...product, show: true }))
     },
   }
 });
@@ -65,6 +100,9 @@ export const {
   updatePizza,
   togglePizzaIngredientSelected,
   togglePizzaParametersSelected,
+  toggleFilterItemSelect,
+  acceptFilter,
+  resetFilter,
 } = CatalogSlice.actions;
 
 export const getPizza = () => (dispatch) => {
@@ -79,6 +117,7 @@ export const getPizza = () => (dispatch) => {
         optionalIngredients: onePizza.optionalIngredients.map((ingredient) => ({ ...ingredient, selected: false })),
         dough: onePizza.dough.map((d, idx) => ({ ...d, selected: idx === 0 })),
         diameters: onePizza.diameters.map((diameter, idx) => ({ ...diameter, selected: idx === 0 })),
+        show: true
       }))
     }));
   } catch (err) {
@@ -99,6 +138,30 @@ export const getPizzaFilter = () => (dispatch) => {
         items: filterEl.items.map((item) => ({ ...item, selected: false }))
       }))
     }));
+  } catch (err) {
+    if (IS_DEV) {
+      console.error(err);
+    }
+  }
+};
+
+export const updateCatalogFilter = ({ key, filterItemsIds }) => (dispatch) => {
+  try {
+    if (filterItemsIds.length) {
+      dispatch(acceptFilter({ key, filterItemsIds }));
+    } else {
+      dispatch(resetFilter({ key }))
+    }
+  } catch (err) {
+    if (IS_DEV) {
+      console.error(err);
+    }
+  }
+};
+
+export const toggleFilterItem = ({ key, filterIndex, itemId }) => (dispatch) => {
+  try {
+    dispatch(toggleFilterItemSelect({ key, filterIndex, itemId }))
   } catch (err) {
     if (IS_DEV) {
       console.error(err);
@@ -137,37 +200,13 @@ export const updatePizzaDiameters = ({ pizzaIdx, diameterId }) => (dispatch) => 
   }
 };
 
-export const updatePizzaFilter = ({ pizzaIdx, ingredientId }) => (dispatch, getState) => {
-  try {
-    const pizzaList = getState().catalogStore.products.pizza.filter;
-    const pizza = pizzaList[pizzaIdx];
-
-    const updatedPizza = produce(pizza, draftPizza => {
-      const ingredient = draftPizza.items.find(i => i.id === ingredientId);
-      if (ingredient) {
-        ingredient.selected = !ingredient.selected;
-      }
-    });
-
-    const updatedList = produce(pizzaList, draftList => {
-      draftList[pizzaIdx] = updatedPizza;
-    });
-
-    dispatch(setProduct({ product: 'pizza', key: 'filter', values: updatedList }));
-  } catch (err) {
-    if (IS_DEV) {
-      console.error(err);
-    }
-  }
-};
-
 export const getSnack = () => (dispatch) => {
   try {
     //Simulated server request
     dispatch(setProduct({
       product: 'snack',
       key: 'list',
-      values: snack
+      values: snack.map((s) => ({ ...s, show: true }))
     }));
   } catch (err) {
     if (IS_DEV) {
@@ -182,7 +221,7 @@ export const getSauce = () => (dispatch) => {
     dispatch(setProduct({
       product: 'sauce',
       key: 'list',
-      values: sauce
+      values: sauce.map((s) => ({ ...s, show: true }))
     }));
   } catch (err) {
     if (IS_DEV) {

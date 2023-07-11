@@ -2,7 +2,13 @@ import React, { useMemo, useState } from "react";
 import Button from "../Button";
 import styles from './checkbox-button.module.scss';
 
-const CheckboxButton = ({ initialChecked = true, onChange, children, outline = false }) => {
+const CheckboxButton = ({
+  initialChecked = true,
+  id,
+  onChange,
+  children,
+  outline = false
+}) => {
   const [checked, setChecked] = useState(initialChecked);
   const [isOutline, setIsOutline] = useState(outline && initialChecked);
 
@@ -20,7 +26,7 @@ const CheckboxButton = ({ initialChecked = true, onChange, children, outline = f
       setIsOutline((prevState) => !prevState);
     }
     setChecked((prevState) => !prevState);
-    onChange(checked);
+    onChange(id);
   };
 
   return (

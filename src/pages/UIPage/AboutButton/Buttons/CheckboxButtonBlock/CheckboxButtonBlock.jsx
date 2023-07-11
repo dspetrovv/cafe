@@ -32,6 +32,15 @@ const CheckboxButtonBlock = ({ showAlert }) => {
               <strong>default:</strong> Пусто
             </td>
           </tr>
+          {/* id */}
+          <tr>
+            <td>id</td>
+            <td>
+              id кнопки. Нужно для отправки вверх по onChange
+              <br />
+              <strong>default:</strong> true
+            </td>
+          </tr>
           {/* initialChecked */}
           <tr>
             <td>initialChecked</td>
