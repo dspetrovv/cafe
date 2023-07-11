@@ -31,7 +31,6 @@ const Footer = () => {
             <li>Ресторан</li>
             <li>Контакты</li>
             <li>Поддержка</li>
-            <li>Отследить заказ</li>
           </ul>
         </div>
         <div className={styles['footer__list']}>

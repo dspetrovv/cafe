@@ -3,16 +3,22 @@ import FilterButton from "@/_components/Buttons/FilterButton";
 import ProductCard from "@/_components/Cards/ProductCard";
 import styles from '../catalog.module.scss';
 
-const CatalogSection = ({ sectionName, list, onOpenFilter, onSelectProduct }) => {
+const CatalogSection = ({
+  sectionName,
+  list,
+  withFilter,
+  onOpenFilter,
+  onSelectProduct
+}) => {
   const onSelectProductHandler = (id) => {
-    onSelectProduct({ id, sectionName })
+    onSelectProduct({ id, sectionName: sectionName.id })
   };
 
   return (
     <section className={styles.catalog}>
       <div className={styles['catalog__name']}>
-        <h1>{ sectionName }</h1>
-        <FilterButton onClick={onOpenFilter} />
+        <h1 id={sectionName.id}>{ sectionName.name }</h1>
+        { withFilter && <FilterButton onClick={onOpenFilter} />}
       </div>
       <div className={styles['catalog__cards']}>
         { list.map((element) =>
@@ -21,7 +27,7 @@ const CatalogSection = ({ sectionName, list, onOpenFilter, onSelectProduct }) =>
             id={element.id}
             name={element.name}
             info={element?.info}
-            price={Array.isArray(element.price) ? element.price[0] : element.price}
+            price={element.price}
             photo={element?.photo}
             onSelect={onSelectProductHandler}
           />

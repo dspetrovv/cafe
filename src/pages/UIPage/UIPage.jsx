@@ -12,7 +12,7 @@ import ProductCard from '../../_components/Cards/ProductCard';
 import OrderCard from '../../_components/Cards/OrderCard';
 import SnackCard from '../../_components/Cards/SnackCard';
 import FilterPanel from "../../_components/Panels/FilterPanel";
-import ProductModal from "../../_components/Modals/ProductModal/ProductModal";
+import PizzaModal from "../../_components/Modals/PizzaModal/PizzaModal";
 import OrderPanel from "../../_components/Panels/OrderPanel";
 import MiniProductCard from "../../_components/Cards/MiniProductCard";
 import AboutButton from "./AboutButton";
@@ -55,7 +55,7 @@ const UIPage = () => {
       <SnackCard />
       <MiniProductCard />
       {/* <FilterPanel isOpen={isOpen} toggleIsOpen={toggleIsOpen} /> */}
-      {/* <ProductModal isOpen={isOpen} toggleIsOpen={toggleIsOpen} /> */}
+      {/* <PizzaModal isOpen={isOpen} toggleIsOpen={toggleIsOpen} /> */}
       <OrderPanel isOpen={isOpen} toggleIsOpen={toggleIsOpen} />
     </div>
   );

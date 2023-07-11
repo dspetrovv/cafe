@@ -1,10 +1,10 @@
 import withSlider from "@/_hocs/Slider/withSlider";
-import ProductModalIngredient from "./ProductModalIngredient";
+import PizzaModalIngredient from "./PizzaModalIngredient";
 
-const ProductModalIngredients = ({ ingredients, updateIngredients, styles, ...otherProps }) => {
+const PizzaModalIngredients = ({ ingredients, updateIngredients, styles, ...otherProps }) => {
 
   return withSlider(
-    ProductModalIngredient,
+    PizzaModalIngredient,
       {
         count: 3,
         elementClassName: styles['product-modal__info-ingredient'],
@@ -19,4 +19,4 @@ const ProductModalIngredients = ({ ingredients, updateIngredients, styles, ...ot
   })
 };
 
-export default ProductModalIngredients;
+export default PizzaModalIngredients;

@@ -8,12 +8,16 @@ import Button from "@/_components/Buttons/Button";
 import { totalPriceSelector } from "@/pages/Basket/basketSlice";
 import styles from './header.module.scss';
 
+export const PIZZA_SECTION = { id: "pizza", name: "Пицца" };
+export const SNACKS_SECTION = { id: "snacks", name: "Закуски" };
+export const SAUCES_SECTION = { id: "sauces", name: "Соусы" };
+
 const routes = [
-  { link: '/catalog#pizza', name: 'Пицца' },
-  { link: '/catalog#snacks', name: 'Закуски' },
-  { link: '/catalog#drinks', name: 'Напитки' },
-  { link: '/catalog#sauces', name: 'Комбо' },
-  { link: '/catalog#desserts', name: 'Десерты' },
+  { link: `/catalog#${PIZZA_SECTION.id}`, name: PIZZA_SECTION.name },
+  { link: `/catalog#${SNACKS_SECTION.id}`, name: SNACKS_SECTION.name },
+  { link: `/catalog#drinks`, name: SAUCES_SECTION.name },
+  { link: `/catalog#${SAUCES_SECTION.id}`, name: 'Комбо' },
+  { link: `/catalog#desserts`, name: 'Десерты' },
 ];
 
 const Header = () => {

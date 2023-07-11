@@ -2,15 +2,12 @@ import React, { lazy, Suspense, useEffect, useState } from "react";
 import styles from './catalog.module.scss';
 import CatalogSection from "./CatalogSection";
 import { useDispatch, useSelector } from "react-redux";
-import { getPizza, getSauce, getSnack, pizzaSelector, sauceSelector, snackSelector, updatePizzaIngredient } from "./catalogSlice";
+import { getPizza, getSauce, getSnack, pizzaSelector, sauceSelector, snackSelector, updatePizzaDiameters, updatePizzaDough, updatePizzaIngredient } from "./catalogSlice";
+import { PIZZA_SECTION, SAUCES_SECTION, SNACKS_SECTION } from "@/app/Header/Header";
 
 const FilterPanel = lazy(() => import("@/_components/Panels/FilterPanel"));
-const ProductModal = lazy(() => import("@/_components/Modals/ProductModal"));
+const PizzaModal = lazy(() => import("@/_components/Modals/PizzaModal"));
 const SimpleProductModal = lazy(() => import("@/_components/Modals/SimpleProductModal"));
-
-const PIZZA_SECTION = "Пицца";
-const SNACKS_SECTION = "Закуски";
-const SAUCES_SECTION = "Соусы";
 
 const CatalogPage = () => {
   const dispatch = useDispatch();
@@ -23,22 +20,21 @@ const CatalogPage = () => {
     dispatch(getSauce());
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const isSomeProductLoaded = snacks.length || sauces.length;
-
-  const [selectedProductIdx, setSelectedProductIdx] = useState(0);
+  
+  const [selectedPizzaIdx, setSelectedPizzaIdx] = useState(0);
   const [isOpenedFilter, setIsOpenedFilter] = useState(false);
   const [isOpenedProduct, setIsOpenedProduct] = useState(false);
   const [isOpenedBottomInfo, setIsOpenedBottomInfo] = useState(false);
 
   const updateIngredients = (ingredientId, isOptional) => {
-    dispatch(updatePizzaIngredient({ pizzaIdx: selectedProductIdx, ingredientId, isOptional }));
+    dispatch(updatePizzaIngredient({ pizzaIdx: selectedPizzaIdx, ingredientId, isOptional }));
   };
 
   const toggleIsOpenFilter = (val = true) => {
     setIsOpenedFilter(val);
   };
-  const onSelectProduct = ({ id }) => {
-    setSelectedProductIdx(() => pizza.findIndex((product) => product.id === id));
+  const onSelectPizza = ({ id }) => {
+    setSelectedPizzaIdx(() => pizza.findIndex((product) => product.id === id));
     setTimeout(() => {
       setIsOpenedProduct(true);
     });
@@ -49,10 +45,10 @@ const CatalogPage = () => {
 
   const onSelectSimpleProduct = ({ id, sectionName }) => {
     switch (sectionName) {
-      case SNACKS_SECTION:
+      case SNACKS_SECTION.id:
         setSelectedSimpleProduct(snacks.find((snack) => snack.id === id));
         break;
-      case SAUCES_SECTION:
+      case SAUCES_SECTION.id:
         setSelectedSimpleProduct(sauces.find((sauce) => sauce.id === id))
         break;
       default:
@@ -66,7 +62,14 @@ const CatalogPage = () => {
     setIsOpenedSimpleProduct((prevState) => !prevState);
   };
 
-  const toggleProductModal = () => {
+  const updateDough = (doughId) => {
+    dispatch(updatePizzaDough({ pizzaIdx: selectedPizzaIdx, doughId }));
+  };
+  const updateDiameter = (diameterId) => {
+    dispatch(updatePizzaDiameters({ pizzaIdx: selectedPizzaIdx, diameterId }));
+  };
+
+  const togglePizzaModal = () => {
     setIsOpenedProduct((prevState) => !prevState);
   };
   const toggleBottomInfo = () => {
@@ -78,7 +81,8 @@ const CatalogPage = () => {
       <CatalogSection
         sectionName={PIZZA_SECTION}
         list={pizza}
-        onSelectProduct={onSelectProduct}
+        withFilter
+        onSelectProduct={onSelectPizza}
         onOpenFilter={toggleIsOpenFilter}
       />
       <CatalogSection
@@ -120,26 +124,20 @@ const CatalogPage = () => {
           toggleIsOpen={toggleIsOpenFilter}
         />
         { !!pizza[0] &&
-          <ProductModal
-            ingredients={pizza[selectedProductIdx].ingredients}
-            optionalIngredients={pizza[selectedProductIdx].optionalIngredients}
+          <PizzaModal
+            pizza={pizza[selectedPizzaIdx]}
             isOpen={isOpenedProduct}
             updateIngredients={updateIngredients}
-            toggleIsOpen={toggleProductModal}
-            selectedProductIdx={selectedProductIdx}
-            key={selectedProductIdx}
+            updateDough={updateDough}
+            updateDiameter={updateDiameter}
+            toggleIsOpen={togglePizzaModal}
           />
         }
-        { isSomeProductLoaded && selectedSimpleProduct &&
+        { !!selectedSimpleProduct &&
           <SimpleProductModal
-            name={selectedSimpleProduct.name}
-            portion={selectedSimpleProduct?.portion}
-            description={selectedSimpleProduct?.description}
-            ingredients={selectedSimpleProduct?.composition}
-            price={selectedSimpleProduct.price}
+            simpleProduct={selectedSimpleProduct}
             toggleIsOpen={toggleSimpleProductModal}
             isOpen={isOpenedSimpleProduct}
-            key={selectedSimpleProduct}
           />
         }
       </Suspense>

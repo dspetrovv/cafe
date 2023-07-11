@@ -4,7 +4,7 @@ import styles from './modal.module.scss';
 const withModalWrapper = (Component) => {
   return ({ ...props }) => {
     const { isOpen, toggleIsOpen } = props;
-    const wrapperClassName = `${styles.modal}${!isOpen ? ` ${styles.modal_hidden}` : ` ${styles.modal_opened}`}`;
+    const wrapperClassName = `${styles.modal}${!isOpen ? ` ${styles.modal_hidden}` : ``}`;
     const closeModal = () => {
       toggleIsOpen(false);
     };

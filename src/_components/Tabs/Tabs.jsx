@@ -9,9 +9,11 @@ const Tabs = ({ tabs = [], onChange }) => {
 
   return (
     <div className={styles.tab}>
-      { tabs.map((tab) => {
-        return <Button key={tab.id} white={!tab.selected} onClick={() => onClickHandler(tab.id)}>{tab.text}</Button>
-      }) }
+      { tabs.map((tab) => 
+        <Button key={tab.id} white={!tab.selected} onClick={() => onClickHandler(tab.id)}>
+          { tab.title }
+        </Button>
+      ) }
     </div>
   );
 };

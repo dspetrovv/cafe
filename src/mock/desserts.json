@@ -3,7 +3,7 @@
     "id": 1,
     "type": "dessert",
     "name": "Чизкейк",
-    "composition": [
+    "ingredients": [
       "Песочное тесто",
       "Сливочный сыр",
       "Сливки"
@@ -14,7 +14,7 @@
     "id": 2,
     "type": "dessert",
     "name": "Кексик",
-    "composition": [
+    "ingredients": [
       "Шоколадный бисквит",
       "Кусочки молочного шоколада"
     ],
