@@ -1,33 +1,32 @@
-import React from "react";
-import Button from "../../Buttons/Button";
-import CheckboxButton from "../../Buttons/CheckboxButton";
+import React, { useCallback } from "react";
+import Button from "@/_components/Buttons/Button";
+import CheckboxButton from "@/_components/Buttons/CheckboxButton";
 import Panel from "../Panel";
 import styles from './filter-panel.module.scss';
 
-const mockFilter = [
-  { id: 1, label: 'Общее', items: [
-    { id: 1, name: 'first' },
-    { id: 2, name: 'second' },
-    { id: 3, name: 'third' },
-    { id: 4, name: 'fourth' },
-    { id: 5, name: 'fifth' },
-  ] },
-  { id: 1, label: 'Сыр', items: [
-    { id: 1, name: 'first' },
-    { id: 2, name: 'second' },
-    { id: 3, name: 'third' },
-    { id: 4, name: 'fourth' },
-    { id: 5, name: 'fifth' },
-  ] }
-];
+const FilterPanel = ({
+  filters = [],
+  isOpen,
+  toggleIsOpen,
+  onToggleItem,
+  accept,
+  reset
+}) => {
+  const onToggleItemHandler = useCallback((id, filterIndex) => {
+    onToggleItem(id, filterIndex);
+  }, [onToggleItem]);
 
-const FilterPanel = ({ filters = mockFilter, isOpen, toggleIsOpen, reset, accept }) => {
-  const PanelBody = filters.map((filter) => 
-    <section className={styles['filter-panel']} key={filter.id}>
-      <label>{ filter.label }</label>
+  const PanelBody = filters.map((filter, filterIndex) => 
+    <section className={styles['filter-panel']} key={filterIndex}>
+      <label>{ filter.name }</label>
       <div className={styles['filter-panel__section']}>
         { filter.items.map((item) => 
-          <CheckboxButton key={item.id}>{ item.name }</CheckboxButton>
+          <CheckboxButton
+            id={item.id}
+            initialChecked={!item.selected}
+            key={`${item.id}${item.selected}`}
+            onChange={(id) => onToggleItemHandler(id, filterIndex)}
+          >{ item.name }</CheckboxButton>
         ) }
       </div>
     </section>
