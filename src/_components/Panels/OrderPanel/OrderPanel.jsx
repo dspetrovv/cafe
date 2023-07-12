@@ -1,26 +1,31 @@
 import React from "react";
 import Button from "../../Buttons/Button";
-import MiniProductCard from "../../Cards/MiniProductCard";
+import MiniProductCard from "@/_components/Cards/MiniProductCard";
 import Panel from "../Panel";
 import styles from './order-panel.module.scss';
+import { useNavigate } from "react-router-dom";
 
-const mockProducts = [
-  { id: 1, name: 'Product-1', info: 'Традиционное тесто, 23 см', price: 300 },
-  { id: 2, name: 'Product-2', info: 'Тонкое тесто, 20 см', price: 500 }
-];
-
-const OrderPanel = ({ products = mockProducts, totalPrice, isOpen, toggleIsOpen, onChange, accept }) => {
+const OrderPanel = ({
+  products = [],
+  totalPrice,
+  isOpen,
+  toggleIsOpen,
+  onChangeProductCount
+}) => {
   const PanelBody = products.map((product) => 
     <MiniProductCard
       key={product.id}
-      id={product.id}
-      name={product.name}
-      info={product.info}
-      price={product.price}
-      onChange={onChange}
+      product={product}
+      className={styles.order__card}
+      onChangeCount={onChangeProductCount}
       short
     />
   );
+  const navigate = useNavigate();
+  const accept = () => {
+    navigate('/basket');
+    toggleIsOpen(false);
+  };
 
   const PanelFooter =
     <>

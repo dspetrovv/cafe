@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { compareArrays } from "@/functions/arrayFunctions";
+import { areProductsEqual, convertPizzaProduct } from "./functions";
 
 const IS_DEV = process.env.NODE_ENV === 'development';
 
@@ -24,31 +24,17 @@ const initialState = {
   comment: ''
 };
 
-const areProductsEqual = (newProduct, products) => {
-  const productIdx = products.findIndex((product) => product.id === newProduct.id && product.type === newProduct.type);
-  if (productIdx === -1) {
-    return { equal: false };
-  }
-  const { removedList, addedList } = products[productIdx];
-  const { newRemovedList, newAddedList } = newProduct;
-  return {
-    equal: compareArrays(removedList, newRemovedList) && compareArrays(addedList, newAddedList),
-    productIdx
-  };
-}
-
 const BasketSlice = createSlice({
   name: 'basket',
   initialState,
   reducers: {
-    addProduct: (state, { payload }) => {
-      const { equal, productIdx } = areProductsEqual(payload, state.products);
+    addProduct: (state, { payload: { product, equal, productIdx } }) => {
       if (!equal) {
-        state.products.push(payload);
+        state.products.push({ ...product, count: 1 });
       } else {
         state.products[productIdx].count++;
       }
-      state.totalPrice += payload.price;
+      state.totalPrice += product.price;
     },
     updateProductCount: (state, { payload: { productId, count } }) => {
       const idx = state.products.findIndex((product) => product.id === productId);
@@ -61,7 +47,8 @@ const BasketSlice = createSlice({
     },
     removeProduct: (state, { payload: { productId } }) => {
       state.totalPrice -= state.products.find((product) => product.id === productId).price;
-      state.products.splice(productId, 1);
+      const removingIndex = state.products.findIndex((product) => product.id === productId);
+      state.products.splice(removingIndex, 1);
     },
     resetBasket: (state) => {
       state.products = [];
@@ -95,10 +82,20 @@ export const {
   updateComment,
 } = BasketSlice.actions;
 
-export const addProductToBasket = (product) => (dispatch) => {
+export const addProductToBasket = (product, type) => (dispatch, getState) => {
   try {
-    dispatch(addProduct(product));
-  } catch (err) {
+    const { products } = getState().basketStore;
+    let myProduct = product;
+    switch (type) {
+      case 'pizza':
+        myProduct = convertPizzaProduct(product);
+        break;
+      default:
+        break;
+    }
+    const { equal, productIdx } = areProductsEqual(myProduct, products);
+    dispatch(addProduct({ product: myProduct, equal, productIdx }));
+    } catch (err) {
     if (IS_DEV) {
       console.error(err);
     }
