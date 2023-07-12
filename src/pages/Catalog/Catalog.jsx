@@ -27,6 +27,7 @@ const CatalogPage = () => {
     selectedPizzaIdx,
     isOpenedPizza,
     updateIngredients,
+    onOpenPizza,
     onSelectPizza,
     togglePizzaModal,
     updateDough,
@@ -38,9 +39,10 @@ const CatalogPage = () => {
     sauces,
     selectedSimpleProduct,
     isOpenedSimpleProduct,
+    onOpenSimpleProduct,
     onSelectSimpleProduct,
     toggleSimpleProductModal
-  } = useSimpleProductData();
+  } = useSimpleProductData({ dispatch });
 
   const {
     pizzaFilter,
@@ -62,18 +64,18 @@ const CatalogPage = () => {
         sectionName={PIZZA_SECTION}
         list={pizza}
         withFilter
-        onSelectProduct={onSelectPizza}
+        onSelectProduct={onOpenPizza}
         onOpenFilter={toggleIsOpenFilter}
       />
       <CatalogSection
         sectionName={SNACKS_SECTION}
         list={snacks}
-        onSelectProduct={onSelectSimpleProduct}
+        onSelectProduct={onOpenSimpleProduct}
       />
       <CatalogSection
         sectionName={SAUCES_SECTION}
         list={sauces}
-        onSelectProduct={onSelectSimpleProduct}
+        onSelectProduct={onOpenSimpleProduct}
       />
       <section className={`${styles.info} ${isOpenedBottomInfo ? '' : styles.info_hidden}`}>
         <h1>Доставка питсы в Изумрудном городе</h1>
@@ -114,6 +116,7 @@ const CatalogPage = () => {
             updateIngredients={updateIngredients}
             updateDough={updateDough}
             updateDiameter={updateDiameter}
+            onSelectPizza={onSelectPizza}
             toggleIsOpen={togglePizzaModal}
           />
         }
@@ -121,6 +124,7 @@ const CatalogPage = () => {
           <SimpleProductModal
             simpleProduct={selectedSimpleProduct}
             toggleIsOpen={toggleSimpleProductModal}
+            onSelectProduct={onSelectSimpleProduct}
             isOpen={isOpenedSimpleProduct}
           />
         }

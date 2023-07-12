@@ -4,22 +4,14 @@ import styles from './counter-button.module.scss';
 const CounterButton = ({ initialCount = 1, onChange, disabled = false }) => {
   const [count, setCount] = useState(initialCount);
   const onIncrement = () => {
-    setCount((prevState) => {
-      if (prevState > 99) {
-        return prevState;
-      }
-      return ++prevState;
-    });
-    onChange(count);
+    const newCount = count > 99 ? count : count + 1;
+    setCount(newCount);
+    onChange(newCount);
   };
   const onDecrement = () => {
-    setCount((prevState) => {
-      if (prevState === 0) {
-        return prevState;
-      }
-      return --prevState;
-    });
-    onChange(count);
+    const newCount = count === 0 ? count : count - 1;
+    setCount(newCount);
+    onChange(newCount);
   };
 
   return (

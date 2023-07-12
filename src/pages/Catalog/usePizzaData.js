@@ -1,6 +1,7 @@
 import { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
 import { pizzaSelector, updatePizzaDiameters, updatePizzaDough, updatePizzaIngredient } from "./catalogSlice";
+import { addProductToBasket } from "../Basket/basketSlice";
 
 export const usePizzaData = ({ dispatch }) => {
   const pizza = useSelector(pizzaSelector);
@@ -11,11 +12,19 @@ export const usePizzaData = ({ dispatch }) => {
     dispatch(updatePizzaIngredient({ pizzaIdx: selectedPizzaIdx, ingredientId, isOptional }));
   };
 
-  const onSelectPizza = ({ id }) => {
-    setSelectedPizzaIdx(() => pizza.findIndex((product) => product.id === id));
+  const onOpenPizza = ({ id }) => {
+    setSelectedPizzaIdx(pizza.findIndex((product) => product.id === id));
     setTimeout(() => {
       setIsOpenedPizza(true);
     });
+  };
+
+  const onSelectPizza = (totalPrice) => {
+    console.log(totalPrice);
+    const selectedPizza = { ...pizza[selectedPizzaIdx] };
+    Object.defineProperty(selectedPizza, 'totalPrice', { value: totalPrice });
+    dispatch(addProductToBasket(selectedPizza, 'pizza'));
+    setIsOpenedPizza(false);
   };
   
   const togglePizzaModal = () => {
@@ -35,6 +44,7 @@ export const usePizzaData = ({ dispatch }) => {
     selectedPizzaIdx,
     isOpenedPizza,
     updateIngredients,
+    onOpenPizza,
     onSelectPizza,
     togglePizzaModal,
     updateDough,

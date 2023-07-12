@@ -1,11 +1,16 @@
-.order__footer {
-  &-total {
-    margin: 0;
-    color: var(--base-color);
+.order{
+  &__card {
+    margin: 15px 0;
   }
-  &-button {
-    width: -webkit-fit-content !important;
-    width: -moz-fit-content !important;
-    width: fit-content !important;
+  &__footer {
+    &-total {
+      margin: 0;
+      color: var(--base-color);
+    }
+    &-button {
+      width: -webkit-fit-content !important;
+      width: -moz-fit-content !important;
+      width: fit-content !important;
+    }
   }
 }

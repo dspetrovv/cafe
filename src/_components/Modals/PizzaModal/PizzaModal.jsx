@@ -15,7 +15,8 @@ const PizzaModal = ({
   isOpen,
   updateIngredients,
   updateDough,
-  updateDiameter
+  updateDiameter,
+  onSelectPizza
 }) => {
   const {
     name,
@@ -45,6 +46,10 @@ const PizzaModal = ({
 
   const className = `${styles['product-modal']}${!isOpen ? ` ${styles['product-modal_hidden']}` : ''}`;
 
+  const onSelectPizzaHandler = () => {
+    onSelectPizza(totalPrice);
+  };
+
   return (
     <div className={className} onClick={(e) => e.stopPropagation()}>
       <div className={styles['product-modal__photo']}>
@@ -71,7 +76,10 @@ const PizzaModal = ({
           />
         </div>
         <div className={styles['product-modal__info-total']}>
-          <PizzaModalTotal totalPrice={totalPrice} />
+          <PizzaModalTotal
+            onSelectPizza={onSelectPizzaHandler}
+            totalPrice={totalPrice}
+          />
         </div>
       </div>
     </div>

@@ -8,6 +8,7 @@ import productStyles from '../PizzaModal/pizza-modal.module.scss';
 const SimpleProductModal = ({
   simpleProduct,
   isOpen,
+  onSelectProduct,
 }) => {
   const {
     name,
@@ -49,7 +50,7 @@ const SimpleProductModal = ({
         <div className={totalClassName}>
           <h2>Цена: { price } ₽</h2>
           { portion && <span>{ portion }гр</span> }
-          <Button>
+          <Button onClick={onSelectProduct}>
             Добавить
           </Button>
         </div>

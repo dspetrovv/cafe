@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import MiniProductCard from '@/_components/Cards/MiniProductCard';
 import PromocodeCard from './components/PromocodeCard';
 import AddToOrder from './components/AddToOrder';
@@ -44,14 +44,14 @@ const Basket = () => {
     dispatch(addProductToBasket(product));
   };
 
-  const onChangeProductCount = ({ count, id }) => {
+  const onChangeProductCount = useCallback(({ count, id }) => {
     dispatch(changeCountOfProductInBasket({ productId: id, count }));
-  };
+  }, [dispatch]);
 
   if (!products.length) {
     return (
       <h1 className={styles.basket__empty}>
-        Ваша корзина пока пуста :(
+        { "Ваша корзина пока пуста :(" }
       </h1>
     );
   }
@@ -62,15 +62,9 @@ const Basket = () => {
         { products.map((product) => 
           <MiniProductCard
             key={product.id}
+            product={product}
             className={styles.basket__card}
-            id={product.id}
-            name={product.name}
-            info={product?.info}
-            price={product.price}
-            count={product.count}
-            removed={product?.removed}
-            added={product.added}
-            onChange={onChangeProductCount}
+            onChangeCount={onChangeProductCount}
           />
         ) }
         <PromocodeCard totalPrice={totalPrice} />

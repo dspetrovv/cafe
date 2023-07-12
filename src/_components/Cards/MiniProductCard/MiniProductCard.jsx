@@ -6,20 +6,23 @@ import CounterButton from "@/_components/Buttons/CounterButton";
 import { getClassName } from "@/functions/classNameFunctions";
 
 const MiniProductCard = ({
-  id,
-  name = 'Name',
-  info,
-  price,
   short,
   className,
-  count = 1,
-  removed = [],
-  added = [],
-  onChange,
+  product,
+  onChangeCount,
 }) => {
+  const {
+    name = '',
+    info,
+    price,
+    count,
+    removed = [],
+    added = []
+  } = product;
+
   const wrapperClassName = getClassName(`${card.card} ${styles['mini-product-card']}${short ? ` ${styles['mini-product-card_short']}` : ''}`, className);
-  const onChangeHandler = (count) => {
-    onChange({ count, id });
+  const onChangeCountHandler = (count) => {
+    onChangeCount({ count, productId: product.id });
   };
 
   return (
@@ -35,7 +38,7 @@ const MiniProductCard = ({
             <div className={styles['mini-product-card__info-main__removed']}>
               Убрано: {removed.map((ingredient, index) => (
               <>
-                <span>-{ingredient}</span>{index + 1 !== removed.length ? ', ': ''}
+                <span>-{ingredient.name}</span>{index + 1 !== removed.length ? ', ': ''}
               </>))}
             </div>
           }
@@ -43,13 +46,13 @@ const MiniProductCard = ({
             <div className={styles['mini-product-card__info-main__added']}>
               Добавлено: {added.map((ingredient, index) => (
               <>
-                <span>+{ingredient}</span>{index + 1 !== added.length ? ', ': ''}
+                <span>+{ingredient.name}</span>{index + 1 !== added.length ? ', ': ''}
               </>))}
             </div>
           }
         </div>
         <div className={styles['mini-product-card__info-price']}>
-          <CounterButton initialCount={count} onChange={onChangeHandler} />
+          <CounterButton initialCount={count} onChange={onChangeCountHandler} />
           <span>{ price } ₽</span>
         </div>
       </div>
