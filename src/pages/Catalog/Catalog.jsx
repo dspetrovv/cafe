@@ -3,7 +3,7 @@ import styles from './catalog.module.scss';
 import CatalogSection from "./CatalogSection";
 import { useDispatch } from "react-redux";
 import { getPizza, getPizzaFilter, getSauce, getSnack } from "./catalogSlice";
-import { PIZZA_SECTION, SAUCES_SECTION, SNACKS_SECTION } from "@/app/Header/Header";
+import { PIZZA_SECTION, SAUCES_SECTION, SNACKS_SECTION } from "@/app/constants";
 import { usePizzaData } from "./usePizzaData";
 import { useSimpleProductData } from "./useSimpleProductData";
 import { useCatalogFilter } from "./useCatalogFilter";

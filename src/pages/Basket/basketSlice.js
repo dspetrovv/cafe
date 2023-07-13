@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { areProductsEqual, convertPizzaProduct } from "./functions";
+import { areProductsEqual, convertPizzaProduct, getPizzaKey } from "./functions";
+import { PIZZA_SECTION } from "@/app/constants";
 
 const IS_DEV = process.env.NODE_ENV === 'development';
 
@@ -36,8 +37,13 @@ const BasketSlice = createSlice({
       }
       state.totalPrice += product.price;
     },
-    updateProductCount: (state, { payload: { productId, count } }) => {
-      const idx = state.products.findIndex((product) => product.id === productId);
+    updateProductCount: (state, { payload: { product: updatingProduct, count, type } }) => {
+      const idx = state.products.findIndex((product) => {
+        if (type === PIZZA_SECTION.id) {
+          return getPizzaKey(product) === getPizzaKey(updatingProduct);
+        }
+        return product.id === updatingProduct.id && product.type === type;
+      });
       if (state.products[idx].count > count) {
         state.totalPrice -= state.products[idx].price;
       } else {
@@ -45,9 +51,14 @@ const BasketSlice = createSlice({
       }
       state.products[idx] = { ...state.products[idx], count };
     },
-    removeProduct: (state, { payload: { productId } }) => {
-      state.totalPrice -= state.products.find((product) => product.id === productId).price;
-      const removingIndex = state.products.findIndex((product) => product.id === productId);
+    removeProduct: (state, { payload: { product: updatingProduct, type } }) => {
+      const removingIndex = state.products.findIndex((product) => {
+        if (type === PIZZA_SECTION.id) {
+          return getPizzaKey(product) === getPizzaKey(updatingProduct);
+        }
+        return product.id === updatingProduct.id && product.type === type;
+      });
+      state.totalPrice -= state.products[removingIndex].price;
       state.products.splice(removingIndex, 1);
     },
     resetBasket: (state) => {
@@ -87,7 +98,7 @@ export const addProductToBasket = (product, type) => (dispatch, getState) => {
     const { products } = getState().basketStore;
     let myProduct = product;
     switch (type) {
-      case 'pizza':
+      case PIZZA_SECTION.id:
         myProduct = convertPizzaProduct(product);
         break;
       default:
@@ -102,9 +113,9 @@ export const addProductToBasket = (product, type) => (dispatch, getState) => {
   }
 };
 
-export const changeCountOfProductInBasket = ({ productId, count }) => (dispatch) => {
+export const changeCountOfProductInBasket = ({ product, count, type }) => (dispatch) => {
   try {
-    dispatch(updateProductCount({ productId, count }));
+    dispatch(updateProductCount({ product, count, type }));
   } catch (err) {
     if (IS_DEV) {
       console.error(err);
@@ -112,9 +123,9 @@ export const changeCountOfProductInBasket = ({ productId, count }) => (dispatch)
   }
 };
 
-export const removeProductFromBasket = ({ productId }) => (dispatch) => {
+export const removeProductFromBasket = ({ product, type }) => (dispatch) => {
   try {
-    dispatch(removeProduct({ productId }));
+    dispatch(removeProduct({ product, type }));
   } catch (err) {
     if (IS_DEV) {
       console.error(err);

@@ -1,6 +1,7 @@
 import { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
 import { pizzaFilterSelector, toggleFilterItem, updateCatalogFilter } from "./catalogSlice";
+import { PIZZA_SECTION } from "@/app/constants";
 
 export const useCatalogFilter = ({ dispatch }) => {
   const pizzaFilter = useSelector(pizzaFilterSelector);
@@ -17,18 +18,18 @@ export const useCatalogFilter = ({ dispatch }) => {
     if (!val && !isFiltered) {
       setFilterItemsIds([]);
       // Pizza is hardcode
-      dispatch(updateCatalogFilter({ key: 'pizza', filterItemsIds: [] }));
+      dispatch(updateCatalogFilter({ key: PIZZA_SECTION.id, filterItemsIds: [] }));
     }
     if (isFiltered) {
       setFilterItemsIds(previousFilterItemsIds);
-      dispatch(updateCatalogFilter({ key: 'pizza', filterItemsIds: previousFilterItemsIds }));
+      dispatch(updateCatalogFilter({ key: PIZZA_SECTION.id, filterItemsIds: previousFilterItemsIds }));
     }
     setIsOpenedFilter(val);
   };
 
   const onToggleFilterItem = useCallback((id, filterIndex) => {
     // Pizza is hardcode
-    dispatch(toggleFilterItem({ key: 'pizza', filterIndex, itemId: id }))
+    dispatch(toggleFilterItem({ key: PIZZA_SECTION.id, filterIndex, itemId: id }))
     setFilterItemsIds((prevState) => {
       if (prevState.includes(id)) {
         return prevState.filter((prev) => prev !== id);
@@ -41,15 +42,15 @@ export const useCatalogFilter = ({ dispatch }) => {
     setIsFiltered(true);
     setPreviousFilterItemsIds(filterItemsIds);
     // Pizza is hardcode
-    dispatch(updateCatalogFilter({ key: 'pizza', filterItemsIds }));
+    dispatch(updateCatalogFilter({ key: PIZZA_SECTION.id, filterItemsIds }));
     setIsOpenedFilter(false);
   }
 
   const resetFilterChanges = () => {
-    // Pizza is hardcode
     setFilterItemsIds([]);
     setIsFiltered(false);
-    dispatch(updateCatalogFilter({ key: 'pizza', filterItemsIds: [] }));
+    // Pizza is hardcode
+    dispatch(updateCatalogFilter({ key: PIZZA_SECTION.id, filterItemsIds: [] }));
   }
 
   return {

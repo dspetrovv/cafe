@@ -10,6 +10,10 @@
   h4 {
     text-align: center;
     margin: 15px 0 8px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: inherit;
   }
   &__info {
     text-align: center;
