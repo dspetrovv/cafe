@@ -1,9 +1,11 @@
 import React from "react";
-import Button from "../../Buttons/Button";
+import Button from "@/_components/Buttons/Button";
 import MiniProductCard from "@/_components/Cards/MiniProductCard";
 import Panel from "../Panel";
 import styles from './order-panel.module.scss';
 import { useNavigate } from "react-router-dom";
+import { PIZZA_SECTION } from "@/app/constants";
+import { getPizzaKey } from "@/pages/Basket/functions";
 
 const OrderPanel = ({
   products = [],
@@ -12,15 +14,21 @@ const OrderPanel = ({
   toggleIsOpen,
   onChangeProductCount
 }) => {
-  const PanelBody = products.map((product) => 
-    <MiniProductCard
-      key={product.id}
+  console.log(products);
+  const PanelBody = products.map((product) => {
+    let key = `${product.type}${product.id}`;
+    console.log(product.name, product.count);
+    if (product.type === PIZZA_SECTION.id) {
+      key = getPizzaKey(product);
+    }
+    return <MiniProductCard
+      key={key}
       product={product}
       className={styles.order__card}
       onChangeCount={onChangeProductCount}
       short
     />
-  );
+  });
   const navigate = useNavigate();
   const accept = () => {
     navigate('/basket');

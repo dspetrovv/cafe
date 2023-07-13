@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { sauceSelector, snackSelector } from "./catalogSlice";
-import { SAUCES_SECTION, SNACKS_SECTION } from "@/app/Header/Header";
+import { SAUCES_SECTION, SNACKS_SECTION } from "@/app/constants";
 import { addProductToBasket } from "../Basket/basketSlice";
 
 export const useSimpleProductData = ({ dispatch }) => {

@@ -2,6 +2,7 @@ import { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
 import { pizzaSelector, updatePizzaDiameters, updatePizzaDough, updatePizzaIngredient } from "./catalogSlice";
 import { addProductToBasket } from "../Basket/basketSlice";
+import { PIZZA_SECTION } from "@/app/constants";
 
 export const usePizzaData = ({ dispatch }) => {
   const pizza = useSelector(pizzaSelector);
@@ -23,7 +24,7 @@ export const usePizzaData = ({ dispatch }) => {
     console.log(totalPrice);
     const selectedPizza = { ...pizza[selectedPizzaIdx] };
     Object.defineProperty(selectedPizza, 'totalPrice', { value: totalPrice });
-    dispatch(addProductToBasket(selectedPizza, 'pizza'));
+    dispatch(addProductToBasket(selectedPizza, PIZZA_SECTION.id));
     setIsOpenedPizza(false);
   };
   

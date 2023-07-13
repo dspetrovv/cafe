@@ -13,10 +13,7 @@ import {
   changeCountOfProductInBasket,
   removeProductFromBasket
 } from "@/pages/Basket/basketSlice";
-
-export const PIZZA_SECTION = { id: "pizza", name: "Пицца" };
-export const SNACKS_SECTION = { id: "snacks", name: "Закуски" };
-export const SAUCES_SECTION = { id: "sauces", name: "Соусы" };
+import { PIZZA_SECTION, SAUCES_SECTION, SNACKS_SECTION } from "../constants";
 
 const routes = [
   { link: `/catalog#${PIZZA_SECTION.id}`, name: PIZZA_SECTION.name },
@@ -43,12 +40,13 @@ const Header = () => {
     }
   };
 
-  const onChangeProductCount = useCallback(({ count, productId }) => {
+  const onChangeProductCount = useCallback(({ count, product, type }) => {
+    console.log(count);
     if (count === 0) {
-      dispatch(removeProductFromBasket({ productId }));
+      dispatch(removeProductFromBasket({ product, type }));
       return;
     }
-    dispatch(changeCountOfProductInBasket({ productId, count }));
+    dispatch(changeCountOfProductInBasket({ product, count, type }));
   }, [dispatch]);
 
   return (

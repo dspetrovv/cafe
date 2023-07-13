@@ -4,16 +4,16 @@ import Button from '@/_components/Buttons/Button';
 import card from '@/css/card.module.scss';
 import styles from './snack-card.module.scss';
 
-const SnackCard = ({ element }) => {
+const SnackCard = ({ element, onClick }) => {
   const {
     name = 'Название закуски',
     portion,
     price = 'N',
-    onClick
+    type
   } = element;
 
   const onClickHandler = () => {
-    onClick(element)
+    onClick(element, type)
   };
 
   return (
