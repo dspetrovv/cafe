@@ -1,23 +1,46 @@
 import React from "react";
+import Pizza from '@/images/peperoni.png';
+import Snack from '@/images/snack.png';
+import NoPhoto from '@/images/no photo.png';
 import CheckboxButton from "@/_components/Buttons/CheckboxButton";
+import { PIZZA_SECTION, SNACKS_SECTION } from "@/app/constants";
 
 const PizzaModalIngredient = ({styles, element, onChange, isOptional}) => {
+  const {
+    id,
+    name,
+    type,
+    photo,
+    price,
+    selected
+  } = element;
   const onChangeHandler = () => {
-    onChange(element.id, isOptional);
+    onChange(id, isOptional);
   };
+  let image = photo;
+
+  if (!image) {
+    if (type === PIZZA_SECTION.id) {
+      image = Pizza;
+    } else if (type === SNACKS_SECTION.id) {
+      image = Snack;
+    } else {
+      image = NoPhoto;
+    }
+  }
 
   return (
     <div className={styles['product-modal__info-ingredient']}>
-      <CheckboxButton outline initialChecked={element?.selected} onChange={onChangeHandler}>
-        <img src={element?.photo} alt="product_photo" />
+      <CheckboxButton outline initialChecked={selected} onChange={onChangeHandler}>
+        <img src={photo} alt="product_photo" />
       </CheckboxButton>
       <span
         className={styles['product-modal__info-ingredient-name']}
-        title={element?.name}
+        title={name}
       >
-        { element?.name }
+        { name }
       </span>
-      { element?.price && <span className={styles['product-modal__info-ingredient-price']}>{ element?.price } ₽</span>}
+      { price && <span className={styles['product-modal__info-ingredient-price']}>{ price } ₽</span>}
     </div>
   );
 };

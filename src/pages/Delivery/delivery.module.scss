@@ -1,0 +1,13 @@
+.delivery {
+  &__photo {
+    margin: auto auto;
+    max-width: 400px;
+    display: block;
+    height: 100;
+    margin-top: 5%;
+  }
+  &__title {
+    color: var(--base-color);
+    text-align: center;
+  }
+}

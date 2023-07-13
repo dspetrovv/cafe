@@ -22,7 +22,6 @@
       { "id": 31, "name": "Сушёный базелик", "price": 30 },
       { "id": 39, "name": "Чеснок", "price": 30 }
     ],
-    "photo": "@/images/peperoni.png",
     "dough": [
       { "id": 1, "title": "Традиционное" },
       { "id": 2, "title": "Тонкое" }
@@ -52,7 +51,6 @@
       { "id": 33, "name": "Томатный соус", "price": 30 },
       { "id": 31, "name": "Сушёный базелик", "price": 30 }
     ],
-    "photo": "@/images/peperoni.png",
     "dough": [
       { "id": 1, "title": "Традиционное" },
       { "id": 2, "title": "Тонкое" }
@@ -88,7 +86,6 @@
       { "id": 314, "name": "Смесь итальянских трав", "price": 30 },
       { "id": 310, "name": "Красный перец", "price": 30 }
     ],
-    "photo": "@/images/peperoni.png",
     "dough": [
       { "id": 1, "title": "Традиционное" },
       { "id": 2, "title": "Тонкое" }
@@ -120,7 +117,6 @@
       { "id": 11, "name": "Пармезан", "price": 30 },
       { "id": 36, "name": "Орегано", "price": 30 }
     ],
-    "photo": "@/images/peperoni.png",
     "dough": [
       { "id": 1, "title": "Традиционное" },
       { "id": 2, "title": "Тонкое" }
@@ -154,7 +150,6 @@
       { "id": 33, "name": "Томатный соус", "price": 30 },
       { "id": 36, "name": "Орегано", "price": 30 }
     ],
-    "photo": "@/images/peperoni.png",
     "dough": [
       { "id": 1, "title": "Традиционное" },
       { "id": 2, "title": "Тонкое" }
@@ -188,7 +183,6 @@
       { "id": 37, "name": "Зелёный перец", "price": 30 },
       { "id": 35, "name": "Базилик", "price": 30 }
     ],
-    "photo": "@/images/peperoni.png",
     "dough": [
       { "id": 1, "title": "Традиционное" },
       { "id": 2, "title": "Тонкое" }

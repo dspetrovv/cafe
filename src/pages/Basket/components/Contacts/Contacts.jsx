@@ -1,22 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 import Input from "@/_components/Input";
 import styles from './contacts.module.scss';
+import { useDispatch, useSelector } from "react-redux";
+import { contactSelector, updateContactData } from "../../basketSlice";
 
 const Contacts = () => {
-  const [name, setName] = useState(); // TODO: redux user data
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [email, setEmail] = useState('');
+  const dispatch = useDispatch();
+  const {
+    name,
+    phoneNumber,
+    email
+  } = useSelector(contactSelector);
 
   const changeName = (value) => {
-    setName(value);
+    dispatch(updateContactData({ value, key: 'name' }));
   };
 
   const changePhoneNumber = (value) => {
-    setPhoneNumber(value);
+    dispatch(updateContactData({ value, key: 'phone' }));
   };
 
   const changeEmail = (value) => {
-    setEmail(value);
+    dispatch(updateContactData({ value, key: 'email' }));
   };
 
   return (

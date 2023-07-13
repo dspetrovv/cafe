@@ -8,11 +8,11 @@ const initialState = {
   products: [],
   totalPrice: 0,
   contact: {
-    name: '',
-    phone: '',
+    name: '', // Обязательно
+    phone: '', // Обязательно
     email: '',
-    street: '',
-    houseNumber: undefined,
+    street: '', // Обязательно
+    houseNumber: undefined, // Обязательно
     entrance: undefined,
     floor: undefined,
     flat: undefined,
@@ -21,6 +21,7 @@ const initialState = {
   payment: {
     method: 'cash',
     change: 'no',
+    changeSum: 0,
   },
   comment: ''
 };
@@ -63,16 +64,17 @@ const BasketSlice = createSlice({
     },
     resetBasket: (state) => {
       state.products = [];
+      state.totalPrice = 0;
     },
-    updateContact: (state, { payload: { key, data } }) => {
-      state.contact[key] = data;
+    updateContact: (state, { payload: { key, value } }) => {
+      state.contact[key] = value;
     },
     setMainContact: (state, { payload: { name, phone } }) => {
       state.contact.name = name;
       state.contact.phone = phone;
     },
-    updatePayment: (state, { payload: { key, data } }) => {
-      state.payment[key] = data;
+    updatePayment: (state, { payload: { key, value } }) => {
+      state.payment[key] = value;
     },
     updateComment: (state, { payload }) => {
       state.comment = payload;
@@ -145,9 +147,9 @@ export const setDefaultContactData = () => (dispatch) => {
   }
 };
 
-export const updateContactData = (data) => (dispatch) => {
+export const updateContactData = ({ value, key }) => (dispatch) => {
   try {
-    dispatch(updateContact(data));
+    dispatch(updateContact({ value, key }));
   } catch (err) {
     if (IS_DEV) {
       console.error(err);
@@ -155,9 +157,9 @@ export const updateContactData = (data) => (dispatch) => {
   }
 };
 
-export const updatePaymentData = (data) => (dispatch) => {
+export const updatePaymentData = ({ value, key }) => (dispatch) => {
   try {
-    dispatch(updatePayment(data));
+    dispatch(updatePayment({ value, key }));
   } catch (err) {
     if (IS_DEV) {
       console.error(err);
@@ -175,6 +177,44 @@ export const addComment = (comment) => (dispatch) => {
   }
 };
 
+export const makeOrder = (cb) => (dispatch, getState) => {
+  try {
+    const {
+      contact,
+      payment,
+      comment,
+      contact: {
+        name,
+        phone,
+        street,
+        houseNumber
+      }
+    } = getState().basketStore;
+    if (!name.trim().length
+      || phone.length < 16
+      || !street.trim().length
+      || !houseNumber.trim().length
+    ) {
+      throw new Error('Не все обязательные поля заполнены');
+    }
+    // Simulated server request
+    // request({ ...contact, ...payment, comment });
+    dispatch(resetBasket());
+    cb();
+    return true;
+  } catch (err) {
+    if (IS_DEV) {
+      console.error(err);
+    }
+  }
+};
+
 export const basketProductsSelector = ({ basketStore }) => basketStore.products;
+
+export const contactSelector = ({ basketStore }) => basketStore.contact;
+
+export const paymentSelector = ({ basketStore }) => basketStore.payment;
+
+export const commentSelector = ({ basketStore }) => basketStore.comment;
 
 export const totalPriceSelector = ({ basketStore }) => basketStore.totalPrice;

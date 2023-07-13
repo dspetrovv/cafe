@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import Radio from "@/_components/Radio";
 import styles from './payment.module.scss';
+import { useDispatch, useSelector } from "react-redux";
+import { paymentSelector, updatePaymentData } from "../../basketSlice";
 
 const Payment = () => {
-  const [method, setMethod] = useState('cash');
-  const onChange = (method) => {
-    setMethod(method);
+  const dispatch = useDispatch();
+  const { method } = useSelector(paymentSelector);
+
+  const onChange = (value) => {
+    dispatch(updatePaymentData({ value, key: 'method' }));
   };
 
   const isCash = method === 'cash';

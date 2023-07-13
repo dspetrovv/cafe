@@ -1,9 +1,12 @@
 import React from "react";
-import Photo from '@/images/peperoni.png';
+import Pizza from '@/images/peperoni.png';
+import Snack from '@/images/snack.png';
+import NoPhoto from '@/images/no photo.png';
 import card from '@/css/card.module.scss';
 import styles from './mini-product-card.module.scss';
 import CounterButton from "@/_components/Buttons/CounterButton";
 import { getClassName } from "@/functions/classNameFunctions";
+import { PIZZA_SECTION, SNACKS_SECTION } from "@/app/constants";
 
 const MiniProductCard = ({
   short,
@@ -17,9 +20,21 @@ const MiniProductCard = ({
     price,
     count,
     type,
+    photo,
     removed = [],
     added = []
   } = product;
+  let image = photo;
+
+  if (!image) {
+    if (type === PIZZA_SECTION.id) {
+      image = Pizza;
+    } else if (type === SNACKS_SECTION.id) {
+      image = Snack;
+    } else {
+      image = NoPhoto;
+    }
+  }
 
   const wrapperClassName = getClassName(`${card.card} ${styles['mini-product-card']}${short ? ` ${styles['mini-product-card_short']}` : ''}`, className);
   const onChangeCountHandler = (count) => {
@@ -30,7 +45,7 @@ const MiniProductCard = ({
   return (
     <div className={wrapperClassName}>
       <div className={styles['mini-product-card__photo']}>
-        <img src={Photo} alt="product_photo" />
+        <img src={image} alt="product_photo" />
       </div>
       <div className={styles['mini-product-card__info']}>
         <div className={styles['mini-product-card__info-main']}>

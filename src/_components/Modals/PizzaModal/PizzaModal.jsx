@@ -24,8 +24,15 @@ const PizzaModal = ({
     diameters,
     ingredients,
     optionalIngredients,
-    price
+    price,
+    photo
   } = pizza;
+
+  let image = photo;
+
+  if (!image) {
+    image = Photo;
+  }
 
   const selectedDiameterIdx = useMemo(() => diameters.findIndex((diameter) => diameter.selected), [diameters]);
 
@@ -53,7 +60,7 @@ const PizzaModal = ({
   return (
     <div className={className} onClick={(e) => e.stopPropagation()}>
       <div className={styles['product-modal__photo']}>
-        <img src={Photo} alt="product_photo" />
+        <img src={image} alt="product_photo" />
       </div>
       <div className={styles['product-modal__info']}>
         <h2>{ name }</h2>
