@@ -31,6 +31,7 @@ const CatalogSection = ({
                 info={element?.info}
                 price={element.price}
                 photo={element?.photo}
+                type={element.type}
                 onSelect={onSelectProductHandler}
               />
             }

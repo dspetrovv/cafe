@@ -1,19 +1,40 @@
 import React from "react";
 import Button from "@/_components/Buttons/Button";
-import Photo from '@/images/peperoni.png';
+import Pizza from '@/images/peperoni.png';
+import Snack from '@/images/snack.png';
+import NoPhoto from '@/images/no photo.png';
 import card from '@/css/card.module.scss';
 import styles from './product-card.module.scss';
+import { PIZZA_SECTION, SNACKS_SECTION } from "@/app/constants";
 
-const ProductCard = ({ id, name = 'Product name', info = '', price, onSelect }) => {
+const ProductCard = ({
+  id,
+  name = 'Product name',
+  info = '',
+  price,
+  photo,
+  type,
+  onSelect
+}) => {
   const onSelectHandler = () => {
     onSelect(id);
   };
-  // getPhotoFromServer
+  let image = photo;
+
+  if (!image) {
+    if (type === PIZZA_SECTION.id) {
+      image = Pizza;
+    } else if (type === SNACKS_SECTION.id) {
+      image = Snack;
+    } else {
+      image = NoPhoto;
+    }
+  }
 
   return (
     <div className={`${card.card} ${styles['product']}`}>
       <div className={styles['product__photo']}>
-        <img src={Photo} alt="product_photo" onClick={onSelectHandler} />
+        <img src={image} alt="product_photo" onClick={onSelectHandler} />
       </div>
       <hr />
       <div className={styles['product__info']}>

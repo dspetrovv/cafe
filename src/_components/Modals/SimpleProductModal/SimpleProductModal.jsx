@@ -1,9 +1,12 @@
 import React from "react";
-import Photo from '@/images/peperoni.png';
+import Pizza from '@/images/peperoni.png';
+import Snack from '@/images/snack.png';
+import NoPhoto from '@/images/no photo.png';
 import Button from "@/_components/Buttons/Button";
 import { getClassName } from "@/functions/classNameFunctions";
 import withModalWrapper from "@/_hocs/Modal/withModalWrapper";
 import productStyles from '../PizzaModal/pizza-modal.module.scss';
+import { PIZZA_SECTION, SNACKS_SECTION } from "@/app/constants";
 
 const SimpleProductModal = ({
   simpleProduct,
@@ -16,8 +19,21 @@ const SimpleProductModal = ({
     photo,
     description = '',
     ingredients = [],
+    type,
     price
   } = simpleProduct;
+
+  let image = photo;
+
+  if (!image) {
+    if (type === PIZZA_SECTION.id) {
+      image = Pizza;
+    } else if (type === SNACKS_SECTION.id) {
+      image = Snack;
+    } else {
+      image = NoPhoto;
+    }
+  }
 
   const className = `${productStyles['product-modal']}${!isOpen ? ` ${productStyles['product-modal_hidden']}` : ''}`;
   const containerClassName = getClassName(className, productStyles['product-modal_simple']);
@@ -28,7 +44,7 @@ const SimpleProductModal = ({
   return (
     <div className={containerClassName} onClick={(e) => e.stopPropagation()}>
       <div className={photoClassName}>
-        <img src={photo || Photo} alt="product_photo" />
+        <img src={image} alt="product_photo" />
       </div>
       <div className={infoClassName}>
         <h2>{ name }</h2>

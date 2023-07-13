@@ -1,18 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import Radio from "@/_components/Radio";
 import Input from "@/_components/Input";
 import styles from './change.module.scss';
+import { useDispatch, useSelector } from "react-redux";
+import { paymentSelector, updatePaymentData } from "../../basketSlice";
 
 const Icon = <span className={styles.change__currency}>₽</span>
 
 const Change = ({ totalPrice }) => {
-  const [change, setChange] = useState('no');
-  const onChange = (choice) => {
-    setChange(choice);
+  const dispatch = useDispatch();
+  const { change } = useSelector(paymentSelector);
+
+  const onChange = (value) => {
+    dispatch(updatePaymentData({ value, key: 'change' }));
   };
-  const [changeSum, setChangeSum] = useState(0);
   const onSetChange = (sum) => {
-    setChangeSum(sum);
+    dispatch(updatePaymentData({ value: sum, key: 'changeSum' }));
   };
 
   const withoutChange = change === 'no';

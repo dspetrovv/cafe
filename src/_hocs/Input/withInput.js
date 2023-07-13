@@ -47,9 +47,9 @@ const withInput = (Component) => {
       console.log(value, prevValue, prevValue.length, value.length);
       onChange(value);
       if (required) {
-        if (!value.length) {
+        if (phone && value.length < 16) {
           setIsError(true);
-        } else if (phone && prevValue.length > value.length) {
+        } else if (!value.length) {
           setIsError(true);
         } else {
           setIsError(false);

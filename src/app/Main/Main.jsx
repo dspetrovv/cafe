@@ -4,6 +4,7 @@ import Catalog from "@/pages/Catalog";
 import UIPage from "@/pages/UIPage";
 import styles from './main.module.scss';
 import Basket from "@/pages/Basket";
+import Delivery from "@/pages/Delivery";
 
 const Main = () => {
   return (
@@ -14,6 +15,7 @@ const Main = () => {
           <Route path="/catalog" element={<Catalog />} /> 
           <Route path="/ui" element={<UIPage />} />
           <Route path="/basket" element={<Basket />} />
+          <Route path="/delivery" element={<Delivery />} />
           {/* <Route path="/error"></Route>  */}
         </Routes>
       </div>
