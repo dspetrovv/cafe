@@ -2,8 +2,14 @@ import React, { lazy, Suspense, useEffect, useState } from "react";
 import styles from './catalog.module.scss';
 import CatalogSection from "./CatalogSection";
 import { useDispatch } from "react-redux";
-import { getPizza, getPizzaFilter, getSauce, getSnack } from "./catalogSlice";
-import { PIZZA_SECTION, SAUCES_SECTION, SNACKS_SECTION } from "@/app/constants";
+import { getDessert, getDrinks, getPizza, getPizzaFilter, getSauce, getSnack } from "./catalogSlice";
+import {
+  PIZZA_SECTION,
+  SAUCES_SECTION,
+  SNACKS_SECTION,
+  DESSERTS_SECTION,
+  DRINKS_SECTION
+} from "@/app/constants";
 import { usePizzaData } from "./usePizzaData";
 import { useSimpleProductData } from "./useSimpleProductData";
 import { useCatalogFilter } from "./useCatalogFilter";
@@ -19,7 +25,9 @@ const CatalogPage = () => {
     dispatch(getPizzaFilter());
     dispatch(getSnack());
     dispatch(getSauce());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    dispatch(getDessert());
+    dispatch(getDrinks());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const {
@@ -37,6 +45,8 @@ const CatalogPage = () => {
   const {
     snacks,
     sauces,
+    desserts,
+    drinks,
     selectedSimpleProduct,
     isOpenedSimpleProduct,
     onOpenSimpleProduct,
@@ -77,8 +87,18 @@ const CatalogPage = () => {
         list={sauces}
         onSelectProduct={onOpenSimpleProduct}
       />
+      <CatalogSection
+        sectionName={DESSERTS_SECTION}
+        list={desserts}
+        onSelectProduct={onOpenSimpleProduct}
+      />
+      <CatalogSection
+        sectionName={DRINKS_SECTION}
+        list={drinks}
+        onSelectProduct={onOpenSimpleProduct}
+      />
       <section className={`${styles.info} ${isOpenedBottomInfo ? '' : styles.info_hidden}`}>
-        <h1>Доставка питсы в Изумрудном городе</h1>
+        <h1>Доставка питсы</h1>
         <span>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. At consequuntur illum id distinctio eum maiores quibusdam consectetur voluptatibus eligendi. Provident deleniti at asperiores? Dolores ipsa totam pariatur rerum incidunt quisquam!
         </span>

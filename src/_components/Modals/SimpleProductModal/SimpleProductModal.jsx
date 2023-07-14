@@ -2,11 +2,12 @@ import React from "react";
 import Pizza from '@/images/peperoni.png';
 import Snack from '@/images/snack.png';
 import NoPhoto from '@/images/no photo.png';
+import Drink from '@/images/drink.png';
 import Button from "@/_components/Buttons/Button";
 import { getClassName } from "@/functions/classNameFunctions";
 import withModalWrapper from "@/_hocs/Modal/withModalWrapper";
 import productStyles from '../PizzaModal/pizza-modal.module.scss';
-import { PIZZA_SECTION, SNACKS_SECTION } from "@/app/constants";
+import { PIZZA_SECTION, SNACKS_SECTION, DRINKS_SECTION } from "@/app/constants";
 
 const SimpleProductModal = ({
   simpleProduct,
@@ -30,6 +31,8 @@ const SimpleProductModal = ({
       image = Pizza;
     } else if (type === SNACKS_SECTION.id) {
       image = Snack;
+    } else if (type === DRINKS_SECTION.id) {
+      image = Drink;
     } else {
       image = NoPhoto;
     }

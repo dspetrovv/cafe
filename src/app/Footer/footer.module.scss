@@ -1,3 +1,5 @@
+@import '../Header/header.module.scss';
+
 .footer {
   background-color: var(--background-color-second);
   min-height: var(--footer-height);
@@ -48,6 +50,9 @@
       > li {
         list-style: none;
         margin: 12px 0;
+        a {
+          @include list;
+        }
       }
     }
   }

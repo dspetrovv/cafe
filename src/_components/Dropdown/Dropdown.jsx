@@ -11,7 +11,14 @@ const mockList = [
   { id: 4, value: 'Text-4'},
 ];
 
-const Dropdown = ({ isText, text = 'text', list = mockList, className, wrapperClassName }) => {
+const Dropdown = ({
+  isText,
+  text = 'text',
+  list = mockList,
+  className,
+  wrapperClassName,
+  onSelect
+}) => {
   const isInput = !isText;
   const {
     isOpen,
@@ -22,9 +29,18 @@ const Dropdown = ({ isText, text = 'text', list = mockList, className, wrapperCl
     changeValue,
   } = useDropdown({ list, styles });
 
+  const onSelectHandler = (id) => {
+    if (typeof onSelect === "function") {
+      onSelect(id);
+      toggleOpen();
+      return;
+    }
+    changeValue(id);
+  };
+
   const Block =
     <ul className={`${dropdownClassName}${className ? ` ${className}` : ''}`}>
-      { list.map((element) => <li key={element.id} onClick={() => changeValue(element.id)}>{ element.value }</li>) }
+      { list.map((element) => <li key={element.id} onClick={() => onSelectHandler(element.id)}>{ element.value }</li>) }
     </ul>;
 
   const Arrow = <ArrowIcon className={`${styles.dropdown__arrow}${isOpen ? ` ${styles.dropdown__arrow_down}` : ''}`} onClick={toggleOpen} />

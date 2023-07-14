@@ -1,6 +1,7 @@
 import React from "react";
 import Logo from '../../images/logo-mini.png';
 import styles from './footer.module.scss';
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -20,24 +21,23 @@ const Footer = () => {
         <div className={styles['footer__list']}>
           <h3>Моя питса</h3>
           <ul>
-            <li>О компании</li>
-            <li>Пользовательское соглашение</li>
-            <li>Условия гарантии</li>
+            <li><Link to='/about'>О компании</Link></li>
+            <li><Link to='/terms'>Пользовательское соглашение</Link></li>
+            <li><Link to='/guarantee'>Условия гарантии</Link></li>
           </ul>
         </div>
         <div className={styles['footer__list']}>
           <h3>Помощь</h3>
           <ul>
-            <li>Ресторан</li>
-            <li>Контакты</li>
-            <li>Поддержка</li>
+            <li><Link to='/contacts'>Контакты</Link></li>
+            <li><Link to='/support'>Поддержка</Link></li>
           </ul>
         </div>
         <div className={styles['footer__list']}>
           <h3>Контакты</h3>
           <ul>
-            <li>Телефон</li>
-            <li>Адрес</li>
+            <li>+7(999)752-25-9</li>
+            <li>г. Москва, ул. Ленина, д. -1</li>
           </ul>
           <div className={styles['footer__socials']}></div>
         </div>
