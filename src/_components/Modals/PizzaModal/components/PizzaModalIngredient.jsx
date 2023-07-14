@@ -1,15 +1,11 @@
 import React from "react";
-import Pizza from '@/images/peperoni.png';
-import Snack from '@/images/snack.png';
 import NoPhoto from '@/images/no photo.png';
 import CheckboxButton from "@/_components/Buttons/CheckboxButton";
-import { PIZZA_SECTION, SNACKS_SECTION } from "@/app/constants";
 
 const PizzaModalIngredient = ({styles, element, onChange, isOptional}) => {
   const {
     id,
     name,
-    type,
     photo,
     price,
     selected
@@ -20,13 +16,7 @@ const PizzaModalIngredient = ({styles, element, onChange, isOptional}) => {
   let image = photo;
 
   if (!image) {
-    if (type === PIZZA_SECTION.id) {
-      image = Pizza;
-    } else if (type === SNACKS_SECTION.id) {
-      image = Snack;
-    } else {
-      image = NoPhoto;
-    }
+    image = NoPhoto;
   }
 
   return (

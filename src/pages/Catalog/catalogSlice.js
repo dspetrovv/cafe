@@ -3,6 +3,8 @@ import pizza from '@/mock/pizza.json';
 import pizzaFilter from '@/mock/pizza_ingredients.json';
 import snack from '@/mock/snacks.json';
 import sauce from '@/mock/sauces.json';
+import dessert from '@/mock/desserts.json';
+import drink from '@/mock/drinks.json';
 
 const IS_DEV = process.env.NODE_ENV === 'development';
 
@@ -17,6 +19,12 @@ const initialState = {
       list: []
     },
     sauce: {
+      list: []
+    },
+    dessert: {
+      list: []
+    },
+    drink: {
       list: []
     }
   },
@@ -230,6 +238,36 @@ export const getSauce = () => (dispatch) => {
   }
 };
 
+export const getDessert = () => (dispatch) => {
+  try {
+    //Simulated server request
+    dispatch(setProduct({
+      product: 'dessert',
+      key: 'list',
+      values: dessert.map((d) => ({ ...d, show: true }))
+    }));
+  } catch (err) {
+    if (IS_DEV) {
+      console.error(err);
+    }
+  }
+};
+
+export const getDrinks = () => (dispatch) => {
+  try {
+    //Simulated server request
+    dispatch(setProduct({
+      product: 'drink',
+      key: 'list',
+      values: drink.map((d) => ({ ...d, show: true }))
+    }));
+  } catch (err) {
+    if (IS_DEV) {
+      console.error(err);
+    }
+  }
+};
+
 export const pizzaSelector = ({ catalogStore }) => catalogStore.products.pizza.list;
 
 export const pizzaFilterSelector = ({ catalogStore }) => catalogStore.products.pizza.filter;
@@ -237,3 +275,7 @@ export const pizzaFilterSelector = ({ catalogStore }) => catalogStore.products.p
 export const snackSelector = ({ catalogStore }) => catalogStore.products.snack.list;
 
 export const sauceSelector = ({ catalogStore }) => catalogStore.products.sauce.list;
+
+export const dessertSelector = ({ catalogStore }) => catalogStore.products.dessert.list;
+
+export const drinkSelector = ({ catalogStore }) => catalogStore.products.drink.list;

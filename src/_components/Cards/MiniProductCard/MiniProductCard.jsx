@@ -2,11 +2,12 @@ import React from "react";
 import Pizza from '@/images/peperoni.png';
 import Snack from '@/images/snack.png';
 import NoPhoto from '@/images/no photo.png';
+import Drink from '@/images/drink.png';
 import card from '@/css/card.module.scss';
 import styles from './mini-product-card.module.scss';
 import CounterButton from "@/_components/Buttons/CounterButton";
 import { getClassName } from "@/functions/classNameFunctions";
-import { PIZZA_SECTION, SNACKS_SECTION } from "@/app/constants";
+import { PIZZA_SECTION, SNACKS_SECTION, DRINKS_SECTION } from "@/app/constants";
 
 const MiniProductCard = ({
   short,
@@ -31,6 +32,8 @@ const MiniProductCard = ({
       image = Pizza;
     } else if (type === SNACKS_SECTION.id) {
       image = Snack;
+    } else if (type === DRINKS_SECTION.id) {
+      image = Drink;
     } else {
       image = NoPhoto;
     }

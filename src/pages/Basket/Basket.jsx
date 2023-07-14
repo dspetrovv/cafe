@@ -59,7 +59,7 @@ const Basket = () => {
 
   const submitOrder = (e) => {
     e.preventDefault();
-    dispatch(makeOrder(() => navigate('/delivery')))
+    dispatch(makeOrder(() => navigate('/delivery')));
   };
 
   if (!products.length) {
@@ -71,37 +71,37 @@ const Basket = () => {
   }
   return (
     <>
+      <section className={styles.basket}>
+        <h1>Ваш заказ</h1>
+        { products.map((product) => {
+          let key = `${product.type}${product.id}`;
+          if (product.type === PIZZA_SECTION.id) {
+            key = getPizzaKey(product);
+          }
+          return <MiniProductCard
+            key={key}
+            product={product}
+            className={styles.basket__card}
+            onChangeCount={onChangeProductCount}
+          />
+        }) }
+        <PromocodeCard totalPrice={totalPrice} />
+      </section>
+      <section className={sliderClassName}>
+        { !!snackElements.length &&
+          <>
+            <h3>Добавить к заказу?</h3>
+            <AddToOrder elements={snackElements} onClick={onSelect} />
+          </>
+        }
+        { !!sauceElements.length &&
+          <>
+            <h3>Соусы</h3>
+            <AddToOrder elements={sauceElements} onClick={onSelect} />
+          </>
+        }
+      </section>
       <form onSubmit={submitOrder}>
-        <section className={styles.basket}>
-          <h1>Ваш заказ</h1>
-          { products.map((product) => {
-            let key = `${product.type}${product.id}`;
-            if (product.type === PIZZA_SECTION.id) {
-              key = getPizzaKey(product);
-            }
-            return <MiniProductCard
-              key={key}
-              product={product}
-              className={styles.basket__card}
-              onChangeCount={onChangeProductCount}
-            />
-          }) }
-          <PromocodeCard totalPrice={totalPrice} />
-        </section>
-        <section className={sliderClassName}>
-          { !!snackElements.length &&
-            <>
-              <h3>Добавить к заказу?</h3>
-              <AddToOrder elements={snackElements} onClick={onSelect} />
-            </>
-          }
-          { !!sauceElements.length &&
-            <>
-              <h3>Соусы</h3>
-              <AddToOrder elements={sauceElements} onClick={onSelect} />
-            </>
-          }
-        </section>
         <section className={styles.basket}>
           <h3 className={styles.basket__title_medium}>О вас</h3>
           <Contacts />

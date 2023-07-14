@@ -2,10 +2,11 @@ import React from "react";
 import Pizza from '@/images/peperoni.png';
 import Snack from '@/images/snack.png';
 import NoPhoto from '@/images/no photo.png';
+import Drink from '@/images/drink.png';
 import Button from '@/_components/Buttons/Button';
 import card from '@/css/card.module.scss';
 import styles from './snack-card.module.scss';
-import { PIZZA_SECTION, SNACKS_SECTION } from "@/app/constants";
+import { PIZZA_SECTION, SNACKS_SECTION, DRINKS_SECTION } from "@/app/constants";
 
 const SnackCard = ({ element, onClick }) => {
   const {
@@ -23,6 +24,8 @@ const SnackCard = ({ element, onClick }) => {
       image = Pizza;
     } else if (type === SNACKS_SECTION.id) {
       image = Snack;
+    } else if (type === DRINKS_SECTION.id) {
+      image = Drink;
     } else {
       image = NoPhoto;
     }
