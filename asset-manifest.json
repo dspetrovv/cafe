@@ -1,0 +1,36 @@
+{
+  "files": {
+    "main.css": "/cafe/static/css/main.63b57419.css",
+    "main.js": "/cafe/static/js/main.1d7b7121.js",
+    "static/css/601.cd28e632.chunk.css": "/cafe/static/css/601.cd28e632.chunk.css",
+    "static/js/601.1398e8df.chunk.js": "/cafe/static/js/601.1398e8df.chunk.js",
+    "static/css/211.57863799.chunk.css": "/cafe/static/css/211.57863799.chunk.css",
+    "static/js/211.b75a7339.chunk.js": "/cafe/static/js/211.b75a7339.chunk.js",
+    "static/css/270.91ef893b.chunk.css": "/cafe/static/css/270.91ef893b.chunk.css",
+    "static/js/270.d773e57f.chunk.js": "/cafe/static/js/270.d773e57f.chunk.js",
+    "static/media/driver.png": "/cafe/static/media/driver.e4263b09288217288118.png",
+    "static/media/peperoni.png": "/cafe/static/media/peperoni.93757d16742ffd59ef95.png",
+    "static/media/snack.png": "/cafe/static/media/snack.321354d325c6514bca6d.png",
+    "static/media/drink.png": "/cafe/static/media/drink.f169e47ac4f12f858d02.png",
+    "static/media/no photo.png": "/cafe/static/media/no photo.f592d6da68c454cae5e3.png",
+    "static/media/logo-mini.png": "/cafe/static/media/logo-mini.be49f0d827779e157373.png",
+    "static/media/basket.svg": "/cafe/static/media/basket.e89ee0cf5b9331a823d4bad6fa048089.svg",
+    "static/media/send.svg": "/cafe/static/media/send.4e6d6b41b91b81a93fde715d2a555704.svg",
+    "index.html": "/cafe/index.html",
+    "static/media/filter.svg": "/cafe/static/media/filter.63a30b2d1f371a064d4b0471c41a25bb.svg",
+    "static/media/arrow.svg": "/cafe/static/media/arrow.f91f717a6693f11039a466243f68c6c1.svg",
+    "static/media/checked.svg": "/cafe/static/media/checked.500402e40dd784eff389.svg",
+    "main.63b57419.css.map": "/cafe/static/css/main.63b57419.css.map",
+    "main.1d7b7121.js.map": "/cafe/static/js/main.1d7b7121.js.map",
+    "601.cd28e632.chunk.css.map": "/cafe/static/css/601.cd28e632.chunk.css.map",
+    "601.1398e8df.chunk.js.map": "/cafe/static/js/601.1398e8df.chunk.js.map",
+    "211.57863799.chunk.css.map": "/cafe/static/css/211.57863799.chunk.css.map",
+    "211.b75a7339.chunk.js.map": "/cafe/static/js/211.b75a7339.chunk.js.map",
+    "270.91ef893b.chunk.css.map": "/cafe/static/css/270.91ef893b.chunk.css.map",
+    "270.d773e57f.chunk.js.map": "/cafe/static/js/270.d773e57f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.63b57419.css",
+    "static/js/main.1d7b7121.js"
+  ]
+}
