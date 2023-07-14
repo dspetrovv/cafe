@@ -28,6 +28,7 @@ const initialState = {
       list: []
     }
   },
+  scrolling: '',
 };
 
 const CatalogSlice = createSlice({
@@ -98,6 +99,9 @@ const CatalogSlice = createSlice({
 
       state.products[key].list = filteringProductList.map((product) => ({ ...product, show: true }))
     },
+    setScrolling: (state, { payload: { id } }) => {
+      state.scrolling = id;
+    },
   }
 });
 
@@ -111,6 +115,7 @@ export const {
   toggleFilterItemSelect,
   acceptFilter,
   resetFilter,
+  setScrolling,
 } = CatalogSlice.actions;
 
 export const getPizza = () => (dispatch) => {
@@ -268,6 +273,17 @@ export const getDrinks = () => (dispatch) => {
   }
 };
 
+export const scrollPage = (id) => (dispatch) => {
+  try {
+    //Simulated server request
+    dispatch(setScrolling({ id }));
+  } catch (err) {
+    if (IS_DEV) {
+      console.error(err);
+    }
+  }
+};
+
 export const pizzaSelector = ({ catalogStore }) => catalogStore.products.pizza.list;
 
 export const pizzaFilterSelector = ({ catalogStore }) => catalogStore.products.pizza.filter;
@@ -279,3 +295,5 @@ export const sauceSelector = ({ catalogStore }) => catalogStore.products.sauce.l
 export const dessertSelector = ({ catalogStore }) => catalogStore.products.dessert.list;
 
 export const drinkSelector = ({ catalogStore }) => catalogStore.products.drink.list;
+
+export const scrollingCatalogSelector = ({ catalogStore }) => catalogStore.scrolling;

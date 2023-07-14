@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Pizza from '@/images/peperoni.png';
 import Snack from '@/images/snack.png';
 import NoPhoto from '@/images/no photo.png';
@@ -57,17 +57,17 @@ const MiniProductCard = ({
           { !!removed.length &&
             <div className={styles['mini-product-card__info-main__removed']}>
               Убрано: {removed.map((ingredient, index) => (
-              <>
+              <Fragment key={ingredient.id}>
                 <span>-{ingredient.name}</span>{index + 1 !== removed.length ? ', ': ''}
-              </>))}
+              </Fragment>))}
             </div>
           }
           { !!added.length &&
             <div className={styles['mini-product-card__info-main__added']}>
               Добавлено: {added.map((ingredient, index) => (
-              <>
+              <Fragment key={ingredient.id}>
                 <span>+{ingredient.name}</span>{index + 1 !== added.length ? ', ': ''}
-              </>))}
+              </Fragment>))}
             </div>
           }
         </div>

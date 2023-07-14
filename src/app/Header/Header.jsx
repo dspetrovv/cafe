@@ -20,13 +20,14 @@ import {
   DESSERTS_SECTION,
   DRINKS_SECTION
 } from "../constants";
+import { scrollPage } from "@/pages/Catalog/catalogSlice";
 
 const routes = [
-  { link: `/catalog#${PIZZA_SECTION.id}`, name: PIZZA_SECTION.name },
-  { link: `/catalog#${SNACKS_SECTION.id}`, name: SNACKS_SECTION.name },
-  { link: `/catalog#${SAUCES_SECTION.id}`, name: SAUCES_SECTION.name },
-  { link: `/catalog#${DESSERTS_SECTION.id}`, name: DESSERTS_SECTION.name },
-  { link: `/catalog#${DRINKS_SECTION.id}`, name: DRINKS_SECTION.name },
+  { id: PIZZA_SECTION.id, link: `/catalog#${PIZZA_SECTION.id}`, name: PIZZA_SECTION.name },
+  { id: SNACKS_SECTION.id, link: `/catalog#${SNACKS_SECTION.id}`, name: SNACKS_SECTION.name },
+  { id: SAUCES_SECTION.id, link: `/catalog#${SAUCES_SECTION.id}`, name: SAUCES_SECTION.name },
+  { id: DESSERTS_SECTION.id, link: `/catalog#${DESSERTS_SECTION.id}`, name: DESSERTS_SECTION.name },
+  { id: DRINKS_SECTION.id, link: `/catalog#${DRINKS_SECTION.id}`, name: DRINKS_SECTION.name },
 ];
 
 const additionalRoutes = [
@@ -63,13 +64,17 @@ const Header = () => {
     }
   };
 
-  const onChangeProductCount = useCallback(({ count, product, type }) => {
+  const onChangeProductCount = useCallback(({ count, product }) => {
     if (count === 0) {
-      dispatch(removeProductFromBasket({ product, type }));
+      dispatch(removeProductFromBasket({ product }));
       return;
     }
-    dispatch(changeCountOfProductInBasket({ product, count, type }));
+    dispatch(changeCountOfProductInBasket({ product, count }));
   }, [dispatch]);
+
+  const scrollToBlock = (id) => {
+    dispatch(scrollPage(id));
+  };
 
   return (
     <header className={styles.header}>
@@ -77,8 +82,8 @@ const Header = () => {
         <img src={Logo} alt="Logo" onClick={goToMainPage} />
         <ul>
           { routes.map((route) =>
-            <li key={route.link}>
-              <Link to={route.link}>{ route.name }</Link>
+            <li key={route.id}>
+              <Link to={route.link} onClick={() => scrollToBlock(route.id)}>{ route.name }</Link>
             </li>
           )}
           <li>

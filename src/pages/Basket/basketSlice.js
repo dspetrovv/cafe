@@ -38,26 +38,27 @@ const BasketSlice = createSlice({
       }
       state.totalPrice += product.price;
     },
-    updateProductCount: (state, { payload: { product: updatingProduct, count, type } }) => {
+    updateProductCount: (state, { payload: { product: updatingProduct, count } }) => {
       const idx = state.products.findIndex((product) => {
-        if (type === PIZZA_SECTION.id) {
+        if (updatingProduct.type === PIZZA_SECTION.id && product.type === PIZZA_SECTION.id) {
           return getPizzaKey(product) === getPizzaKey(updatingProduct);
         }
-        return product.id === updatingProduct.id && product.type === type;
+        return product.id === updatingProduct.id && product.type === updatingProduct.type;
       });
+      console.log(state.products[idx].name);
       if (state.products[idx].count > count) {
         state.totalPrice -= state.products[idx].price;
       } else {
         state.totalPrice += state.products[idx].price;
       }
-      state.products[idx] = { ...state.products[idx], count };
+      state.products[idx].count = count;
     },
-    removeProduct: (state, { payload: { product: updatingProduct, type } }) => {
+    removeProduct: (state, { payload: { product: updatingProduct } }) => {
       const removingIndex = state.products.findIndex((product) => {
-        if (type === PIZZA_SECTION.id) {
+        if (updatingProduct.type === PIZZA_SECTION.id && product.type === PIZZA_SECTION.id) {
           return getPizzaKey(product) === getPizzaKey(updatingProduct);
         }
-        return product.id === updatingProduct.id && product.type === type;
+        return product.id === updatingProduct.id && product.type === updatingProduct.type;
       });
       state.totalPrice -= state.products[removingIndex].price;
       state.products.splice(removingIndex, 1);
@@ -115,9 +116,9 @@ export const addProductToBasket = (product, type) => (dispatch, getState) => {
   }
 };
 
-export const changeCountOfProductInBasket = ({ product, count, type }) => (dispatch) => {
+export const changeCountOfProductInBasket = ({ product, count }) => (dispatch) => {
   try {
-    dispatch(updateProductCount({ product, count, type }));
+    dispatch(updateProductCount({ product, count }));
   } catch (err) {
     if (IS_DEV) {
       console.error(err);
@@ -125,9 +126,9 @@ export const changeCountOfProductInBasket = ({ product, count, type }) => (dispa
   }
 };
 
-export const removeProductFromBasket = ({ product, type }) => (dispatch) => {
+export const removeProductFromBasket = ({ product }) => (dispatch) => {
   try {
-    dispatch(removeProduct({ product, type }));
+    dispatch(removeProduct({ product }));
   } catch (err) {
     if (IS_DEV) {
       console.error(err);
