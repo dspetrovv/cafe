@@ -9,7 +9,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
-// TODO: link to mobile app
+
 root.render(
   <BrowserRouter>
     <Provider store={store}>

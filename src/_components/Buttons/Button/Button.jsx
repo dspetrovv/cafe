@@ -1,6 +1,6 @@
 import React from "react";
-import styles from '../../../css/button.module.scss';
-import Loader from "../../Loader/Loader";
+import styles from '@/css/button.module.scss';
+import Loader from "@/_components/Loader";
 
 const getClassNameFromProps = (cssClasses = '', white, outline, isDisabled) => {
   let className = styles.button;

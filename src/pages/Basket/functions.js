@@ -50,6 +50,5 @@ export const getPizzaKey = (pizza) => {
   const addedKey = added.map((element) => `${element.id}${element.selected}`).join('');
   const doughKey = dough.map((element) => `${element.id}${element.selected}`).join('');
   const diametersKey = diameters.map((element) => `${element.id}${element.selected}`).join('');
-  console.log(`${id}${type}${count}${removedKey}${addedKey}${doughKey}${diametersKey}`);
   return `${id}${type}${count}${removedKey}${addedKey}${doughKey}${diametersKey}`;
 };

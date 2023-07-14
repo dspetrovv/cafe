@@ -1,5 +1,5 @@
 import React, { createElement } from "react"
-import styles from '../../css/input.module.scss'
+import styles from '@/css/input.module.scss'
 
 const InputHoc = ({ Component, name, id, label = 'Label', initialValue, isError, Dropdown, Icon, ...otherProps }) => {
   const { required } = otherProps;

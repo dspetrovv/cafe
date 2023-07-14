@@ -2,7 +2,7 @@ import React, { lazy, Suspense, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from './catalog.module.scss';
 import CatalogSection from "./CatalogSection";
-import { getDessert, getDrinks, getPizza, getPizzaFilter, getSauce, getSnack, scrollingCatalogSelector } from "./catalogSlice";
+import { getDessert, getDrinks, getPizza, getPizzaFilter, getSauce, getSnack, scrollingCatalogSelector, scrollPage } from "./catalogSlice";
 import {
   PIZZA_SECTION,
   SAUCES_SECTION,
@@ -73,7 +73,8 @@ const CatalogPage = () => {
   useEffect(() => {
     const scrollingElement = document.getElementById(scrolling);
     scrollingElement?.scrollIntoView({ behavior: "smooth" });
-  }, [scrolling]);
+    return () => dispatch(scrollPage());
+  }, [scrolling, dispatch]);
 
   return (
     <>

@@ -14,10 +14,8 @@ const OrderPanel = ({
   toggleIsOpen,
   onChangeProductCount
 }) => {
-  console.log(products);
   const PanelBody = products.map((product) => {
     let key = `${product.type}${product.id}${product.count}`;
-    console.log(product.name, product.count);
     if (product.type === PIZZA_SECTION.id) {
       key = getPizzaKey(product);
     }

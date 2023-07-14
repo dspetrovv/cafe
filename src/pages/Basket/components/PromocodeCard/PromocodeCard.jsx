@@ -8,7 +8,6 @@ import styles from './promocode-card.module.scss';
 const PromocodeCard = ({ totalPrice }) => {
   const [promocode, setPromocode] = useState('');
   const onChange = (value) => {
-    console.log(value);
     setPromocode(value);
   };
 

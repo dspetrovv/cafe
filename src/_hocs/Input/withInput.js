@@ -20,7 +20,6 @@ const withInput = (Component) => {
     }, [isError, readOnly]);
 
     const blockClassName = useMemo(() => {
-      console.log(wrapperClassName);
       return getClassName(styles.input__block, wrapperClassName)}, [wrapperClassName]);
     const input = useRef();
     const [prevValue, setPrevValue] = useState('');
@@ -44,7 +43,6 @@ const withInput = (Component) => {
 
     const onChangeHandler = (event) => {
       const value = event.target.value;
-      console.log(value, prevValue, prevValue.length, value.length);
       onChange(value);
       if (required) {
         if (phone && value.length < 16) {

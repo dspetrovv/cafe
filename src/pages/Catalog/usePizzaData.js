@@ -21,7 +21,6 @@ export const usePizzaData = ({ dispatch }) => {
   };
 
   const onSelectPizza = (totalPrice) => {
-    console.log(totalPrice);
     const selectedPizza = { ...pizza[selectedPizzaIdx] };
     Object.defineProperty(selectedPizza, 'totalPrice', { value: totalPrice });
     dispatch(addProductToBasket(selectedPizza, PIZZA_SECTION.id));

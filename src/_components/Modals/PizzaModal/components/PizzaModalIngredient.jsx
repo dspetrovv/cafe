@@ -1,5 +1,5 @@
 import React from "react";
-import NoPhoto from '@/images/no photo.png';
+import NoPhoto from '@/images/logo-mini.png';
 import CheckboxButton from "@/_components/Buttons/CheckboxButton";
 
 const PizzaModalIngredient = ({styles, element, onChange, isOptional}) => {
@@ -22,7 +22,7 @@ const PizzaModalIngredient = ({styles, element, onChange, isOptional}) => {
   return (
     <div className={styles['product-modal__info-ingredient']}>
       <CheckboxButton outline initialChecked={selected} onChange={onChangeHandler}>
-        <img src={photo} alt="product_photo" />
+        <img src={NoPhoto} alt="product_photo" />
       </CheckboxButton>
       <span
         className={styles['product-modal__info-ingredient-name']}

@@ -1,6 +1,6 @@
 import React from "react";
 import Input from "../Input";
-import { ReactComponent as ArrowIcon } from '../../images/arrow.svg';
+import { ReactComponent as ArrowIcon } from '@/images/arrow.svg';
 import styles from './dropdown.module.scss';
 import useDropdown from "./useDropdown";
 

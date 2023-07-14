@@ -41,7 +41,6 @@ const MiniProductCard = ({
 
   const wrapperClassName = getClassName(`${card.card} ${styles['mini-product-card']}${short ? ` ${styles['mini-product-card_short']}` : ''}`, className);
   const onChangeCountHandler = (count) => {
-    console.log(count);
     onChangeCount({ count, product, type });
   };
 

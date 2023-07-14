@@ -45,7 +45,6 @@ const BasketSlice = createSlice({
         }
         return product.id === updatingProduct.id && product.type === updatingProduct.type;
       });
-      console.log(state.products[idx].name);
       if (state.products[idx].count > count) {
         state.totalPrice -= state.products[idx].price;
       } else {

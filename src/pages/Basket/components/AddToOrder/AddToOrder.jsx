@@ -4,7 +4,6 @@ import SnackCard from "@/_components/Cards/SnackCard";
 import styles from "../../basket.module.scss";
 
 const AddToOrder = ({ elements, onClick }) => {
-  console.log(elements);
   return (
     <>
       {elements.length && withSlider(SnackCard, {
