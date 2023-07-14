@@ -1,14 +1,16 @@
-import React, { useMemo } from "react";
+import React, { useMemo } from 'react';
 import Photo from '@/images/peperoni.png';
-import withModalWrapper from "@/_hocs/Modal/withModalWrapper";
-import Tabs from "@/_components/Tabs";
-import PizzaModalIngredients from "./components/PizzaModalIngredients";
-import PizzaModalTotal from "./components/PizzaModalTotal";
+import withModalWrapper from '@/_hocs/Modal/withModalWrapper';
+import Tabs from '@/_components/Tabs';
+import PizzaModalIngredients from './components/PizzaModalIngredients';
+import PizzaModalTotal from './components/PizzaModalTotal';
 import styles from './pizza-modal.module.scss';
 
 // С диаметром пиццы должна расти и стоимость дополнительных ингридиентов.
 // Каждую итерацию увеличиваем на 0.5 от цены.
-const setPriceByDiameter = (diameterIdx, price) => price * (diameterIdx % 2 && diameterIdx !== 0 ? diameterIdx + 0.5 : diameterIdx + 1);
+const setPriceByDiameter = (diameterIdx, price) =>
+  price *
+  (diameterIdx % 2 && diameterIdx !== 0 ? diameterIdx + 0.5 : diameterIdx + 1);
 
 const PizzaModal = ({
   pizza,
@@ -16,7 +18,7 @@ const PizzaModal = ({
   updateIngredients,
   updateDough,
   updateDiameter,
-  onSelectPizza
+  onSelectPizza,
 }) => {
   const {
     name,
@@ -25,7 +27,7 @@ const PizzaModal = ({
     ingredients,
     optionalIngredients,
     price,
-    photo
+    photo,
   } = pizza;
 
   let image = photo;
@@ -34,24 +36,39 @@ const PizzaModal = ({
     image = Photo;
   }
 
-  const selectedDiameterIdx = useMemo(() => diameters.findIndex((diameter) => diameter.selected), [diameters]);
+  const selectedDiameterIdx = useMemo(
+    () => diameters.findIndex((diameter) => diameter.selected),
+    [diameters],
+  );
 
-  const optionalIngredientsByDiameter = useMemo(() => 
-    optionalIngredients.map((optionalIngredient) => ({
-      ...optionalIngredient,
-      price: setPriceByDiameter(selectedDiameterIdx, optionalIngredient.price)
-  })), [optionalIngredients, selectedDiameterIdx]);
+  const optionalIngredientsByDiameter = useMemo(
+    () =>
+      optionalIngredients.map((optionalIngredient) => ({
+        ...optionalIngredient,
+        price: setPriceByDiameter(
+          selectedDiameterIdx,
+          optionalIngredient.price,
+        ),
+      })),
+    [optionalIngredients, selectedDiameterIdx],
+  );
 
   const totalPrice = useMemo(() => {
-    const additionalPrice = optionalIngredientsByDiameter.reduce((prev, optionalIngredient) => {
-      const sum = optionalIngredient.selected === true ? optionalIngredient.price : 0;
-      return prev + sum;
-    }, 0);
+    const additionalPrice = optionalIngredientsByDiameter.reduce(
+      (prev, optionalIngredient) => {
+        const sum =
+          optionalIngredient.selected === true ? optionalIngredient.price : 0;
+        return prev + sum;
+      },
+      0,
+    );
 
     return price[selectedDiameterIdx] + additionalPrice;
   }, [price, selectedDiameterIdx, optionalIngredientsByDiameter]);
 
-  const className = `${styles['product-modal']}${!isOpen ? ` ${styles['product-modal_hidden']}` : ''}`;
+  const className = `${styles['product-modal']}${
+    !isOpen ? ` ${styles['product-modal_hidden']}` : ''
+  }`;
 
   const onSelectPizzaHandler = () => {
     onSelectPizza(totalPrice);
@@ -63,7 +80,7 @@ const PizzaModal = ({
         <img src={image} alt="product_photo" />
       </div>
       <div className={styles['product-modal__info']}>
-        <h2>{ name }</h2>
+        <h2>{name}</h2>
         <div className={styles['product-modal__info-block']}>
           <PizzaModalIngredients
             ingredients={ingredients}

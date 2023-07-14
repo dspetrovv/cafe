@@ -1,13 +1,18 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { dessertSelector, drinkSelector, sauceSelector, snackSelector } from "./catalogSlice";
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import {
+  dessertSelector,
+  drinkSelector,
+  sauceSelector,
+  snackSelector,
+} from './catalogSlice';
 import {
   SAUCES_SECTION,
   SNACKS_SECTION,
   DESSERTS_SECTION,
-  DRINKS_SECTION
-} from "@/app/constants";
-import { addProductToBasket } from "../Basket/basketSlice";
+  DRINKS_SECTION,
+} from '@/app/constants';
+import { addProductToBasket } from '../Basket/basketSlice';
 
 export const useSimpleProductData = ({ dispatch }) => {
   const snacks = useSelector(snackSelector);
@@ -23,13 +28,13 @@ export const useSimpleProductData = ({ dispatch }) => {
         setSelectedSimpleProduct(snacks.find((snack) => snack.id === id));
         break;
       case SAUCES_SECTION.id:
-        setSelectedSimpleProduct(sauces.find((sauce) => sauce.id === id))
+        setSelectedSimpleProduct(sauces.find((sauce) => sauce.id === id));
         break;
       case DESSERTS_SECTION.id:
-        setSelectedSimpleProduct(desserts.find((dessert) => dessert.id === id))
+        setSelectedSimpleProduct(desserts.find((dessert) => dessert.id === id));
         break;
       case DRINKS_SECTION.id:
-        setSelectedSimpleProduct(drinks.find((drink) => drink.id === id))
+        setSelectedSimpleProduct(drinks.find((drink) => drink.id === id));
         break;
       default:
         break;
@@ -55,6 +60,6 @@ export const useSimpleProductData = ({ dispatch }) => {
     isOpenedSimpleProduct,
     onOpenSimpleProduct,
     onSelectSimpleProduct,
-    toggleSimpleProductModal
+    toggleSimpleProductModal,
   };
 };

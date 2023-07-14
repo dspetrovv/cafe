@@ -1,0 +1,24 @@
+@import '../Header/header.module.scss';
+
+.block {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  overflow: hidden;
+  background: white;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  h1 {
+    color: var(--base-color);
+    text-align: center;
+  }
+  h3 {
+    margin-top: 10px;
+  }
+  a {
+    @include list;
+  }
+}

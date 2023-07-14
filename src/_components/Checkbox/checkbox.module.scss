@@ -1,11 +1,11 @@
 .checkbox {
-  &:checked +label::before {
+  &:checked + label::before {
     border-color: var(--base-color);
     background-color: var(--base-color);
     background-image: url('../../images/checked.svg');
     background-size: 85% 100%;
   }
-  &:disabled +label::before {
+  &:disabled + label::before {
     background-color: var(--base-color-disabled);
   }
 }

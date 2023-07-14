@@ -17,7 +17,7 @@ $darkSuccessColor: #27d600;
   --max-width: 1536px;
   --header-height: 65px;
   --footer-height: 180px;
-  
+
   --background-color: #f8f8f8;
   --background-color-second: #{$baseBackgroundColor};
   --background-color-third: #{$readonlyColor};
@@ -62,3 +62,10 @@ body {
   }
 }
 
+*::-webkit-scrollbar {
+  width: 7px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--buttons-outline-border-disabled);
+}

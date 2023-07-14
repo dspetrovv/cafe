@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
-import PriceButton from "@/_components/Buttons/PriceButton";
-import { AboutContext } from "../../AboutButton";
+import React, { useContext } from 'react';
+import PriceButton from '@/_components/Buttons/PriceButton';
+import { AboutContext } from '../../AboutButton';
 
 const PriceButtonBlock = ({ showAlert }) => {
   const { styles } = useContext(AboutContext);

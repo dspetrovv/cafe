@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
-import Checkbox from "@/_components/Checkbox/Checkbox";
-import { AboutContext } from "../../AboutButton";
+import React, { useContext } from 'react';
+import Checkbox from '@/_components/Checkbox/Checkbox';
+import { AboutContext } from '../../AboutButton';
 
 const CheckboxBlock = ({ showAlert }) => {
   const { styles } = useContext(AboutContext);
@@ -17,9 +17,7 @@ const CheckboxBlock = ({ showAlert }) => {
         </thead>
         <tbody>
           <tr>
-            <td colSpan={2}>
-              Привычный нам HTML-Checkbox
-            </td>
+            <td colSpan={2}>Привычный нам HTML-Checkbox</td>
           </tr>
           {/* initialChecked */}
           <tr>
@@ -62,20 +60,28 @@ const CheckboxBlock = ({ showAlert }) => {
             <td>
               Текст, который отображает чекбокс:
               <br />
-              <Checkbox initialChecked id="checkbox-0" name="non-titled-checkbox" />
+              <Checkbox
+                initialChecked
+                id="checkbox-0"
+                name="non-titled-checkbox"
+              />
               <br />
               <strong>default:</strong> title
             </td>
           </tr>
           {/* onChange */}
           <tr>
-            <td>
-            onChange
-            </td>
+            <td>onChange</td>
             <td>
               Действие при изменении:
               <br />
-              <Checkbox initialChecked id="checkbox-1" name="secondary-checkboxes" title="Нажми меня" onChange={showAlert} />
+              <Checkbox
+                initialChecked
+                id="checkbox-1"
+                name="secondary-checkboxes"
+                title="Нажми меня"
+                onChange={showAlert}
+              />
               <br />
               <strong>default:</strong> Никаких действий не назначено
             </td>

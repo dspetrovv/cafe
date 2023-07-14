@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import styles from './radio.module.scss';
 
 const Radio = ({ id, name, checked, title = 'title', value, onChange }) => {
@@ -18,8 +18,9 @@ const Radio = ({ id, name, checked, title = 'title', value, onChange }) => {
         key={checked}
         onChange={onChangeHandler}
       />
-      <label htmlFor={id}
-        onClick={onChangeHandler}>{title}</label>
+      <label htmlFor={id} onClick={onChangeHandler}>
+        {title}
+      </label>
     </>
   );
 };

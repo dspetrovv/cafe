@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import styles from './counter-button.module.scss';
 
 const CounterButton = ({ initialCount = 1, onChange, disabled = false }) => {
@@ -16,9 +16,13 @@ const CounterButton = ({ initialCount = 1, onChange, disabled = false }) => {
 
   return (
     <div className={styles.counter}>
-      <button onClick={onDecrement} disabled={disabled}>‒</button>
+      <button onClick={onDecrement} disabled={disabled}>
+        ‒
+      </button>
       <span>{count}</span>
-      <button onClick={onIncrement} disabled={disabled}>+</button>
+      <button onClick={onIncrement} disabled={disabled}>
+        +
+      </button>
     </div>
   );
 };

@@ -1,5 +1,5 @@
-import React, { useMemo, useState } from "react";
-import Button from "../Button";
+import React, { useMemo, useState } from 'react';
+import Button from '../Button';
 import styles from './checkbox-button.module.scss';
 
 const CheckboxButton = ({
@@ -7,12 +7,14 @@ const CheckboxButton = ({
   id,
   onChange,
   children,
-  outline = false
+  outline = false,
 }) => {
   const [checked, setChecked] = useState(initialChecked);
   const [isOutline, setIsOutline] = useState(outline && initialChecked);
 
-  const className = outline ? [styles['checkbox-button'], styles['checkbox-button_outline']] : styles['checkbox-button'];
+  const className = outline
+    ? [styles['checkbox-button'], styles['checkbox-button_outline']]
+    : styles['checkbox-button'];
 
   const white = useMemo(() => {
     if (outline) {
@@ -20,7 +22,7 @@ const CheckboxButton = ({
     }
     return !checked;
   }, [checked, outline]);
-  
+
   const onChangeHandler = () => {
     if (outline) {
       setIsOutline((prevState) => !prevState);
@@ -30,7 +32,14 @@ const CheckboxButton = ({
   };
 
   return (
-    <Button white={white} className={className} onClick={onChangeHandler} outline={isOutline}>{ children }</Button>
+    <Button
+      white={white}
+      className={className}
+      onClick={onChangeHandler}
+      outline={isOutline}
+    >
+      {children}
+    </Button>
   );
 };
 

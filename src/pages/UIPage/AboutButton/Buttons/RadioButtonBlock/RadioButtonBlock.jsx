@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
-import Radio from "@/_components/Radio/Radio";
-import { AboutContext } from "../../AboutButton";
+import React, { useContext, useState } from 'react';
+import Radio from '@/_components/Radio/Radio';
+import { AboutContext } from '../../AboutButton';
 
 const RadioButtonBlock = () => {
   const { styles } = useContext(AboutContext);
@@ -31,8 +31,8 @@ const RadioButtonBlock = () => {
               (обязательно)
             </td>
             <td>
-              Параметр, который необходимо отправлять от родителя <strong>(true/false)</strong>.
-              Переключение происходит там.
+              Параметр, который необходимо отправлять от родителя{' '}
+              <strong>(true/false)</strong>. Переключение происходит там.
               <br />
               <strong>default:</strong> Пусто
             </td>
@@ -71,8 +71,8 @@ const RadioButtonBlock = () => {
               (обязательно)
             </td>
             <td>
-              Параметр, который привязывает значение к кнопке.
-              С помощью него делаем переключение <strong>checked</strong> через сравнение.
+              Параметр, который привязывает значение к кнопке. С помощью него
+              делаем переключение <strong>checked</strong> через сравнение.
               <br />
               <strong>default:</strong> Пусто
             </td>
@@ -90,15 +90,27 @@ const RadioButtonBlock = () => {
           </tr>
           {/* onChange */}
           <tr>
-            <td>
-            onChange
-            </td>
+            <td>onChange</td>
             <td>
               Действие при изменении:
               <br />
-              <Radio checked={isFirst} id="radio-1" name="action-radio-buttons" title="Первый" value="first" onChange={switchRadioAction} />
+              <Radio
+                checked={isFirst}
+                id="radio-1"
+                name="action-radio-buttons"
+                title="Первый"
+                value="first"
+                onChange={switchRadioAction}
+              />
               <br />
-              <Radio checked={isSecond} id="radio-2" name="action-radio-buttons" title="Второй" value="second" onChange={switchRadioAction} />
+              <Radio
+                checked={isSecond}
+                id="radio-2"
+                name="action-radio-buttons"
+                title="Второй"
+                value="second"
+                onChange={switchRadioAction}
+              />
               <br />
               <strong>default:</strong> Никаких действий не назначено
             </td>

@@ -9,11 +9,23 @@ import Change from './components/Change';
 import Comment from './components/Comment';
 import Button from '@/_components/Buttons/Button';
 import styles from './basket.module.scss';
-import orderStyle from "@/_components/Panels/OrderPanel/order-panel.module.scss";
+import orderStyle from '@/_components/Panels/OrderPanel/order-panel.module.scss';
 import { getClassName } from '@/functions/classNameFunctions';
 import { useDispatch, useSelector } from 'react-redux';
-import { addProductToBasket, basketProductsSelector, changeCountOfProductInBasket, makeOrder, removeProductFromBasket, totalPriceSelector } from './basketSlice';
-import { getSauce, getSnack, sauceSelector, snackSelector } from '../Catalog/catalogSlice';
+import {
+  addProductToBasket,
+  basketProductsSelector,
+  changeCountOfProductInBasket,
+  makeOrder,
+  removeProductFromBasket,
+  totalPriceSelector,
+} from './basketSlice';
+import {
+  getSauce,
+  getSnack,
+  sauceSelector,
+  snackSelector,
+} from '../Catalog/catalogSlice';
 import { getPizzaKey } from './functions';
 import { PIZZA_SECTION } from '@/app/constants';
 import { useNavigate } from 'react-router-dom';
@@ -29,7 +41,7 @@ const Basket = () => {
   useEffect(() => {
     dispatch(getSnack());
     dispatch(getSauce());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const products = useSelector(basketProductsSelector);
@@ -37,23 +49,36 @@ const Basket = () => {
   const sauce = useSelector(sauceSelector);
 
   const snackElements = useMemo(() => {
-    return snack.filter((sn) => !products.find((product) => product.type === 'snack' && product.id === sn.id));
+    return snack.filter(
+      (sn) =>
+        !products.find(
+          (product) => product.type === 'snack' && product.id === sn.id,
+        ),
+    );
   }, [snack, products]);
   const sauceElements = useMemo(() => {
-    return sauce.filter((sc) => !products.find((product) => product.type === 'sauce' && product.id === sc.id));
+    return sauce.filter(
+      (sc) =>
+        !products.find(
+          (product) => product.type === 'sauce' && product.id === sc.id,
+        ),
+    );
   }, [sauce, products]);
 
   const onSelect = (product, type) => {
     dispatch(addProductToBasket(product, type));
   };
 
-  const onChangeProductCount = useCallback(({ count, product }) => {
-    if (count === 0) {
-      dispatch(removeProductFromBasket({ product }));
-      return;
-    }
-    dispatch(changeCountOfProductInBasket({ product, count }));
-  }, [dispatch]);
+  const onChangeProductCount = useCallback(
+    ({ count, product }) => {
+      if (count === 0) {
+        dispatch(removeProductFromBasket({ product }));
+        return;
+      }
+      dispatch(changeCountOfProductInBasket({ product, count }));
+    },
+    [dispatch],
+  );
 
   const navigate = useNavigate();
 
@@ -64,42 +89,42 @@ const Basket = () => {
 
   if (!products.length) {
     return (
-      <h1 className={styles.basket__empty}>
-        { "Ваша корзина пока пуста :(" }
-      </h1>
+      <h1 className={styles.basket__empty}>{'Ваша корзина пока пуста :('}</h1>
     );
   }
   return (
     <>
       <section className={styles.basket}>
         <h1>Ваш заказ</h1>
-        { products.map((product) => {
+        {products.map((product) => {
           let key = `${product.type}${product.id}${product.count}`;
           if (product.type === PIZZA_SECTION.id) {
             key = getPizzaKey(product);
           }
-          return <MiniProductCard
-            key={key}
-            product={product}
-            className={styles.basket__card}
-            onChangeCount={onChangeProductCount}
-          />
-        }) }
+          return (
+            <MiniProductCard
+              key={key}
+              product={product}
+              className={styles.basket__card}
+              onChangeCount={onChangeProductCount}
+            />
+          );
+        })}
         <PromocodeCard totalPrice={totalPrice} />
       </section>
       <section className={sliderClassName}>
-        { !!snackElements.length &&
+        {!!snackElements.length && (
           <>
             <h3>Добавить к заказу?</h3>
             <AddToOrder elements={snackElements} onClick={onSelect} />
           </>
-        }
-        { !!sauceElements.length &&
+        )}
+        {!!sauceElements.length && (
           <>
             <h3>Соусы</h3>
             <AddToOrder elements={sauceElements} onClick={onSelect} />
           </>
-        }
+        )}
       </section>
       <form onSubmit={submitOrder}>
         <section className={styles.basket}>
@@ -111,7 +136,9 @@ const Basket = () => {
           <Delivery />
         </section>
         <section className={styles.basket}>
-          <h3 className={styles.basket__title_medium}>Оплата (при получении)</h3>
+          <h3 className={styles.basket__title_medium}>
+            Оплата (при получении)
+          </h3>
           <Payment />
         </section>
         <section className={styles.basket}>
@@ -123,7 +150,9 @@ const Basket = () => {
           <Comment />
         </section>
         <section className={totalBlockClassName}>
-          <h3 className={orderStyle['order__footer-total']}>Итого: { totalPrice } ₽</h3>
+          <h3 className={orderStyle['order__footer-total']}>
+            Итого: {totalPrice} ₽
+          </h3>
           <Button type="submit">Оформить заказ</Button>
         </section>
       </form>

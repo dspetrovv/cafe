@@ -1,8 +1,8 @@
-import React from "react";
-import Textarea from "@/_components/Textarea";
+import React from 'react';
+import Textarea from '@/_components/Textarea';
 import styles from './comment.module.scss';
-import { useDispatch } from "react-redux";
-import { addComment } from "../../basketSlice";
+import { useDispatch } from 'react-redux';
+import { addComment } from '../../basketSlice';
 
 const Comment = () => {
   const dispatch = useDispatch();

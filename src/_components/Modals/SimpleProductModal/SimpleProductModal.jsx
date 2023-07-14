@@ -1,19 +1,15 @@
-import React from "react";
+import React from 'react';
 import Pizza from '@/images/peperoni.png';
 import Snack from '@/images/snack.png';
 import NoPhoto from '@/images/no photo.png';
 import Drink from '@/images/drink.png';
-import Button from "@/_components/Buttons/Button";
-import { getClassName } from "@/functions/classNameFunctions";
-import withModalWrapper from "@/_hocs/Modal/withModalWrapper";
+import Button from '@/_components/Buttons/Button';
+import { getClassName } from '@/functions/classNameFunctions';
+import withModalWrapper from '@/_hocs/Modal/withModalWrapper';
 import productStyles from '../PizzaModal/pizza-modal.module.scss';
-import { PIZZA_SECTION, SNACKS_SECTION, DRINKS_SECTION } from "@/app/constants";
+import { PIZZA_SECTION, SNACKS_SECTION, DRINKS_SECTION } from '@/app/constants';
 
-const SimpleProductModal = ({
-  simpleProduct,
-  isOpen,
-  onSelectProduct,
-}) => {
+const SimpleProductModal = ({ simpleProduct, isOpen, onSelectProduct }) => {
   const {
     name,
     portion,
@@ -21,7 +17,7 @@ const SimpleProductModal = ({
     description = '',
     ingredients = [],
     type,
-    price
+    price,
   } = simpleProduct;
 
   let image = photo;
@@ -38,11 +34,25 @@ const SimpleProductModal = ({
     }
   }
 
-  const className = `${productStyles['product-modal']}${!isOpen ? ` ${productStyles['product-modal_hidden']}` : ''}`;
-  const containerClassName = getClassName(className, productStyles['product-modal_simple']);
-  const photoClassName = getClassName(productStyles['product-modal__photo'], productStyles['product-modal__photo_simple']);
-  const infoClassName = getClassName(productStyles['product-modal__info'], productStyles['product-modal__info_simple']);
-  const totalClassName = getClassName(productStyles['product-modal__info-total'], productStyles['product-modal__info-total_simple']);
+  const className = `${productStyles['product-modal']}${
+    !isOpen ? ` ${productStyles['product-modal_hidden']}` : ''
+  }`;
+  const containerClassName = getClassName(
+    className,
+    productStyles['product-modal_simple'],
+  );
+  const photoClassName = getClassName(
+    productStyles['product-modal__photo'],
+    productStyles['product-modal__photo_simple'],
+  );
+  const infoClassName = getClassName(
+    productStyles['product-modal__info'],
+    productStyles['product-modal__info_simple'],
+  );
+  const totalClassName = getClassName(
+    productStyles['product-modal__info-total'],
+    productStyles['product-modal__info-total_simple'],
+  );
 
   return (
     <div className={containerClassName} onClick={(e) => e.stopPropagation()}>
@@ -50,28 +60,25 @@ const SimpleProductModal = ({
         <img src={image} alt="product_photo" />
       </div>
       <div className={infoClassName}>
-        <h2>{ name }</h2>
+        <h2>{name}</h2>
         <span>
-          { description }
-          { !!ingredients.length && (
-          <>
-            <strong>Ингредиенты:&nbsp;</strong>
-            {
-              ingredients.map((ingredient, index) => (
+          {description}
+          {!!ingredients.length && (
+            <>
+              <strong>Ингредиенты:&nbsp;</strong>
+              {ingredients.map((ingredient, index) => (
                 <>
-                  <span>{ingredient}</span>{index + 1 !== ingredients.length ? ', ': '.'}
+                  <span>{ingredient}</span>
+                  {index + 1 !== ingredients.length ? ', ' : '.'}
                 </>
-              ))
-            }
-          </>)
-        }
+              ))}
+            </>
+          )}
         </span>
         <div className={totalClassName}>
-          <h2>Цена: { price } ₽</h2>
-          { portion && <span>{ portion }гр</span> }
-          <Button onClick={onSelectProduct}>
-            Добавить
-          </Button>
+          <h2>Цена: {price} ₽</h2>
+          {portion && <span>{portion}гр</span>}
+          <Button onClick={onSelectProduct}>Добавить</Button>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
-import CounterButton from "@/_components/Buttons/CounterButton";
-import { AboutContext } from "../../AboutButton";
+import React, { useContext } from 'react';
+import CounterButton from '@/_components/Buttons/CounterButton';
+import { AboutContext } from '../../AboutButton';
 
 const CounterButtonBlock = () => {
   const { styles } = useContext(AboutContext);
@@ -30,7 +30,8 @@ const CounterButtonBlock = () => {
           <tr>
             <td>disabled</td>
             <td>
-              Задизейблить кнопку. Меняется стиль и отключаются любые действия: <CounterButton disabled price={100} />
+              Задизейблить кнопку. Меняется стиль и отключаются любые действия:{' '}
+              <CounterButton disabled price={100} />
               <br />
               <strong>default:</strong> false
             </td>

@@ -1,8 +1,8 @@
-import React from "react";
-import Radio from "@/_components/Radio";
+import React from 'react';
+import Radio from '@/_components/Radio';
 import styles from './payment.module.scss';
-import { useDispatch, useSelector } from "react-redux";
-import { paymentSelector, updatePaymentData } from "../../basketSlice";
+import { useDispatch, useSelector } from 'react-redux';
+import { paymentSelector, updatePaymentData } from '../../basketSlice';
 
 const Payment = () => {
   const dispatch = useDispatch();
@@ -17,8 +17,22 @@ const Payment = () => {
 
   return (
     <div className={styles.payment}>
-      <Radio id="cash" title="Наличными" checked={isCash} name="payment" value="cash" onChange={onChange} />
-      <Radio id="card" title="Картой" checked={isCard} name="payment" value="card" onChange={onChange} />
+      <Radio
+        id="cash"
+        title="Наличными"
+        checked={isCash}
+        name="payment"
+        value="cash"
+        onChange={onChange}
+      />
+      <Radio
+        id="card"
+        title="Картой"
+        checked={isCard}
+        name="payment"
+        value="card"
+        onChange={onChange}
+      />
     </div>
   );
 };

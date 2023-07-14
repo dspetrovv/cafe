@@ -1,20 +1,15 @@
-import React, { Fragment } from "react";
+import React, { Fragment } from 'react';
 import Pizza from '@/images/peperoni.png';
 import Snack from '@/images/snack.png';
 import NoPhoto from '@/images/no photo.png';
 import Drink from '@/images/drink.png';
 import card from '@/css/card.module.scss';
 import styles from './mini-product-card.module.scss';
-import CounterButton from "@/_components/Buttons/CounterButton";
-import { getClassName } from "@/functions/classNameFunctions";
-import { PIZZA_SECTION, SNACKS_SECTION, DRINKS_SECTION } from "@/app/constants";
+import CounterButton from '@/_components/Buttons/CounterButton';
+import { getClassName } from '@/functions/classNameFunctions';
+import { PIZZA_SECTION, SNACKS_SECTION, DRINKS_SECTION } from '@/app/constants';
 
-const MiniProductCard = ({
-  short,
-  className,
-  product,
-  onChangeCount,
-}) => {
+const MiniProductCard = ({ short, className, product, onChangeCount }) => {
   const {
     name = '',
     info,
@@ -23,7 +18,7 @@ const MiniProductCard = ({
     type,
     photo,
     removed = [],
-    added = []
+    added = [],
   } = product;
   let image = photo;
 
@@ -39,9 +34,13 @@ const MiniProductCard = ({
     }
   }
 
-  const wrapperClassName = getClassName(`${card.card} ${styles['mini-product-card']}${short ? ` ${styles['mini-product-card_short']}` : ''}`, className);
+  const wrapperClassName = getClassName(
+    `${card.card} ${styles['mini-product-card']}${
+      short ? ` ${styles['mini-product-card_short']}` : ''
+    }`,
+    className,
+  );
   const onChangeCountHandler = (count) => {
-    console.log(count);
     onChangeCount({ count, product, type });
   };
 
@@ -52,28 +51,34 @@ const MiniProductCard = ({
       </div>
       <div className={styles['mini-product-card__info']}>
         <div className={styles['mini-product-card__info-main']}>
-          <h3>{ name }</h3>
-          { info && <span>{ info }</span> }
-          { !!removed.length &&
+          <h3>{name}</h3>
+          {info && <span>{info}</span>}
+          {!!removed.length && (
             <div className={styles['mini-product-card__info-main__removed']}>
-              Убрано: {removed.map((ingredient, index) => (
-              <Fragment key={ingredient.id}>
-                <span>-{ingredient.name}</span>{index + 1 !== removed.length ? ', ': ''}
-              </Fragment>))}
+              Убрано:{' '}
+              {removed.map((ingredient, index) => (
+                <Fragment key={ingredient.id}>
+                  <span>-{ingredient.name}</span>
+                  {index + 1 !== removed.length ? ', ' : ''}
+                </Fragment>
+              ))}
             </div>
-          }
-          { !!added.length &&
+          )}
+          {!!added.length && (
             <div className={styles['mini-product-card__info-main__added']}>
-              Добавлено: {added.map((ingredient, index) => (
-              <Fragment key={ingredient.id}>
-                <span>+{ingredient.name}</span>{index + 1 !== added.length ? ', ': ''}
-              </Fragment>))}
+              Добавлено:{' '}
+              {added.map((ingredient, index) => (
+                <Fragment key={ingredient.id}>
+                  <span>+{ingredient.name}</span>
+                  {index + 1 !== added.length ? ', ' : ''}
+                </Fragment>
+              ))}
             </div>
-          }
+          )}
         </div>
         <div className={styles['mini-product-card__info-price']}>
           <CounterButton initialCount={count} onChange={onChangeCountHandler} />
-          <span>{ price } ₽</span>
+          <span>{price} ₽</span>
         </div>
       </div>
     </div>

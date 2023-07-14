@@ -1,11 +1,11 @@
-import React from "react";
-import Radio from "@/_components/Radio";
-import Input from "@/_components/Input";
+import React from 'react';
+import Radio from '@/_components/Radio';
+import Input from '@/_components/Input';
 import styles from './change.module.scss';
-import { useDispatch, useSelector } from "react-redux";
-import { paymentSelector, updatePaymentData } from "../../basketSlice";
+import { useDispatch, useSelector } from 'react-redux';
+import { paymentSelector, updatePaymentData } from '../../basketSlice';
 
-const Icon = <span className={styles.change__currency}>₽</span>
+const Icon = <span className={styles.change__currency}>₽</span>;
 
 const Change = ({ totalPrice }) => {
   const dispatch = useDispatch();
@@ -23,16 +23,31 @@ const Change = ({ totalPrice }) => {
 
   return (
     <div className={styles.change}>
-      <Radio id="yes" title="Без сдачи" checked={withoutChange} name="change" value="no" onChange={onChange} />
-      <Radio id="no" title="Сдача с" checked={withChange} name="change" value="yes" onChange={onChange} />
-      {withChange &&
-      <Input
-        type="number"
-        Icon={Icon}
-        placeholder={totalPrice}
-        min={totalPrice}
-        onChange={onSetChange}
-      />}
+      <Radio
+        id="yes"
+        title="Без сдачи"
+        checked={withoutChange}
+        name="change"
+        value="no"
+        onChange={onChange}
+      />
+      <Radio
+        id="no"
+        title="Сдача с"
+        checked={withChange}
+        name="change"
+        value="yes"
+        onChange={onChange}
+      />
+      {withChange && (
+        <Input
+          type="number"
+          Icon={Icon}
+          placeholder={totalPrice}
+          min={totalPrice}
+          onChange={onSetChange}
+        />
+      )}
     </div>
   );
 };

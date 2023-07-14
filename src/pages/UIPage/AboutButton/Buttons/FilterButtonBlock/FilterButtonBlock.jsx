@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
-import FilterButton from "@/_components/Buttons/FilterButton";
-import { AboutContext } from "../../AboutButton";
+import React, { useContext } from 'react';
+import FilterButton from '@/_components/Buttons/FilterButton';
+import { AboutContext } from '../../AboutButton';
 
 const FilterButtonBlock = ({ showAlert }) => {
   const { styles } = useContext(AboutContext);
@@ -30,7 +30,8 @@ const FilterButtonBlock = ({ showAlert }) => {
           <tr>
             <td>onClick</td>
             <td>
-              Действие на нажатие кнопки. Использовать только для открытия панели фильтров.
+              Действие на нажатие кнопки. Использовать только для открытия
+              панели фильтров.
               <br />
               <FilterButton onClick={showAlert} />
               <strong>default:</strong> Никаких действий не назначено

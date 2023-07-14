@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
-import CheckboxButton from "@/_components/Buttons/CheckboxButton";
-import { AboutContext } from "../../AboutButton";
+import React, { useContext } from 'react';
+import CheckboxButton from '@/_components/Buttons/CheckboxButton';
+import { AboutContext } from '../../AboutButton';
 
 const CheckboxButtonBlock = ({ showAlert }) => {
   const { styles } = useContext(AboutContext);
@@ -16,7 +16,7 @@ const CheckboxButtonBlock = ({ showAlert }) => {
           </tr>
         </thead>
         <tbody>
-        <tr>
+          <tr>
             <td colSpan={2}>
               Необходимо учитывать неизменяемый параметр кнопки
               <br />
@@ -47,8 +47,15 @@ const CheckboxButtonBlock = ({ showAlert }) => {
             <td>
               Выбрана ли изначально. Принимает <strong>true/false</strong>:
               <p>
-                <CheckboxButton className={styles['ui__about-component']}>true</CheckboxButton>
-                <CheckboxButton initialChecked={false} className={styles['ui__about-component']}>false</CheckboxButton>
+                <CheckboxButton className={styles['ui__about-component']}>
+                  true
+                </CheckboxButton>
+                <CheckboxButton
+                  initialChecked={false}
+                  className={styles['ui__about-component']}
+                >
+                  false
+                </CheckboxButton>
               </p>
               <br />
               <strong>default:</strong> true
@@ -60,7 +67,12 @@ const CheckboxButtonBlock = ({ showAlert }) => {
             <td>
               Действие на нажатие кнопки:
               <br />
-              <CheckboxButton className={styles['ui__about-info__button_small']} onChange={showAlert}>Нажми меня</CheckboxButton>
+              <CheckboxButton
+                className={styles['ui__about-info__button_small']}
+                onChange={showAlert}
+              >
+                Нажми меня
+              </CheckboxButton>
               <strong>default:</strong> Никаких действий не назначено
             </td>
           </tr>

@@ -1,8 +1,13 @@
-import { useCallback, useState } from "react";
-import { useSelector } from "react-redux";
-import { pizzaSelector, updatePizzaDiameters, updatePizzaDough, updatePizzaIngredient } from "./catalogSlice";
-import { addProductToBasket } from "../Basket/basketSlice";
-import { PIZZA_SECTION } from "@/app/constants";
+import { useCallback, useState } from 'react';
+import { useSelector } from 'react-redux';
+import {
+  pizzaSelector,
+  updatePizzaDiameters,
+  updatePizzaDough,
+  updatePizzaIngredient,
+} from './catalogSlice';
+import { addProductToBasket } from '../Basket/basketSlice';
+import { PIZZA_SECTION } from '@/app/constants';
 
 export const usePizzaData = ({ dispatch }) => {
   const pizza = useSelector(pizzaSelector);
@@ -10,7 +15,13 @@ export const usePizzaData = ({ dispatch }) => {
   const [isOpenedPizza, setIsOpenedPizza] = useState(false);
 
   const updateIngredients = (ingredientId, isOptional) => {
-    dispatch(updatePizzaIngredient({ pizzaIdx: selectedPizzaIdx, ingredientId, isOptional }));
+    dispatch(
+      updatePizzaIngredient({
+        pizzaIdx: selectedPizzaIdx,
+        ingredientId,
+        isOptional,
+      }),
+    );
   };
 
   const onOpenPizza = ({ id }) => {
@@ -21,24 +32,30 @@ export const usePizzaData = ({ dispatch }) => {
   };
 
   const onSelectPizza = (totalPrice) => {
-    console.log(totalPrice);
     const selectedPizza = { ...pizza[selectedPizzaIdx] };
     Object.defineProperty(selectedPizza, 'totalPrice', { value: totalPrice });
     dispatch(addProductToBasket(selectedPizza, PIZZA_SECTION.id));
     setIsOpenedPizza(false);
   };
-  
+
   const togglePizzaModal = () => {
     setIsOpenedPizza((prevState) => !prevState);
   };
 
-  const updateDough = useCallback((doughId) => {
-    dispatch(updatePizzaDough({ pizzaIdx: selectedPizzaIdx, doughId }));
-  }, [dispatch, selectedPizzaIdx]);
-  const updateDiameter = useCallback((diameterId) => {
-    dispatch(updatePizzaDiameters({ pizzaIdx: selectedPizzaIdx, diameterId }));
-  }, [dispatch, selectedPizzaIdx]);
-
+  const updateDough = useCallback(
+    (doughId) => {
+      dispatch(updatePizzaDough({ pizzaIdx: selectedPizzaIdx, doughId }));
+    },
+    [dispatch, selectedPizzaIdx],
+  );
+  const updateDiameter = useCallback(
+    (diameterId) => {
+      dispatch(
+        updatePizzaDiameters({ pizzaIdx: selectedPizzaIdx, diameterId }),
+      );
+    },
+    [dispatch, selectedPizzaIdx],
+  );
 
   return {
     pizza,
@@ -49,6 +66,6 @@ export const usePizzaData = ({ dispatch }) => {
     onSelectPizza,
     togglePizzaModal,
     updateDough,
-    updateDiameter
+    updateDiameter,
   };
 };
