@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState } from 'react';
 
 const useDropdown = ({ list, styles }) => {
   const [dropdownClassName, setDropdownClassName] = useState(styles.dropdown);
@@ -16,11 +16,13 @@ const useDropdown = ({ list, styles }) => {
 
   const toggleOpen = () => {
     setIsOpen((prevState) => !prevState);
-    setDropdownClassName(`${styles.dropdown}${!isOpen ? ` ${styles.dropdown_open}` : ''}`);
+    setDropdownClassName(
+      `${styles.dropdown}${!isOpen ? ` ${styles.dropdown_open}` : ''}`,
+    );
     if (!isOpen) {
       window.addEventListener('mousedown', closeDropdown);
     }
-  }
+  };
 
   const changeValue = (id) => {
     setSelected(list.find((element) => element.id === id));

@@ -1,10 +1,10 @@
-import { combineReducers } from "@reduxjs/toolkit";
-import { catalogStore } from "@/pages/Catalog/catalogSlice";
-import { basketStore } from "@/pages/Basket/basketSlice";
+import { combineReducers } from '@reduxjs/toolkit';
+import { catalogStore } from '@/pages/Catalog/catalogSlice';
+import { basketStore } from '@/pages/Basket/basketSlice';
 
 const reducers = {
   catalogStore,
-  basketStore
+  basketStore,
 };
 const rootReducer = combineReducers(reducers);
 

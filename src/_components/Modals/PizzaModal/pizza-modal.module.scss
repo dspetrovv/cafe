@@ -33,7 +33,8 @@
     display: flex;
     flex-direction: column;
     width: 50%;
-    h2, h3 {
+    h2,
+    h3 {
       margin: 0 0 5px 0;
     }
     &-block {
@@ -48,7 +49,8 @@
         width: 80px;
         height: auto;
       }
-      img, svg {
+      img,
+      svg {
         width: -webkit-fill-available;
         height: auto;
       }

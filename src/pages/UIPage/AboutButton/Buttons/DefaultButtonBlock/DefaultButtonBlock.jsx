@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
-import Button from "@/_components/Buttons/Button";
-import { AboutContext } from "../../AboutButton";
+import React, { useContext } from 'react';
+import Button from '@/_components/Buttons/Button';
+import { AboutContext } from '../../AboutButton';
 
 const DefaultButtonBlock = ({ showAlert }) => {
   const { styles } = useContext(AboutContext);
@@ -20,7 +20,8 @@ const DefaultButtonBlock = ({ showAlert }) => {
           <tr>
             <td>children</td>
             <td>
-              Дефолтный реактовский children. Может быть JSX-элементом, может быть текстом.
+              Дефолтный реактовский children. Может быть JSX-элементом, может
+              быть текстом.
               <br />
               <strong>default:</strong> Пусто
             </td>
@@ -29,7 +30,13 @@ const DefaultButtonBlock = ({ showAlert }) => {
           <tr>
             <td>outline</td>
             <td>
-              Меняет стиль кнопки на <Button outline className={styles['ui__about-info__button_small']}>Outline</Button>
+              Меняет стиль кнопки на{' '}
+              <Button
+                outline
+                className={styles['ui__about-info__button_small']}
+              >
+                Outline
+              </Button>
               <br />
               <strong>default:</strong> false
             </td>
@@ -38,7 +45,10 @@ const DefaultButtonBlock = ({ showAlert }) => {
           <tr>
             <td>white</td>
             <td>
-              Меняет стиль кнопки на <Button white className={styles['ui__about-info__button_small']}>White</Button>
+              Меняет стиль кнопки на{' '}
+              <Button white className={styles['ui__about-info__button_small']}>
+                White
+              </Button>
               <br />
               <strong>default:</strong> false
             </td>
@@ -57,7 +67,11 @@ const DefaultButtonBlock = ({ showAlert }) => {
             <td>isLoading</td>
             <td>
               <div className={styles['ui__about-info__button-loader-block']}>
-                Значение для показа индикатора загрузки: <Button isLoading className={styles['ui__about-info__button_small']} />
+                Значение для показа индикатора загрузки:{' '}
+                <Button
+                  isLoading
+                  className={styles['ui__about-info__button_small']}
+                />
               </div>
               <strong>default:</strong> false
             </td>
@@ -66,7 +80,13 @@ const DefaultButtonBlock = ({ showAlert }) => {
           <tr>
             <td>disabled</td>
             <td>
-              Задизейблить кнопку. Меняется стиль и отключаются любые действия: <Button disabled className={styles['ui__about-info__button_small']}>Disabled</Button>
+              Задизейблить кнопку. Меняется стиль и отключаются любые действия:{' '}
+              <Button
+                disabled
+                className={styles['ui__about-info__button_small']}
+              >
+                Disabled
+              </Button>
               <br />
               <strong>default:</strong> false
             </td>
@@ -75,7 +95,13 @@ const DefaultButtonBlock = ({ showAlert }) => {
           <tr>
             <td>onClick</td>
             <td>
-              Действие на нажатие кнопки: <Button className={styles['ui__about-info__button_small']} onClick={showAlert}>Нажми меня</Button>
+              Действие на нажатие кнопки:{' '}
+              <Button
+                className={styles['ui__about-info__button_small']}
+                onClick={showAlert}
+              >
+                Нажми меня
+              </Button>
               <br />
               <strong>default:</strong> Никаких действий не назначено
             </td>

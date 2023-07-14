@@ -1,7 +1,11 @@
-import { useCallback, useState } from "react";
-import { useSelector } from "react-redux";
-import { pizzaFilterSelector, toggleFilterItem, updateCatalogFilter } from "./catalogSlice";
-import { PIZZA_SECTION } from "@/app/constants";
+import { useCallback, useState } from 'react';
+import { useSelector } from 'react-redux';
+import {
+  pizzaFilterSelector,
+  toggleFilterItem,
+  updateCatalogFilter,
+} from './catalogSlice';
+import { PIZZA_SECTION } from '@/app/constants';
 
 export const useCatalogFilter = ({ dispatch }) => {
   const pizzaFilter = useSelector(pizzaFilterSelector);
@@ -18,25 +22,37 @@ export const useCatalogFilter = ({ dispatch }) => {
     if (!val && !isFiltered) {
       setFilterItemsIds([]);
       // Pizza is hardcode
-      dispatch(updateCatalogFilter({ key: PIZZA_SECTION.id, filterItemsIds: [] }));
+      dispatch(
+        updateCatalogFilter({ key: PIZZA_SECTION.id, filterItemsIds: [] }),
+      );
     }
     if (isFiltered) {
       setFilterItemsIds(previousFilterItemsIds);
-      dispatch(updateCatalogFilter({ key: PIZZA_SECTION.id, filterItemsIds: previousFilterItemsIds }));
+      dispatch(
+        updateCatalogFilter({
+          key: PIZZA_SECTION.id,
+          filterItemsIds: previousFilterItemsIds,
+        }),
+      );
     }
     setIsOpenedFilter(val);
   };
 
-  const onToggleFilterItem = useCallback((id, filterIndex) => {
-    // Pizza is hardcode
-    dispatch(toggleFilterItem({ key: PIZZA_SECTION.id, filterIndex, itemId: id }))
-    setFilterItemsIds((prevState) => {
-      if (prevState.includes(id)) {
-        return prevState.filter((prev) => prev !== id);
-      }
-      return [ ...prevState, id ];
-    });
-  }, [dispatch]);
+  const onToggleFilterItem = useCallback(
+    (id, filterIndex) => {
+      // Pizza is hardcode
+      dispatch(
+        toggleFilterItem({ key: PIZZA_SECTION.id, filterIndex, itemId: id }),
+      );
+      setFilterItemsIds((prevState) => {
+        if (prevState.includes(id)) {
+          return prevState.filter((prev) => prev !== id);
+        }
+        return [...prevState, id];
+      });
+    },
+    [dispatch],
+  );
 
   const acceptFilterChanges = () => {
     setIsFiltered(true);
@@ -44,14 +60,16 @@ export const useCatalogFilter = ({ dispatch }) => {
     // Pizza is hardcode
     dispatch(updateCatalogFilter({ key: PIZZA_SECTION.id, filterItemsIds }));
     setIsOpenedFilter(false);
-  }
+  };
 
   const resetFilterChanges = () => {
     setFilterItemsIds([]);
     setIsFiltered(false);
     // Pizza is hardcode
-    dispatch(updateCatalogFilter({ key: PIZZA_SECTION.id, filterItemsIds: [] }));
-  }
+    dispatch(
+      updateCatalogFilter({ key: PIZZA_SECTION.id, filterItemsIds: [] }),
+    );
+  };
 
   return {
     pizzaFilter,

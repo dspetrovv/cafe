@@ -1,6 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { areProductsEqual, convertPizzaProduct, getPizzaKey } from "./functions";
-import { PIZZA_SECTION } from "@/app/constants";
+import { createSlice } from '@reduxjs/toolkit';
+import {
+  areProductsEqual,
+  convertPizzaProduct,
+  getPizzaKey,
+} from './functions';
+import { PIZZA_SECTION } from '@/app/constants';
 
 const IS_DEV = process.env.NODE_ENV === 'development';
 
@@ -23,7 +27,7 @@ const initialState = {
     change: 'no',
     changeSum: 0,
   },
-  comment: ''
+  comment: '',
 };
 
 const BasketSlice = createSlice({
@@ -38,12 +42,21 @@ const BasketSlice = createSlice({
       }
       state.totalPrice += product.price;
     },
-    updateProductCount: (state, { payload: { product: updatingProduct, count } }) => {
+    updateProductCount: (
+      state,
+      { payload: { product: updatingProduct, count } },
+    ) => {
       const idx = state.products.findIndex((product) => {
-        if (updatingProduct.type === PIZZA_SECTION.id && product.type === PIZZA_SECTION.id) {
+        if (
+          updatingProduct.type === PIZZA_SECTION.id &&
+          product.type === PIZZA_SECTION.id
+        ) {
           return getPizzaKey(product) === getPizzaKey(updatingProduct);
         }
-        return product.id === updatingProduct.id && product.type === updatingProduct.type;
+        return (
+          product.id === updatingProduct.id &&
+          product.type === updatingProduct.type
+        );
       });
       if (state.products[idx].count > count) {
         state.totalPrice -= state.products[idx].price;
@@ -54,10 +67,16 @@ const BasketSlice = createSlice({
     },
     removeProduct: (state, { payload: { product: updatingProduct } }) => {
       const removingIndex = state.products.findIndex((product) => {
-        if (updatingProduct.type === PIZZA_SECTION.id && product.type === PIZZA_SECTION.id) {
+        if (
+          updatingProduct.type === PIZZA_SECTION.id &&
+          product.type === PIZZA_SECTION.id
+        ) {
           return getPizzaKey(product) === getPizzaKey(updatingProduct);
         }
-        return product.id === updatingProduct.id && product.type === updatingProduct.type;
+        return (
+          product.id === updatingProduct.id &&
+          product.type === updatingProduct.type
+        );
       });
       state.totalPrice -= state.products[removingIndex].price;
       state.products.splice(removingIndex, 1);
@@ -79,7 +98,7 @@ const BasketSlice = createSlice({
     updateComment: (state, { payload }) => {
       state.comment = payload;
     },
-  }
+  },
 });
 
 export const basketStore = BasketSlice.reducer;
@@ -108,32 +127,36 @@ export const addProductToBasket = (product, type) => (dispatch, getState) => {
     }
     const { equal, productIdx } = areProductsEqual(myProduct, products);
     dispatch(addProduct({ product: myProduct, equal, productIdx }));
+  } catch (err) {
+    if (IS_DEV) {
+      console.error(err);
+    }
+  }
+};
+
+export const changeCountOfProductInBasket =
+  ({ product, count }) =>
+  (dispatch) => {
+    try {
+      dispatch(updateProductCount({ product, count }));
     } catch (err) {
-    if (IS_DEV) {
-      console.error(err);
+      if (IS_DEV) {
+        console.error(err);
+      }
     }
-  }
-};
+  };
 
-export const changeCountOfProductInBasket = ({ product, count }) => (dispatch) => {
-  try {
-    dispatch(updateProductCount({ product, count }));
-  } catch (err) {
-    if (IS_DEV) {
-      console.error(err);
+export const removeProductFromBasket =
+  ({ product }) =>
+  (dispatch) => {
+    try {
+      dispatch(removeProduct({ product }));
+    } catch (err) {
+      if (IS_DEV) {
+        console.error(err);
+      }
     }
-  }
-};
-
-export const removeProductFromBasket = ({ product }) => (dispatch) => {
-  try {
-    dispatch(removeProduct({ product }));
-  } catch (err) {
-    if (IS_DEV) {
-      console.error(err);
-    }
-  }
-};
+  };
 
 export const setDefaultContactData = () => (dispatch) => {
   try {
@@ -147,25 +170,29 @@ export const setDefaultContactData = () => (dispatch) => {
   }
 };
 
-export const updateContactData = ({ value, key }) => (dispatch) => {
-  try {
-    dispatch(updateContact({ value, key }));
-  } catch (err) {
-    if (IS_DEV) {
-      console.error(err);
+export const updateContactData =
+  ({ value, key }) =>
+  (dispatch) => {
+    try {
+      dispatch(updateContact({ value, key }));
+    } catch (err) {
+      if (IS_DEV) {
+        console.error(err);
+      }
     }
-  }
-};
+  };
 
-export const updatePaymentData = ({ value, key }) => (dispatch) => {
-  try {
-    dispatch(updatePayment({ value, key }));
-  } catch (err) {
-    if (IS_DEV) {
-      console.error(err);
+export const updatePaymentData =
+  ({ value, key }) =>
+  (dispatch) => {
+    try {
+      dispatch(updatePayment({ value, key }));
+    } catch (err) {
+      if (IS_DEV) {
+        console.error(err);
+      }
     }
-  }
-};
+  };
 
 export const addComment = (comment) => (dispatch) => {
   try {
@@ -183,17 +210,13 @@ export const makeOrder = (cb) => (dispatch, getState) => {
       contact,
       payment,
       comment,
-      contact: {
-        name,
-        phone,
-        street,
-        houseNumber
-      }
+      contact: { name, phone, street, houseNumber },
     } = getState().basketStore;
-    if (!name.trim().length
-      || phone.length < 16
-      || !street.trim().length
-      || !houseNumber.trim().length
+    if (
+      !name.trim().length ||
+      phone.length < 16 ||
+      !street.trim().length ||
+      !houseNumber.trim().length
     ) {
       throw new Error('Не все обязательные поля заполнены');
     }

@@ -1,7 +1,13 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import styles from './checkbox.module.scss';
 
-const Checkbox = ({ initialChecked = false, id, name, title = 'title', onChange }) => {
+const Checkbox = ({
+  initialChecked = false,
+  id,
+  name,
+  title = 'title',
+  onChange,
+}) => {
   const [checked, setChecked] = useState(initialChecked);
   const onChangeHandler = () => {
     setChecked((prevState) => !prevState);

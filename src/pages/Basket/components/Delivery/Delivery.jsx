@@ -1,8 +1,8 @@
-import React from "react";
-import Input from "@/_components/Input";
+import React from 'react';
+import Input from '@/_components/Input';
 import styles from './delivery.module.scss';
-import { useDispatch } from "react-redux";
-import { updateContactData } from "../../basketSlice";
+import { useDispatch } from 'react-redux';
+import { updateContactData } from '../../basketSlice';
 
 const Delivery = () => {
   const dispatch = useDispatch();
@@ -29,12 +29,55 @@ const Delivery = () => {
   return (
     <>
       <div className={styles['delivery-address']}>
-        <Input wrapperClassName={styles['delivery-address__input-wrapper']} label="Улица" placeholder="Пушкина" required onChange={onChangeStreet} />
-        <Input className={styles['delivery-address__short']} wrapperClassName={styles['delivery-address__input-wrapper']} label="Дом" required placeholder="1" onChange={onChangeHouseNumber} />
-        <Input className={styles['delivery-address__short']} wrapperClassName={styles['delivery-address__input-wrapper']} type="number" min="1" label="Подъезд" placeholder="1" onChange={onChangeEntrance} />
-        <Input className={styles['delivery-address__short']} wrapperClassName={styles['delivery-address__input-wrapper']} type="number" min="1" label="Этаж" placeholder="2" onChange={onChangeFloor} />
-        <Input className={styles['delivery-address__short']} wrapperClassName={styles['delivery-address__input-wrapper']} type="number" min="1" label="Квартира" placeholder="3" onChange={onChangeFlat} />
-        <Input className={styles['delivery-address__short']} wrapperClassName={styles['delivery-address__input-wrapper']} label="Домофон" placeholder="0000" onChange={onChangeIntercomCode} />
+        <Input
+          wrapperClassName={styles['delivery-address__input-wrapper']}
+          label="Улица"
+          placeholder="Пушкина"
+          required
+          onChange={onChangeStreet}
+        />
+        <Input
+          className={styles['delivery-address__short']}
+          wrapperClassName={styles['delivery-address__input-wrapper']}
+          label="Дом"
+          required
+          placeholder="1"
+          onChange={onChangeHouseNumber}
+        />
+        <Input
+          className={styles['delivery-address__short']}
+          wrapperClassName={styles['delivery-address__input-wrapper']}
+          type="number"
+          min="1"
+          label="Подъезд"
+          placeholder="1"
+          onChange={onChangeEntrance}
+        />
+        <Input
+          className={styles['delivery-address__short']}
+          wrapperClassName={styles['delivery-address__input-wrapper']}
+          type="number"
+          min="1"
+          label="Этаж"
+          placeholder="2"
+          onChange={onChangeFloor}
+        />
+        <Input
+          className={styles['delivery-address__short']}
+          wrapperClassName={styles['delivery-address__input-wrapper']}
+          type="number"
+          min="1"
+          label="Квартира"
+          placeholder="3"
+          onChange={onChangeFlat}
+        />
+        <Input
+          className={styles['delivery-address__short']}
+          wrapperClassName={styles['delivery-address__input-wrapper']}
+          label="Домофон"
+          placeholder="0000"
+          onChange={onChangeIntercomCode}
+        />
       </div>
     </>
   );

@@ -1,8 +1,8 @@
 .radio {
-  +label::before {
+  + label::before {
     border-radius: 50% !important;
   }
-  &:checked +label{
+  &:checked + label {
     &::before {
       border-color: var(--base-color);
       background-color: var(--buttons-outline);
@@ -19,7 +19,7 @@
       border-radius: 50%;
     }
   }
-  &:disabled +label {
+  &:disabled + label {
     &::before {
       border-color: var(--base-color-disabled);
     }

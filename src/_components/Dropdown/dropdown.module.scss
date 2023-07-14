@@ -14,7 +14,11 @@ $dropdownWidth: 14px;
   max-width: 310px;
   opacity: 0;
   top: 28px;
-  transition: top 0.4s ease-in, top 0.2s ease-out, opacity 0.3s ease-in, opacity 0.2s ease-out;
+  transition:
+    top 0.4s ease-in,
+    top 0.2s ease-out,
+    opacity 0.3s ease-in,
+    opacity 0.2s ease-out;
   z-index: -1;
   &_open {
     z-index: 1;

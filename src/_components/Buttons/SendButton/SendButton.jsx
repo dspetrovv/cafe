@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 import { ReactComponent as SendIcon } from '@/images/send.svg';
-import Button from "../Button";
+import Button from '../Button';
 import styles from './send-button.module.scss';
-import { getClassName } from "@/functions/classNameFunctions";
+import { getClassName } from '@/functions/classNameFunctions';
 
 const SendButton = ({ className: propsClassName, ...otherProps }) => {
   let className = getClassName(styles['button-send'], propsClassName);

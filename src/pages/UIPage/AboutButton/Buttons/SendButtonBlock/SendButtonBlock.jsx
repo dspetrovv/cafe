@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
-import SendButton from "@/_components/Buttons/SendButton";
-import { AboutContext } from "../../AboutButton";
+import React, { useContext } from 'react';
+import SendButton from '@/_components/Buttons/SendButton';
+import { AboutContext } from '../../AboutButton';
 import btnStyle from './send-button-block.module.scss';
 
 const SendButtonBlock = ({ showAlert }) => {
@@ -19,9 +19,9 @@ const SendButtonBlock = ({ showAlert }) => {
         <tbody>
           <tr>
             <td colSpan={2}>
-              Кнопка изначально имеет postiton: "absolute".
-              Необходимо либо обернуть в position: "relative",
-              либо передать класс, перекрывающий position: "absolute".
+              Кнопка изначально имеет postiton: "absolute". Необходимо либо
+              обернуть в position: "relative", либо передать класс,
+              перекрывающий position: "absolute".
             </td>
           </tr>
           {/* className */}
@@ -35,13 +35,14 @@ const SendButtonBlock = ({ showAlert }) => {
           </tr>
           {/* onClick */}
           <tr>
-            <td>
-              onClick
-            </td>
+            <td>onClick</td>
             <td>
               Действие на нажатие кнопки:
               <br />
-              <SendButton className={btnStyle['send-button']} onClick={showAlert} />
+              <SendButton
+                className={btnStyle['send-button']}
+                onClick={showAlert}
+              />
               <strong>default:</strong> Никаких действий не назначено
             </td>
           </tr>

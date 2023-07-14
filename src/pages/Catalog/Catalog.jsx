@@ -1,22 +1,33 @@
-import React, { lazy, Suspense, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { lazy, Suspense, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './catalog.module.scss';
-import CatalogSection from "./CatalogSection";
-import { getDessert, getDrinks, getPizza, getPizzaFilter, getSauce, getSnack, scrollingCatalogSelector, scrollPage } from "./catalogSlice";
+import CatalogSection from './CatalogSection';
+import {
+  getDessert,
+  getDrinks,
+  getPizza,
+  getPizzaFilter,
+  getSauce,
+  getSnack,
+  scrollingCatalogSelector,
+  scrollPage,
+} from './catalogSlice';
 import {
   PIZZA_SECTION,
   SAUCES_SECTION,
   SNACKS_SECTION,
   DESSERTS_SECTION,
-  DRINKS_SECTION
-} from "@/app/constants";
-import { usePizzaData } from "./usePizzaData";
-import { useSimpleProductData } from "./useSimpleProductData";
-import { useCatalogFilter } from "./useCatalogFilter";
+  DRINKS_SECTION,
+} from '@/app/constants';
+import { usePizzaData } from './usePizzaData';
+import { useSimpleProductData } from './useSimpleProductData';
+import { useCatalogFilter } from './useCatalogFilter';
 
-const FilterPanel = lazy(() => import("@/_components/Panels/FilterPanel"));
-const PizzaModal = lazy(() => import("@/_components/Modals/PizzaModal"));
-const SimpleProductModal = lazy(() => import("@/_components/Modals/SimpleProductModal"));
+const FilterPanel = lazy(() => import('@/_components/Panels/FilterPanel'));
+const PizzaModal = lazy(() => import('@/_components/Modals/PizzaModal'));
+const SimpleProductModal = lazy(() =>
+  import('@/_components/Modals/SimpleProductModal'),
+);
 
 const CatalogPage = () => {
   const dispatch = useDispatch();
@@ -39,7 +50,7 @@ const CatalogPage = () => {
     onSelectPizza,
     togglePizzaModal,
     updateDough,
-    updateDiameter
+    updateDiameter,
   } = usePizzaData({ dispatch });
 
   const {
@@ -51,7 +62,7 @@ const CatalogPage = () => {
     isOpenedSimpleProduct,
     onOpenSimpleProduct,
     onSelectSimpleProduct,
-    toggleSimpleProductModal
+    toggleSimpleProductModal,
   } = useSimpleProductData({ dispatch });
 
   const {
@@ -60,7 +71,7 @@ const CatalogPage = () => {
     toggleIsOpenFilter,
     onToggleFilterItem,
     acceptFilterChanges,
-    resetFilterChanges
+    resetFilterChanges,
   } = useCatalogFilter({ dispatch });
 
   const [isOpenedBottomInfo, setIsOpenedBottomInfo] = useState(false);
@@ -72,7 +83,7 @@ const CatalogPage = () => {
 
   useEffect(() => {
     const scrollingElement = document.getElementById(scrolling);
-    scrollingElement?.scrollIntoView({ behavior: "smooth" });
+    scrollingElement?.scrollIntoView({ behavior: 'smooth' });
     return () => dispatch(scrollPage());
   }, [scrolling, dispatch]);
 
@@ -105,28 +116,45 @@ const CatalogPage = () => {
         list={drinks}
         onSelectProduct={onOpenSimpleProduct}
       />
-      <section className={`${styles.info} ${isOpenedBottomInfo ? '' : styles.info_hidden}`}>
+      <section
+        className={`${styles.info} ${
+          isOpenedBottomInfo ? '' : styles.info_hidden
+        }`}
+      >
         <h1>Доставка питсы</h1>
         <span>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. At consequuntur illum id distinctio eum maiores quibusdam consectetur voluptatibus eligendi. Provident deleniti at asperiores? Dolores ipsa totam pariatur rerum incidunt quisquam!
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. At
+          consequuntur illum id distinctio eum maiores quibusdam consectetur
+          voluptatibus eligendi. Provident deleniti at asperiores? Dolores ipsa
+          totam pariatur rerum incidunt quisquam!
         </span>
         <h4>Как сделать заказ</h4>
         <span>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut perspiciatis a similique tenetur nostrum nobis eos assumenda repellendus adipisci quibusdam modi, illum voluptatum id sit eum pariatur repudiandae aperiam accusantium!
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut
+          perspiciatis a similique tenetur nostrum nobis eos assumenda
+          repellendus adipisci quibusdam modi, illum voluptatum id sit eum
+          pariatur repudiandae aperiam accusantium!
         </span>
         <h4>Зачем сделать заказ</h4>
         <span>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut perspiciatis a similique tenetur nostrum nobis eos assumenda repellendus adipisci quibusdam modi, illum voluptatum id sit eum pariatur repudiandae aperiam accusantium!
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut
+          perspiciatis a similique tenetur nostrum nobis eos assumenda
+          repellendus adipisci quibusdam modi, illum voluptatum id sit eum
+          pariatur repudiandae aperiam accusantium!
         </span>
         <h4>Зачем сделать заказ</h4>
         <span>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut perspiciatis a similique tenetur nostrum nobis eos assumenda repellendus adipisci quibusdam modi, illum voluptatum id sit eum pariatur repudiandae aperiam accusantium!
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut
+          perspiciatis a similique tenetur nostrum nobis eos assumenda
+          repellendus adipisci quibusdam modi, illum voluptatum id sit eum
+          pariatur repudiandae aperiam accusantium!
         </span>
         <span
-          className={`${styles.info__btn} ${isOpenedBottomInfo ? styles.info__btn_close : styles.info__btn_open}`}
+          className={`${styles.info__btn} ${
+            isOpenedBottomInfo ? styles.info__btn_close : styles.info__btn_open
+          }`}
           onClick={toggleBottomInfo}
-        >
-        </span>
+        ></span>
       </section>
       <Suspense>
         <FilterPanel
@@ -137,7 +165,7 @@ const CatalogPage = () => {
           accept={acceptFilterChanges}
           reset={resetFilterChanges}
         />
-        { !!pizza[0] &&
+        {!!pizza[0] && (
           <PizzaModal
             pizza={pizza[selectedPizzaIdx]}
             isOpen={isOpenedPizza}
@@ -147,15 +175,15 @@ const CatalogPage = () => {
             onSelectPizza={onSelectPizza}
             toggleIsOpen={togglePizzaModal}
           />
-        }
-        { !!selectedSimpleProduct &&
+        )}
+        {!!selectedSimpleProduct && (
           <SimpleProductModal
             simpleProduct={selectedSimpleProduct}
             toggleIsOpen={toggleSimpleProductModal}
             onSelectProduct={onSelectSimpleProduct}
             isOpen={isOpenedSimpleProduct}
           />
-        }
+        )}
       </Suspense>
     </>
   );
