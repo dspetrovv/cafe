@@ -67,9 +67,10 @@ const withInput = (Component) => {
       ref: input,
       ...otherProps,
       onChange: onChangeHandler,
-      wrapperClassName: undefined,
       type: type === 'number' ? 'text' : type
     };
+    delete componentProps.wrapperClassName;
+    delete componentProps.phone;
 
     return (
       <div className={blockClassName}>

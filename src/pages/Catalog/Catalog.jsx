@@ -1,8 +1,8 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styles from './catalog.module.scss';
 import CatalogSection from "./CatalogSection";
-import { useDispatch } from "react-redux";
-import { getDessert, getDrinks, getPizza, getPizzaFilter, getSauce, getSnack } from "./catalogSlice";
+import { getDessert, getDrinks, getPizza, getPizzaFilter, getSauce, getSnack, scrollingCatalogSelector } from "./catalogSlice";
 import {
   PIZZA_SECTION,
   SAUCES_SECTION,
@@ -67,6 +67,13 @@ const CatalogPage = () => {
   const toggleBottomInfo = () => {
     setIsOpenedBottomInfo((prevState) => !prevState);
   };
+
+  const scrolling = useSelector(scrollingCatalogSelector);
+
+  useEffect(() => {
+    const scrollingElement = document.getElementById(scrolling);
+    scrollingElement?.scrollIntoView({ behavior: "smooth" });
+  }, [scrolling]);
 
   return (
     <>

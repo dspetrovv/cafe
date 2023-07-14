@@ -47,12 +47,12 @@ const Basket = () => {
     dispatch(addProductToBasket(product, type));
   };
 
-  const onChangeProductCount = useCallback(({ count, product, type }) => {
+  const onChangeProductCount = useCallback(({ count, product }) => {
     if (count === 0) {
-      dispatch(removeProductFromBasket({ product, type }));
+      dispatch(removeProductFromBasket({ product }));
       return;
     }
-    dispatch(changeCountOfProductInBasket({ product, count, type }));
+    dispatch(changeCountOfProductInBasket({ product, count }));
   }, [dispatch]);
 
   const navigate = useNavigate();
@@ -74,7 +74,7 @@ const Basket = () => {
       <section className={styles.basket}>
         <h1>Ваш заказ</h1>
         { products.map((product) => {
-          let key = `${product.type}${product.id}`;
+          let key = `${product.type}${product.id}${product.count}`;
           if (product.type === PIZZA_SECTION.id) {
             key = getPizzaKey(product);
           }
