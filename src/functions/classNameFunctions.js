@@ -6,7 +6,7 @@ export const getClassName = (initialClass = '', ...classes) => {
     className += classes
       .flat(2)
       .map((cssClass) => ` ${cssClass}`)
-      .join(' ');
+      .join('');
   }
   return className;
 };

@@ -1,4 +1,4 @@
-import { compareArraysByField } from '@/functions/arrayFunctions';
+import { compareArraysByField } from '../../functions/arrayFunctions';
 
 export const areProductsEqual = (newProduct, products) => {
   const filteredProducts = products.filter(
@@ -18,10 +18,10 @@ export const areProductsEqual = (newProduct, products) => {
   let equal = false;
   for (let i = 0; i < filteredProducts.length; i++) {
     if (
-      compareArraysByField(products[i].removed, newRemovedList, 'selected') &&
-      compareArraysByField(products[i].added, newAddedList, 'selected') &&
-      compareArraysByField(products[i].dough, newDough, 'selected') &&
-      compareArraysByField(products[i].diameters, newDiameters, 'selected')
+      compareArraysByField(filteredProducts[i].removed, newRemovedList, 'selected') &&
+      compareArraysByField(filteredProducts[i].added, newAddedList, 'selected') &&
+      compareArraysByField(filteredProducts[i].dough, newDough, 'selected') &&
+      compareArraysByField(filteredProducts[i].diameters, newDiameters, 'selected')
     ) {
       equal = true;
       productIdx = i;

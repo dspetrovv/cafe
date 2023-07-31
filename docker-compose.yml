@@ -1,0 +1,11 @@
+version: '1'
+
+services:
+  react:
+    build: .
+    container_name: react-cafe
+    command: npm run start
+    ports:
+      - "23000:3000"
+    volumes:
+      - ./:/application
